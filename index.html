@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth bg-zinc-950 text-zinc-50">
+<html lang="pt-BR" class="bg-zinc-950 text-zinc-50">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,9 +34,11 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- GSAP & ScrollTrigger para animações cinematográficas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Movimento cinematográfico: Lenis + GSAP + ScrollTrigger -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
+    <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -100,6 +102,464 @@
             background-size: 4rem 4rem;
             mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%);
             -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%);
+        }
+
+        /* Hero editorial em camadas, inspirada no preview social da marca */
+        .hero-track {
+            height: 200vh;
+            background: #09090b;
+        }
+
+        .hero-stage {
+            position: sticky;
+            top: 0;
+            min-height: 100vh;
+            min-height: 100svh;
+            overflow: hidden;
+            isolation: isolate;
+            background: #09090b;
+        }
+
+        .hero-visuals,
+        .hero-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .hero-layer {
+            will-change: transform;
+        }
+
+        .hero-preview-layer {
+            z-index: 0;
+            top: 5%;
+            right: -8%;
+            bottom: auto;
+            left: auto;
+            width: min(68rem, 66vw);
+            aspect-ratio: 1200 / 630;
+            opacity: 0.12;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            mask-image: linear-gradient(90deg, transparent 4%, rgba(0, 0, 0, 0.55) 38%, #000 66%);
+            -webkit-mask-image: linear-gradient(90deg, transparent 4%, rgba(0, 0, 0, 0.55) 38%, #000 66%);
+        }
+
+        .hero-preview-layer img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) contrast(1.08);
+            transform: scale(1.025);
+        }
+
+        .hero-grid-layer {
+            z-index: 1;
+            opacity: 0.58;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+            background-size: clamp(3.5rem, 7vw, 7rem) clamp(3.5rem, 7vw, 7rem);
+            mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+        }
+
+        .hero-axis {
+            position: absolute;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+        }
+
+        .hero-axis--horizontal {
+            top: 31%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+        }
+
+        .hero-axis--vertical {
+            top: 0;
+            right: clamp(8rem, 22vw, 22rem);
+            width: 1px;
+            height: 100%;
+        }
+
+        .hero-orbit-layer {
+            z-index: 4;
+            top: clamp(4.5rem, 9vh, 7rem);
+            right: clamp(-3.5rem, 3vw, 4rem);
+            bottom: auto;
+            left: auto;
+            width: clamp(15rem, 34vw, 34rem);
+            aspect-ratio: 1;
+        }
+
+        .hero-orbit,
+        .hero-orbit::before,
+        .hero-orbit::after {
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            border-radius: 50%;
+            content: '';
+        }
+
+        .hero-orbit::before {
+            inset: 17%;
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-orbit::after {
+            top: 50%;
+            right: -8%;
+            bottom: auto;
+            left: -8%;
+            height: 1px;
+            border: 0;
+            border-radius: 0;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(-42deg);
+            transform-origin: center;
+        }
+
+        .hero-star-layer {
+            z-index: 6;
+            top: clamp(7.5rem, 15vh, 11rem);
+            right: clamp(1rem, 8vw, 9rem);
+            bottom: auto;
+            left: auto;
+            width: clamp(8rem, 18vw, 18rem);
+            aspect-ratio: 1;
+            display: grid;
+            place-items: center;
+        }
+
+        .hero-star-interaction {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            place-items: center;
+            will-change: transform;
+        }
+
+        .hero-star {
+            width: 78%;
+            height: 78%;
+            color: #fafafa;
+            filter: drop-shadow(0 0 1.5rem rgba(255, 255, 255, 0.34));
+        }
+
+        .hero-copy {
+            position: absolute;
+            z-index: 12;
+            top: 48%;
+            left: clamp(1.5rem, 5vw, 5rem);
+            width: min(67rem, calc(100% - 3rem));
+            transform: translateY(-50%);
+            transform-origin: left center;
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #d4d4d8;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        .hero-kicker::before {
+            width: 2.5rem;
+            height: 1px;
+            background: #fafafa;
+            content: '';
+        }
+
+        .hero-title {
+            margin-top: clamp(1.1rem, 2vh, 1.75rem);
+            color: #fafafa;
+            font-size: clamp(5.1rem, 13.5vw, 13.5rem);
+            font-weight: 500;
+            letter-spacing: -0.075em;
+            line-height: 0.76;
+            white-space: nowrap;
+        }
+
+        .hero-title-dot {
+            color: #a1a1aa;
+        }
+
+        .hero-positioning {
+            margin-top: clamp(2rem, 5vh, 3.75rem);
+            padding-top: clamp(1.2rem, 2.5vh, 1.75rem);
+            width: min(45rem, 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.26);
+        }
+
+        .hero-positioning-label {
+            color: #fafafa;
+            font-size: clamp(0.72rem, 1vw, 0.82rem);
+            font-weight: 600;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+        }
+
+        .hero-description {
+            margin-top: 0.9rem;
+            max-width: 42rem;
+            color: #d4d4d8;
+            font-size: clamp(1.12rem, 2vw, 1.55rem);
+            font-weight: 300;
+            letter-spacing: -0.025em;
+            line-height: 1.45;
+        }
+
+        .hero-supporting-copy {
+            margin-top: 0.75rem;
+            max-width: 37rem;
+            color: #71717a;
+            font-size: 0.9rem;
+            line-height: 1.65;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 1.75rem;
+        }
+
+        .hero-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            min-height: 3.25rem;
+            padding: 0.85rem 1.35rem;
+            border: 1px solid rgba(255, 255, 255, 0.17);
+            border-radius: 999px;
+            color: #fafafa;
+            background: rgba(9, 9, 11, 0.42);
+            backdrop-filter: blur(12px);
+            font-size: 0.84rem;
+            font-weight: 600;
+            transition: color 220ms ease, background-color 220ms ease, border-color 220ms ease, transform 220ms ease;
+        }
+
+        .hero-action--primary {
+            color: #09090b;
+            background: #fafafa;
+            border-color: #fafafa;
+        }
+
+        .hero-action:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .hero-action--primary:hover {
+            background: #ffffff;
+            border-color: #ffffff;
+        }
+
+        .hero-proof {
+            position: absolute;
+            z-index: 14;
+            right: clamp(1.5rem, 5vw, 5rem);
+            bottom: clamp(1.5rem, 4vh, 3rem);
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            align-items: end;
+            gap: clamp(1.2rem, 3vw, 3.5rem);
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .hero-proof strong {
+            display: block;
+            color: #fafafa;
+            font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+            font-weight: 500;
+            letter-spacing: -0.035em;
+        }
+
+        .hero-proof span {
+            display: block;
+            margin-top: 0.2rem;
+            color: #71717a;
+            font-size: 0.63rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .hero-scroll-cue {
+            position: absolute;
+            z-index: 14;
+            bottom: clamp(1.6rem, 4vh, 3rem);
+            left: clamp(1.5rem, 5vw, 5rem);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #71717a;
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .hero-scroll-cue::before {
+            width: 2.5rem;
+            height: 1px;
+            background: #52525b;
+            content: '';
+        }
+
+        .hero-index {
+            position: absolute;
+            z-index: 14;
+            top: 31%;
+            right: clamp(0.9rem, 2vw, 2rem);
+            color: #52525b;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            writing-mode: vertical-rl;
+        }
+
+        .hero-bottom-fade {
+            position: absolute;
+            z-index: 10;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 22vh;
+            pointer-events: none;
+            background: linear-gradient(to bottom, transparent, #09090b 88%);
+        }
+
+        @media (max-width: 767px) {
+            .hero-track {
+                height: 175vh;
+            }
+
+            .hero-preview-layer {
+                top: 2.5rem;
+                right: -72vw;
+                width: 165vw;
+                opacity: 0.1;
+            }
+
+            .hero-axis--horizontal {
+                top: 26%;
+            }
+
+            .hero-axis--vertical {
+                right: 4.25rem;
+            }
+
+            .hero-orbit-layer {
+                top: 4.25rem;
+                right: -4.5rem;
+                width: 17rem;
+            }
+
+            .hero-star-layer {
+                top: 7.5rem;
+                right: -0.75rem;
+                width: 10rem;
+            }
+
+            .hero-copy {
+                top: 52%;
+                left: 1.25rem;
+                width: calc(100% - 2.5rem);
+            }
+
+            .hero-title {
+                font-size: clamp(4.8rem, 25vw, 7.25rem);
+            }
+
+            .hero-positioning {
+                margin-top: 2.2rem;
+            }
+
+            .hero-description {
+                max-width: 22rem;
+                font-size: clamp(1rem, 5vw, 1.25rem);
+            }
+
+            .hero-supporting-copy {
+                max-width: 20rem;
+                font-size: 0.78rem;
+            }
+
+            .hero-actions {
+                align-items: stretch;
+            }
+
+            .hero-action {
+                min-height: 3rem;
+                padding-inline: 1rem;
+                font-size: 0.75rem;
+            }
+
+            .hero-proof {
+                right: 1.25rem;
+                bottom: 1.35rem;
+                left: 1.25rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .hero-proof-item:nth-child(3) {
+                display: none;
+            }
+
+            .hero-proof span {
+                white-space: normal;
+            }
+
+            .hero-scroll-cue,
+            .hero-index {
+                display: none;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero-kicker {
+                gap: 0.5rem;
+                font-size: 0.58rem;
+                letter-spacing: 0.18em;
+                white-space: nowrap;
+            }
+
+            .hero-kicker::before {
+                width: 2rem;
+            }
+
+            .hero-orbit-layer {
+                top: 3.5rem;
+                right: -3.5rem;
+                width: 14rem;
+            }
+
+            .hero-star-layer {
+                top: 6.25rem;
+                right: -0.35rem;
+                width: 8.5rem;
+            }
+
+            .hero-actions {
+                gap: 0.5rem;
+            }
+
+            .hero-action {
+                padding-inline: 0.85rem;
+            }
         }
 
         /* Utilitários 3D */
@@ -259,8 +719,10 @@
                 transition-duration: 0.01ms !important;
             }
 
-            .hero-card,
-            .hero-badge,
+            .hero-layer,
+            .hero-copy,
+            .hero-proof,
+            .hero-scroll-cue,
             .gsap-fade-up,
             .gsap-fade-left,
             .gsap-fade-right,
@@ -270,6 +732,10 @@
                 opacity: 1 !important;
                 transform: none !important;
                 filter: none !important;
+            }
+
+            .hero-star-interaction {
+                transform: none !important;
             }
         }
     </style>
@@ -286,69 +752,69 @@
     </header>
 
     <main>
-        <!-- 1. HERO CINEMATOGRÁFICA -->
-        <!-- O .hero-track define a altura total do scroll para a animação -->
-        <section class="hero-track relative h-[220vh] bg-zinc-950">
+        <!-- 1. HERO EDITORIAL COM PARALLAX -->
+        <section id="inicio" class="hero-track relative" aria-labelledby="hero-title">
+            <div class="hero-stage" data-hero-stage>
+                <div class="hero-visuals" data-parallax-layers aria-hidden="true">
+                    <figure class="hero-layer hero-preview-layer" data-parallax-layer="preview">
+                        <img src="/og-preview.png" width="1200" height="630" alt="" loading="eager" fetchpriority="high">
+                    </figure>
 
-            <!-- O container sticky que fica preso na tela enquanto o usuário rola o hero-track -->
-            <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-center perspective-1000">
+                    <div class="hero-layer hero-grid-layer" data-parallax-layer="grid"></div>
+                    <div class="hero-axis hero-axis--horizontal"></div>
+                    <div class="hero-axis hero-axis--vertical"></div>
 
-                <!-- Background Grid -->
-                <div class="absolute inset-0 bg-grid z-0"></div>
-
-                <!-- Textos Iniciais -->
-                <div class="hero-text absolute z-10 flex flex-col items-center text-center px-4 w-full">
-                    <div class="inline-block px-4 py-1.5 mb-6 rounded-full border border-zinc-700 bg-zinc-800/50 backdrop-blur-md text-xs font-medium tracking-widest text-zinc-300 uppercase">
-                        Lucas • Marketing & Tech
+                    <div class="hero-layer hero-orbit-layer" data-parallax-layer="orbit">
+                        <div class="hero-orbit"></div>
                     </div>
-                    <h1 class="text-4xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-zinc-100 mb-6 max-w-5xl leading-tight">
-                        Eu conecto tráfego, CRM e tecnologia para vender mais.
-                    </h1>
-                    <p class="text-lg md:text-xl text-zinc-400 max-w-2xl font-light">
-                        Performance digital com campanhas, páginas, dados e processo comercial trabalhando como uma única operação.
-                    </p>
-                    <div class="mt-12 text-zinc-500">
-                        <i data-lucide="chevron-down" class="w-8 h-8"></i>
-                    </div>
-                </div>
 
-                <!-- Card 3D que sobe no scroll -->
-                <div class="hero-card absolute z-20 w-[95%] sm:w-[90%] max-w-5xl aspect-[4/3] sm:aspect-video rounded-2xl border border-zinc-700/50 bg-zinc-900/90 backdrop-blur-3xl shadow-[0_0_80px_rgba(30,58,138,0.2)] overflow-hidden flex flex-col items-center justify-center transform-style-3d opacity-0">
-
-                    <!-- Brilho interno do card -->
-                    <div class="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-emerald-500/10 z-0"></div>
-
-                    <div class="relative z-30 text-center px-6 sm:px-8 mt-12 sm:mt-0">
-                        <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-white mb-6">
-                            Performance é mídia, processo e venda.
-                        </h2>
-                        <p class="text-lg sm:text-xl text-zinc-400 font-light mb-10 max-w-2xl mx-auto">
-                            Meu trabalho principal hoje transforma investimento em tráfego em leads acompanhados, oportunidades e retorno comercial.
-                        </p>
-                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <a href="#performance" class="w-full sm:w-auto px-8 py-4 bg-zinc-100 text-zinc-950 font-medium rounded-full hover:bg-white transition-colors flex items-center justify-center gap-2 pointer-events-auto">
-                                Ver performance <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                            </a>
-                            <a href="#projetos" class="w-full sm:w-auto px-8 py-4 bg-transparent text-white border border-zinc-700 font-medium rounded-full hover:bg-zinc-800 transition-colors pointer-events-auto text-center">
-                                Ver projetos
-                            </a>
+                    <div class="hero-layer hero-star-layer" data-parallax-layer="star">
+                        <div class="hero-star-interaction">
+                            <svg class="hero-star" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="currentColor" d="M32 7 36 26.7 50.5 13.5 37.3 28 57 32l-19.7 4 13.2 14.5L36 37.3 32 57l-4-19.7-14.5 13.2L26.7 36 7 32l19.7-4-13.2-14.5L28 26.7 32 7Z"/>
+                            </svg>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Badges flutuantes -->
-                    <div class="hero-badge absolute -left-4 sm:left-10 top-10 sm:top-20 flex items-center gap-2 px-4 py-2 bg-zinc-800/80 border border-zinc-700 rounded-full backdrop-blur-md shadow-xl text-xs sm:text-sm font-medium text-zinc-200">
-                        <i data-lucide="target" class="w-4 h-4 text-rose-400"></i> <span class="hidden sm:inline">Performance Digital</span><span class="sm:hidden">Performance</span>
-                    </div>
-                    <div class="hero-badge absolute -right-4 sm:right-10 top-32 sm:top-40 flex items-center gap-2 px-4 py-2 bg-zinc-800/80 border border-zinc-700 rounded-full backdrop-blur-md shadow-xl text-xs sm:text-sm font-medium text-zinc-200">
-                        <i data-lucide="database" class="w-4 h-4 text-emerald-400"></i> <span class="hidden sm:inline">CRMs Personalizados</span><span class="sm:hidden">CRMs</span>
-                    </div>
-                    <div class="hero-badge absolute left-4 sm:left-20 bottom-10 sm:bottom-20 flex items-center gap-2 px-4 py-2 bg-zinc-800/80 border border-zinc-700 rounded-full backdrop-blur-md shadow-xl text-xs sm:text-sm font-medium text-zinc-200">
-                        <i data-lucide="mouse-pointer-click" class="w-4 h-4 text-blue-400"></i> Meta & Google Ads
-                    </div>
-                    <div class="hero-badge absolute right-4 sm:right-32 bottom-24 sm:bottom-32 flex items-center gap-2 px-4 py-2 bg-zinc-800/80 border border-zinc-700 rounded-full backdrop-blur-md shadow-xl text-xs sm:text-sm font-medium text-zinc-200">
-                        <i data-lucide="chart-no-axes-combined" class="w-4 h-4 text-amber-400"></i> Dados & Conversão
+                <div class="hero-copy">
+                    <div class="hero-kicker" data-hero-intro>Estratégia · Mídia · Tecnologia</div>
+                    <h1 id="hero-title" class="hero-title" data-hero-intro>LUCAS<span class="hero-title-dot">.</span></h1>
+
+                    <div class="hero-positioning" data-hero-intro>
+                        <p class="hero-positioning-label">Performance digital</p>
+                        <p class="hero-description">Tráfego, CRM e tecnologia para vender mais.</p>
+                        <p class="hero-supporting-copy">Campanhas, páginas, dados e processo comercial conectados em uma operação feita para gerar retorno — não apenas alcance.</p>
+
+                        <div class="hero-actions">
+                            <a href="#performance" class="hero-action hero-action--primary">
+                                <span><span class="hidden sm:inline">Ver </span>performance</span>
+                                <i data-lucide="arrow-up-right" class="w-4 h-4" aria-hidden="true"></i>
+                            </a>
+                            <a href="#projetos" class="hero-action"><span class="hidden sm:inline">Explorar </span>projetos</a>
+                        </div>
                     </div>
                 </div>
+
+                <div class="hero-scroll-cue" aria-hidden="true">Role para explorar</div>
+                <div class="hero-index" aria-hidden="true">PORTFÓLIO / 2026</div>
+
+                <div class="hero-proof" aria-label="Resultados e especialidades em destaque">
+                    <div class="hero-proof-item">
+                        <strong>R$ 1M+</strong>
+                        <span>em retorno gerado</span>
+                    </div>
+                    <div class="hero-proof-item">
+                        <strong>~R$ 50 mil</strong>
+                        <span>em investimento</span>
+                    </div>
+                    <div class="hero-proof-item">
+                        <strong>Tráfego + CRM</strong>
+                        <span>uma só operação</span>
+                    </div>
+                </div>
+
+                <div class="hero-bottom-fade"></div>
             </div>
         </section>
 
@@ -976,42 +1442,111 @@
         // --------------------------------------------------------
         gsap.registerPlugin(ScrollTrigger);
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let lenis = null;
+        let lenisTicker = null;
+
+        // Lenis é o único motor de scroll suave e compartilha o mesmo loop do GSAP.
+        if (!reduceMotion && typeof Lenis !== 'undefined') {
+            lenis = new Lenis({
+                duration: 1.05,
+                smoothWheel: true,
+                syncTouch: false,
+                anchors: false,
+                respectReducedMotion: true
+            });
+
+            lenis.on('scroll', ScrollTrigger.update);
+            lenisTicker = time => lenis.raf(time * 1000);
+            gsap.ticker.add(lenisTicker);
+            gsap.ticker.lagSmoothing(0);
+        }
 
         if (!reduceMotion) {
-            // Um único momento cinematográfico forte na abertura.
-            gsap.set(".hero-card", { y: 120, rotateX: 7, scale: 0.965, opacity: 0, transformOrigin: "50% 100%" });
+            // A primeira imagem já funciona sem JS; o intro apenas compõe sua entrada.
+            const introTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+            introTl.from(".hero-star", { autoAlpha: 0, scale: 0.58, rotation: -12, duration: 1.15 }, 0.08);
+            introTl.from(".hero-orbit", { autoAlpha: 0, scale: 0.82, duration: 1.25 }, 0);
+            introTl.from("[data-hero-intro]", {
+                autoAlpha: 0,
+                y: 28,
+                duration: 0.85,
+                stagger: 0.08,
+                clearProps: "transform,opacity,visibility"
+            }, 0.18);
+            introTl.from(".hero-proof-item", {
+                autoAlpha: 0,
+                y: 16,
+                duration: 0.7,
+                stagger: 0.08,
+                clearProps: "transform,opacity,visibility"
+            }, 0.48);
 
             const heroTl = gsap.timeline({
                 scrollTrigger: {
                     trigger: ".hero-track",
                     start: "top top",
                     end: "bottom bottom",
-                    scrub: 0.65
+                    scrub: 0.72,
+                    invalidateOnRefresh: true
                 }
             });
 
-            heroTl.to(".hero-text", {
-                opacity: 0.08,
-                scale: 1.035,
-                y: -28,
-                duration: 0.75,
-                ease: "power2.out"
+            heroTl.to('[data-parallax-layer="preview"]', {
+                yPercent: 18,
+                scale: 1.08,
+                opacity: 0.035,
+                ease: "none"
             }, 0);
+            heroTl.to('[data-parallax-layer="grid"]', { yPercent: 25, ease: "none" }, 0);
+            heroTl.to('[data-parallax-layer="orbit"]', {
+                yPercent: 34,
+                rotation: 10,
+                scale: 0.93,
+                ease: "none"
+            }, 0);
+            heroTl.to('[data-parallax-layer="star"]', {
+                yPercent: 52,
+                scale: 0.84,
+                ease: "none"
+            }, 0);
+            heroTl.to(".hero-copy", {
+                yPercent: 38,
+                scale: 0.985,
+                autoAlpha: 0.06,
+                ease: "none"
+            }, 0);
+            heroTl.to(".hero-proof, .hero-scroll-cue, .hero-index", {
+                yPercent: 24,
+                autoAlpha: 0,
+                ease: "none"
+            }, 0.24);
 
-            heroTl.to(".hero-card", {
-                y: 0,
-                rotateX: 0,
-                scale: 1,
-                opacity: 1,
-                duration: 1,
-                ease: "power3.out"
-            }, 0.14);
+            // Movimento de ponteiro sutil e separado do parallax de rolagem.
+            const heroStage = document.querySelector('[data-hero-stage]');
+            const starInteraction = document.querySelector('.hero-star-interaction');
+            const finePointer = window.matchMedia('(pointer: fine)').matches;
 
-            heroTl.fromTo(".hero-badge",
-                { opacity: 0, y: 18 },
-                { opacity: 1, y: 0, stagger: 0.07, duration: 0.55, ease: "power2.out" },
-                0.65
-            );
+            if (heroStage && starInteraction && finePointer) {
+                const moveStarX = gsap.quickTo(starInteraction, "x", { duration: 0.55, ease: "power3.out" });
+                const moveStarY = gsap.quickTo(starInteraction, "y", { duration: 0.55, ease: "power3.out" });
+                const resetStar = () => {
+                    moveStarX(0);
+                    moveStarY(0);
+                };
+
+                heroStage.addEventListener('pointermove', event => {
+                    const bounds = heroStage.getBoundingClientRect();
+                    const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 18;
+                    const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 14;
+                    moveStarX(x);
+                    moveStarY(y);
+                }, { passive: true });
+                heroStage.addEventListener('pointerleave', resetStar);
+                window.addEventListener('blur', resetStar);
+                document.addEventListener('visibilitychange', () => {
+                    if (document.hidden) resetStar();
+                });
+            }
 
             // Entradas curtas, executadas uma única vez para não disputar com a rolagem.
             gsap.utils.toArray('.gsap-fade-up').forEach(element => {
@@ -1072,7 +1607,10 @@
                 }, 0.42);
             }
         } else {
-            gsap.set(".hero-card, .hero-badge", { opacity: 1, y: 0, rotateX: 0, scale: 1 });
+            gsap.set(".hero-layer, .hero-copy, .hero-proof, .hero-scroll-cue, .hero-index", {
+                opacity: 1,
+                clearProps: "transform,visibility"
+            });
         }
 
         // --- NOVA LÓGICA: CONTADORES DE MÉTRICAS ---
@@ -1107,7 +1645,11 @@
                 if (!target) return;
 
                 event.preventDefault();
-                target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+                if (lenis) {
+                    lenis.scrollTo(target, { offset: 0, duration: 1.05 });
+                } else {
+                    target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+                }
                 history.pushState(null, '', selector);
             });
         });
@@ -1119,9 +1661,19 @@
             const initialTarget = document.querySelector(window.location.hash);
             if (initialTarget) {
                 requestAnimationFrame(() => {
-                    initialTarget.scrollIntoView({ behavior: 'auto', block: 'start' });
+                    if (lenis) {
+                        lenis.scrollTo(initialTarget, { immediate: true });
+                    } else {
+                        initialTarget.scrollIntoView({ behavior: 'auto', block: 'start' });
+                    }
                 });
             }
+        }, { once: true });
+
+        window.addEventListener('pagehide', () => {
+            if (!lenis) return;
+            if (lenisTicker) gsap.ticker.remove(lenisTicker);
+            lenis.destroy();
         }, { once: true });
 
         // --------------------------------------------------------
