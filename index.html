@@ -14,7 +14,7 @@
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
-    <meta property="og:site_name" content="Lucas — Performance Digital">
+    <meta property="og:site_name" content="Lucas | Performance Digital">
     <meta property="og:url" content="https://lucasluk.vercel.app/">
     <meta property="og:title" content="Lucas | Performance Digital, Tráfego e CRM">
     <meta property="og:description" content="Tráfego, Meta Conversions API, CRM próprio e automações conectados para transformar investimento em crescimento comercial.">
@@ -708,6 +708,223 @@
             transform: translate(3px, -3px);
         }
 
+        /* Galeria autoral: leque de artes e publicações incorporadas */
+        .design-showcase {
+            position: relative;
+            overflow: hidden;
+            background: #09090b;
+        }
+
+        .design-showcase::before {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.06), transparent 42%);
+            content: '';
+        }
+
+        .arch-gallery-shell {
+            position: relative;
+            margin-top: clamp(3rem, 7vw, 6rem);
+            min-height: clamp(34rem, 58vw, 45rem);
+        }
+
+        .arch-gallery-stage {
+            position: absolute;
+            inset: 0;
+            margin: auto;
+            width: min(100%, 64rem);
+        }
+
+        .arch-card {
+            --arch-x: 0px;
+            --arch-y: 0px;
+            --arch-rotate: 0deg;
+            position: absolute;
+            top: 46%;
+            left: 50%;
+            width: clamp(17rem, 29vw, 23rem);
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            border-radius: 1rem;
+            background: #f4f4f5;
+            box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.46), 0 0.35rem 1rem rgba(0, 0, 0, 0.28);
+            transform: translate(calc(-50% + var(--arch-x)), calc(-50% + var(--arch-y))) rotate(var(--arch-rotate));
+            transform-origin: center 112%;
+            transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 320ms ease;
+            will-change: transform;
+        }
+
+        .arch-card:first-child {
+            --arch-x: -48%;
+            --arch-y: 2.6rem;
+            --arch-rotate: -8deg;
+            z-index: 1;
+        }
+
+        .arch-card:last-child {
+            --arch-x: 48%;
+            --arch-y: 2.6rem;
+            --arch-rotate: 8deg;
+            z-index: 2;
+        }
+
+        .arch-card:hover,
+        .arch-card:focus-visible {
+            z-index: 5;
+            box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.58), 0 0.5rem 1.5rem rgba(0, 0, 0, 0.32);
+            transform: translate(calc(-50% + var(--arch-x)), calc(-50% + var(--arch-y) - 1.35rem)) rotate(0deg) scale(1.045);
+        }
+
+        .arch-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            user-select: none;
+        }
+
+        .arch-card-label {
+            position: absolute;
+            right: 0.75rem;
+            bottom: 0.75rem;
+            left: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.85rem 1rem;
+            border-radius: 0.75rem;
+            color: #fafafa;
+            background: rgba(9, 9, 11, 0.88);
+            backdrop-filter: blur(12px);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .instagram-work-grid {
+            display: grid;
+            margin-top: clamp(4rem, 9vw, 8rem);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .instagram-work {
+            min-width: 0;
+            padding: clamp(1.25rem, 3vw, 2.5rem);
+        }
+
+        .instagram-work + .instagram-work {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .instagram-work-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .instagram-work-header p {
+            color: #a1a1aa;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .instagram-embed-frame {
+            position: relative;
+            width: 100%;
+            min-height: 39rem;
+            overflow: hidden;
+            border-radius: 0.875rem;
+            background: #ffffff;
+        }
+
+        .instagram-embed-frame::before {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            color: #71717a;
+            background: #f4f4f5;
+            font-size: 0.8rem;
+            content: 'Carregando publicação';
+        }
+
+        .instagram-embed-frame iframe {
+            position: relative;
+            z-index: 1;
+            display: block;
+            width: 100%;
+            min-height: 39rem;
+            border: 0;
+            background: #ffffff;
+        }
+
+        .instagram-work-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: #d4d4d8;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: color 200ms ease, transform 200ms ease;
+        }
+
+        .instagram-work-link:hover {
+            color: #ffffff;
+            transform: translateX(0.2rem);
+        }
+
+        @media (min-width: 900px) {
+            .instagram-work-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .instagram-work + .instagram-work {
+                border-top: 0;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .arch-gallery-shell {
+                min-height: 37rem;
+            }
+
+            .arch-card {
+                top: 45%;
+                width: min(64vw, 16rem);
+            }
+
+            .arch-card:first-child {
+                --arch-x: -16%;
+                --arch-y: -1rem;
+                --arch-rotate: -7deg;
+            }
+
+            .arch-card:last-child {
+                --arch-x: 16%;
+                --arch-y: 6.5rem;
+                --arch-rotate: 7deg;
+            }
+
+            .arch-card-label {
+                padding: 0.7rem 0.8rem;
+                font-size: 0.62rem;
+            }
+
+            .instagram-embed-frame,
+            .instagram-embed-frame iframe {
+                min-height: 35rem;
+            }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             html {
                 scroll-behavior: auto !important;
@@ -737,6 +954,10 @@
             .hero-star-interaction {
                 transform: none !important;
             }
+
+            .arch-card {
+                transition: none !important;
+            }
         }
     </style>
 </head>
@@ -745,8 +966,8 @@
     <!-- Efeito de ruído global -->
     <div class="film-grain"></div>
 
-    <!-- Header Fixo -->
-    <header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 mix-blend-difference pointer-events-none">
+    <!-- Assinatura da hero -->
+    <header class="absolute top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 mix-blend-difference pointer-events-none">
         <div class="font-medium tracking-tighter text-xl">LUCAS.</div>
         <div class="text-xs font-bold tracking-widest uppercase text-zinc-400">Performance Digital</div>
     </header>
@@ -784,7 +1005,7 @@
                     <div class="hero-positioning" data-hero-intro>
                         <p class="hero-positioning-label">Performance digital</p>
                         <p class="hero-description">Tráfego, CRM e tecnologia para vender mais.</p>
-                        <p class="hero-supporting-copy">Campanhas, Meta Conversions API, CRM próprio e automações conectados em uma operação feita para gerar retorno — não apenas alcance.</p>
+                        <p class="hero-supporting-copy">Campanhas, Meta Conversions API, CRM próprio e automações conectados em uma operação feita para gerar retorno, não apenas alcance.</p>
 
                         <div class="hero-actions">
                             <a href="#performance" class="hero-action hero-action--primary">
@@ -1119,7 +1340,7 @@
                                 <div class="flex items-start justify-between gap-6">
                                     <div>
                                         <p class="text-xs font-semibold tracking-[0.14em] uppercase text-amber-300 mb-3">Landing page imobiliária</p>
-                                        <h3 class="text-2xl md:text-3xl font-medium tracking-tight">Vinícius Mozzer — Essence Residence</h3>
+                                        <h3 class="text-2xl md:text-3xl font-medium tracking-tight">Vinícius Mozzer: Essence Residence</h3>
                                     </div>
                                     <i data-lucide="arrow-up-right" class="project-arrow w-5 h-5 text-zinc-400 shrink-0" aria-hidden="true"></i>
                                 </div>
@@ -1185,7 +1406,7 @@
                                 <div class="flex items-start justify-between gap-6">
                                     <div>
                                         <p class="text-xs font-semibold tracking-[0.14em] uppercase text-sky-300 mb-3">Plataforma de educação</p>
-                                        <h3 class="text-2xl md:text-3xl font-medium tracking-tight">FIT Global — Rudy Daniel</h3>
+                                        <h3 class="text-2xl md:text-3xl font-medium tracking-tight">FIT Global: Rudy Daniel</h3>
                                     </div>
                                     <i data-lucide="arrow-up-right" class="project-arrow w-5 h-5 text-zinc-400 shrink-0" aria-hidden="true"></i>
                                 </div>
@@ -1196,6 +1417,92 @@
                             </div>
                         </article>
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERIA DE DESIGN AUTORAL -->
+        <section id="designs" class="design-showcase py-24 md:py-32 border-y border-zinc-900" aria-labelledby="designs-title">
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-end gsap-fade-up">
+                    <div class="lg:col-span-8">
+                        <h2 id="designs-title" class="text-4xl md:text-6xl font-medium tracking-tight leading-[1.02] max-w-4xl">
+                            Design que transforma estratégia em presença visual.
+                        </h2>
+                    </div>
+                    <p class="lg:col-span-4 text-zinc-400 font-light leading-relaxed lg:pb-1">
+                        Peças criadas para comunicar ofertas, construir percepção de valor e manter cada marca reconhecível dentro e fora dos anúncios.
+                    </p>
+                </div>
+
+                <div class="arch-gallery-shell gsap-fade-up" role="group" aria-label="Galeria em leque com designs autorais">
+                    <div class="arch-gallery-stage">
+                        <a href="portfolio-assets/designs/design-imobiliario-balneario.webp" target="_blank" rel="noopener noreferrer" class="arch-card" aria-label="Abrir design imobiliário para Balneário Camboriú em tamanho completo">
+                            <img src="portfolio-assets/designs/design-imobiliario-balneario.webp" alt="Design imobiliário com corretor e chamada sobre comprar imóvel em Balneário Camboriú" width="1080" height="1350" loading="lazy" decoding="async">
+                            <span class="arch-card-label">
+                                <span>Mercado imobiliário</span>
+                                <i data-lucide="maximize-2" class="w-4 h-4" aria-hidden="true"></i>
+                            </span>
+                        </a>
+
+                        <a href="portfolio-assets/designs/design-diamante-investimento.webp" target="_blank" rel="noopener noreferrer" class="arch-card" aria-label="Abrir design sobre diamante e investimento em tamanho completo">
+                            <img src="portfolio-assets/designs/design-diamante-investimento.webp" alt="Design de investimento com diamante em uma caixa e informações sobre segurança e cashback" width="1080" height="1350" loading="lazy" decoding="async">
+                            <span class="arch-card-label">
+                                <span>Produto e investimento</span>
+                                <i data-lucide="maximize-2" class="w-4 h-4" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-zinc-500 gsap-fade-up">
+                    <p>Artes estáticas otimizadas em WebP.</p>
+                    <p>Passe o cursor ou use Tab para destacar cada peça.</p>
+                </div>
+
+                <div id="designs-instagram" class="mt-24 md:mt-32 gsap-fade-up">
+                    <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 md:mb-14">
+                        <h3 class="text-3xl md:text-5xl font-medium tracking-tight lg:col-span-7">Publicações no Instagram</h3>
+                        <p class="text-zinc-400 font-light leading-relaxed lg:col-span-5">
+                            Previews carregados pela incorporação oficial gratuita do Instagram, sem plataforma intermediária ou assinatura mensal.
+                        </p>
+                    </div>
+
+                    <div class="instagram-work-grid">
+                        <article class="instagram-work">
+                            <header class="instagram-work-header">
+                                <p>Publicação 01</p>
+                                <svg class="w-5 h-5 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <rect width="18" height="18" x="3" y="3" rx="5"></rect>
+                                    <circle cx="12" cy="12" r="4"></circle>
+                                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+                                </svg>
+                            </header>
+                            <div class="instagram-embed-frame">
+                                <iframe src="https://www.instagram.com/p/Da5KmBjACMW/embed/" title="Preview da primeira publicação de design no Instagram" loading="lazy" scrolling="no" allow="encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                            </div>
+                            <a href="https://www.instagram.com/p/Da5KmBjACMW/?img_index=1" target="_blank" rel="noopener noreferrer" class="instagram-work-link">
+                                Abrir publicação <i data-lucide="arrow-up-right" class="w-4 h-4" aria-hidden="true"></i>
+                            </a>
+                        </article>
+
+                        <article class="instagram-work">
+                            <header class="instagram-work-header">
+                                <p>Publicação 02</p>
+                                <svg class="w-5 h-5 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <rect width="18" height="18" x="3" y="3" rx="5"></rect>
+                                    <circle cx="12" cy="12" r="4"></circle>
+                                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+                                </svg>
+                            </header>
+                            <div class="instagram-embed-frame">
+                                <iframe src="https://www.instagram.com/p/DbEIeiFCY7A/embed/" title="Preview da segunda publicação de design no Instagram" loading="lazy" scrolling="no" allow="encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                            </div>
+                            <a href="https://www.instagram.com/p/DbEIeiFCY7A/?img_index=1" target="_blank" rel="noopener noreferrer" class="instagram-work-link">
+                                Abrir publicação <i data-lucide="arrow-up-right" class="w-4 h-4" aria-hidden="true"></i>
+                            </a>
+                        </article>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1467,7 +1774,7 @@
                         Montamos um plano com o que a empresa realmente precisa: mídia, Meta CAPI, landing pages, CRM próprio, automações, integrações e bots.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="#" class="w-full sm:w-auto px-10 py-5 bg-white text-zinc-950 text-lg font-medium rounded-full hover:bg-zinc-200 transition-colors shadow-[0_0_40px_rgba(255,255,255,0.1)] flex justify-center items-center gap-2">
+                        <a href="https://wa.me/5547997831930?text=Ol%C3%A1%2C%20Lucas%21%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto%20de%20performance%20digital%2C%20CRM%20ou%20automa%C3%A7%C3%B5es." target="_blank" rel="noopener noreferrer" aria-label="Chamar Lucas no WhatsApp com uma mensagem sobre o projeto" class="w-full sm:w-auto px-10 py-5 bg-white text-zinc-950 text-lg font-medium rounded-full hover:bg-zinc-200 transition-colors shadow-[0_0_40px_rgba(255,255,255,0.1)] flex justify-center items-center gap-2">
                             <i data-lucide="message-circle" class="w-5 h-5"></i> Chamar no WhatsApp
                         </a>
                     </div>
