@@ -1,0 +1,290 @@
+/* Portfolio language content. Keep original project media in its source language. */
+(() => {
+    const english = {
+    "0": "0",
+    "Lucas | Performance Digital, Tráfego e CRM": "Lucas | Digital Performance, Paid Media & CRM",
+    "LUCAS.": "LUCAS.",
+    "PT": "PT",
+    "/": "/",
+    "EN": "EN",
+    "Estratégia · Mídia · Tecnologia": "Strategy · Media · Technology",
+    "LUCAS": "LUCAS",
+    ".": ".",
+    "Performance digital": "Digital performance",
+    "Tráfego, CRM e tecnologia para vender mais.": "Paid media, CRM and technology to grow sales.",
+    "Campanhas, Meta Conversions API, CRM próprio e automações conectados em uma operação feita para gerar retorno, não apenas alcance.": "Campaigns, Meta Conversions API, a proprietary CRM and connected automations built to generate returns, not just reach.",
+    "Ver": "View",
+    "performance": "performance",
+    "Explorar": "Explore",
+    "projetos": "projects",
+    "Role para explorar": "Scroll to explore",
+    "PORTFÓLIO / 2026": "PORTFOLIO / 2026",
+    "R$ 1M+": "R$ 1M+",
+    "em retorno gerado": "in revenue generated",
+    "~R$ 50 mil": "~R$ 50k",
+    "em investimento": "in ad spend",
+    "Tráfego + CRM": "Paid media + CRM",
+    "uma só operação": "one connected operation",
+    "Áreas de Atuação": "What I do",
+    "Aquisição é o centro. Dados, CRM próprio e automações fazem o resultado continuar depois do clique.": "Acquisition is at the core. Data, a proprietary CRM and automation keep results moving beyond the click.",
+    "Sites, Landing Pages & SEO": "Websites, Landing Pages & SEO",
+    "Páginas preparadas para posicionar, captar demanda e transformar visitantes em oportunidades rastreáveis.": "Pages built to position brands, capture demand and turn visitors into trackable opportunities.",
+    "CRM Próprio & Sistemas": "Proprietary CRM & Systems",
+    "Uma estrutura própria para acompanhar dados da empresa, origem dos leads, atendimentos, histórico, pipeline e vendas.": "A proprietary platform to track business data, lead sources, conversations, history, pipelines and sales.",
+    "Tráfego Pago & Performance": "Paid Media & Performance",
+    "Planejamento de mídia, criativos, segmentação, testes, otimização e leitura comercial de cada campanha.": "Media planning, creative, targeting, testing, optimization and a sales perspective on every campaign.",
+    "Meta CAPI & Mensuração": "Meta CAPI & Measurement",
+    "Implementação da API de Conversões da Meta, eventos e integrações para aproximar dados de mídia e resultado comercial.": "Meta Conversions API implementation, events and integrations that connect media data to business results.",
+    "Automações & Bots": "Automation & Bots",
+    "Fluxos em n8n, Zapier e Make, integrações entre ferramentas, distribuição de leads, alertas, follow-ups e bots.": "Workflows in n8n, Zapier and Make, tool integrations, lead routing, alerts, follow-ups and bots.",
+    "Marketing Estratégico": "Strategic Marketing",
+    "Posicionamento, copy, jornada, funil, criativos, conteúdo e desenho da operação comercial completa.": "Positioning, copy, customer journeys, funnels, creative, content and sales operations design.",
+    "Tráfego pago é hoje o centro do meu trabalho.": "Paid media is at the center of my work today.",
+    "Meu principal produto é performance digital: planejo e otimizo campanhas, trabalho com a API de Conversões da Meta, conecto a captação ao meu CRM e acompanho o caminho do lead até a oportunidade comercial.": "My core service is digital performance: I plan and optimize campaigns, work with Meta Conversions API, connect acquisition to my CRM and track the journey from lead to sales opportunity.",
+    "A mídia não termina no clique. Eventos, landing page, WhatsApp, qualificação, histórico, follow-up, automações e leitura de vendas fazem parte da mesma operação.": "Media does not end at the click. Events, landing pages, WhatsApp, qualification, history, follow-ups, automation and sales analysis are part of the same operation.",
+    "Planejamento de campanhas, verba e canais": "Campaign, budget and channel planning",
+    "Segmentação, criativos, testes e otimização": "Targeting, creative, testing and optimization",
+    "Meta Conversions API, eventos e mensuração": "Meta Conversions API, events and measurement",
+    "Integração entre tráfego, landing page e CRM próprio": "Connecting paid media, landing pages and a proprietary CRM",
+    "Análise de leads, pipeline e retorno comercial": "Lead, pipeline and revenue analysis",
+    "Em operações acompanhadas, mais de": "Across the operations I have worked on, more than",
+    "R$ 1 milhão em retorno comercial": "R$ 1 million in revenue",
+    "foi gerado com aproximadamente": "was generated with approximately",
+    "R$ 50 mil investidos em mídia.": "R$ 50,000 in ad spend.",
+    "≈ R$ 50 mil": "≈ R$ 50k",
+    "Investimento aproximado gerido em campanhas.": "Approximate campaign investment managed.",
+    "R$ 1 mi+": "R$ 1M+",
+    "Retorno comercial gerado nas operações acompanhadas.": "Revenue generated across the operations supported.",
+    "Valores aproximados informados com base no histórico dos projetos acompanhados. Retorno comercial não representa lucro líquido e varia conforme oferta, operação e processo de vendas.": "Approximate figures based on the history of projects supported. Revenue does not represent net profit and varies by offer, operations and sales process.",
+    "Aquisição de demanda": "Demand acquisition",
+    "Meta Ads, Google Ads, ofertas, públicos, criativos e páginas alinhados ao objetivo comercial.": "Meta Ads, Google Ads, offers, audiences, creative and pages aligned with sales goals.",
+    "Meta Conversions API": "Meta Conversions API",
+    "Eventos enviados com uma estrutura de dados mais completa para aproximar plataforma, captação e conversão real.": "Events backed by a more complete data structure to connect platforms, acquisition and real conversions.",
+    "Dados no CRM próprio": "Data in a proprietary CRM",
+    "Origem, qualificação, histórico, responsável e estágio de cada lead visíveis para marketing e comercial.": "Lead source, qualification, history, owner and stage visible to marketing and sales.",
+    "Automação da operação": "Operations automation",
+    "n8n, Zapier e Make conectando leads, alertas, tarefas, follow-ups, bots e devolução de dados ao marketing.": "n8n, Zapier and Make connecting leads, alerts, tasks, follow-ups, bots and feedback to marketing.",
+    "Eu construo a camada que o anúncio não mostra.": "I build the layer behind the ad.",
+    "Dados, CRM, automação e resposta comercial.": "Data, CRM, automation and sales response.",
+    "Uso a API de Conversões da Meta para estruturar eventos, meu CRM para acompanhar os dados da empresa e ferramentas como n8n, Zapier e Make para eliminar tarefas manuais e acelerar a operação. O objetivo é fazer mídia e comercial trabalharem com o mesmo contexto.": "I use Meta Conversions API to structure events, my CRM to track business data, and tools such as n8n, Zapier and Make to reduce manual work and speed up operations. The goal is to give media and sales the same context.",
+    "Conforme o plano contratado": "Depending on your plan",
+    "O projeto pode incluir acesso e configuração do CRM, automações, integrações e bots, sempre definidos de acordo com o processo e a necessidade da empresa.": "Projects can include CRM access and setup, automations, integrations and bots, always tailored to the company's processes and needs.",
+    "CRM próprio": "Proprietary CRM",
+    "Automações": "Automation",
+    "Integrações": "Integrations",
+    "Bots": "Bots",
+    "Mídia / Aquisição": "Media / Acquisition",
+    "Meta Ads, Google Ads, oferta e criativos": "Meta Ads, Google Ads, offers and creative",
+    "Landing Page / WhatsApp": "Landing Page / WhatsApp",
+    "Captação, contexto e identificação do lead": "Lead capture, context and identification",
+    "Eventos e dados de conversão conectados à mídia": "Events and conversion data connected to media",
+    "CRM Próprio / Dados": "Proprietary CRM / Data",
+    "Empresa, origem, histórico, responsável e pipeline": "Business, source, history, owner and pipeline",
+    "n8n, Zapier, Make, alertas e follow-ups": "n8n, Zapier, Make, alerts and follow-ups",
+    "Venda / Feedback de Dados": "Sale / Data Feedback",
+    "Resultado comercial retorna para análise e otimização": "Sales results feed back into analysis and optimization",
+    "Projetos que unem design, dados e": "Projects connecting design, data and",
+    "estrutura comercial.": "sales operations.",
+    "Landing pages, CRMs, dashboards, campanhas, criativos e estratégias construídas para transformar presença digital em oportunidade real.": "Landing pages, CRMs, dashboards, campaigns, creative and strategies built to turn digital presence into real opportunities.",
+    "Meu trabalho começa na interface, mas não termina nela. Cada projeto conecta página, captação, CRM, campanha, análise e melhoria comercial.": "My work starts at the interface and extends beyond it. Every project connects pages, lead capture, CRM, campaigns, analysis and sales improvement.",
+    "Ver aplicações práticas": "View selected work",
+    "viniciusmozzer.com.br": "viniciusmozzer.com.br",
+    "imobmartins.vercel.app": "imobmartins.vercel.app",
+    "rudydaniel.com.br": "rudydaniel.com.br",
+    "crm.viniciusmozzer.com.br": "crm.viniciusmozzer.com.br",
+    "Aplicações práticas": "Selected work",
+    "Projetos publicados, navegáveis e construídos para objetivos reais de marca, captação e operação comercial.": "Live projects built for real branding, lead generation and sales operations goals.",
+    "Clique em qualquer projeto para conhecer a experiência no ar.": "Select a project to experience it live.",
+    "Landing page imobiliária": "Real estate landing page",
+    "Vinícius Mozzer: Essence Residence": "Vinícius Mozzer: Essence Residence",
+    "Experiência imersiva para um lançamento em Camboriú, conectando narrativa visual, detalhes do empreendimento e contato direto com o corretor.": "An immersive experience for a property launch in Camboriú, connecting visual storytelling, development details and direct contact with the agent.",
+    "UX/UI": "UX/UI",
+    "Front-end": "Front-end",
+    "Conversão": "Conversion",
+    "Produto digital": "Digital product",
+    "Vini Imóveis CRM": "Vini Imóveis CRM",
+    "Sistema imobiliário criado para concentrar leads, visitas, propostas e comissões em uma operação comercial mais clara.": "A real estate system built to bring leads, viewings, offers and commissions into a clearer sales operation.",
+    "CRM": "CRM",
+    "UX de produto": "Product UX",
+    "Operação": "Operations",
+    "Site imobiliário": "Real estate website",
+    "Imobiliária San Martins": "Imobiliária San Martins",
+    "Site institucional com busca de imóveis, apresentação do portfólio próprio e caminhos diretos para atendimento.": "A company website with property search, a portfolio of listings and direct paths to customer support.",
+    "Estratégia": "Strategy",
+    "UI responsiva": "Responsive UI",
+    "Catálogo": "Catalog",
+    "Plataforma de educação": "Education platform",
+    "FIT Global: Rudy Daniel": "FIT Global: Rudy Daniel",
+    "Landing page para um método de inglês baseado em treino diário, com posicionamento direto, prova visual e acesso à área do aluno.": "A landing page for an English learning method based on daily practice, with clear positioning, visual proof and student area access.",
+    "Direção visual": "Art direction",
+    "Jornada": "Journey",
+    "CRM próprio em operação.": "My CRM in action.",
+    "Uma demonstração real do produto que desenvolvi para organizar oportunidades, etapas e próximos contatos em uma única visão comercial.": "A real demonstration of the product I developed to organize opportunities, stages and next contacts in one sales view.",
+    "Seu navegador não reproduz este vídeo.": "Your browser cannot play this video.",
+    "Abra a demonstração do CRM": "Open the CRM demonstration",
+    "Design que transforma estratégia em presença visual.": "Design that turns strategy into a visual presence.",
+    "Peças criadas para comunicar ofertas, construir percepção de valor e manter cada marca reconhecível dentro e fora dos anúncios.": "Creative work built to communicate offers, establish value and keep brands recognizable in and beyond their ads.",
+    "Mercado imobiliário": "Real estate",
+    "Produto e investimento": "Product and investment",
+    "Publicações no Instagram": "Instagram work",
+    "Publicação 01": "Post 01",
+    "Abrir publicação": "Open post",
+    "Publicação 02": "Post 02",
+    "O que está publicado é só parte do que já produzi.": "My published work is only part of what I have built.",
+    "Os quatro cases exibidos acima são os projetos disponíveis para navegação hoje. Meu repertório também inclui outros sites, sistemas e aplicativos que ainda não aparecem publicamente neste portfólio.": "The four cases above are currently available to explore. My work also includes other websites, systems and applications that are not yet featured publicly in this portfolio.",
+    "Outros sites": "Other websites",
+    "Sites institucionais, páginas de campanha e landing pages desenvolvidas para diferentes ofertas e mercados.": "Company websites, campaign pages and landing pages developed for different offers and markets.",
+    "Apps financeiros": "Finance apps",
+    "Aplicativos de controle financeiro, acompanhamento de entradas e saídas, organização de dados e visualização de indicadores.": "Applications for financial management, tracking income and expenses, organizing data and displaying key metrics.",
+    "Sistemas internos": "Internal systems",
+    "Painéis, CRMs, ferramentas operacionais e aplicativos para organizar processos e rotinas específicas.": "Dashboards, CRMs, operational tools and applications for specific processes and routines.",
+    "Automações e integrações": "Automation and integrations",
+    "Fluxos em n8n, Zapier e Make, bots, webhooks e integrações que conectam atendimento, CRM, marketing e rotinas internas.": "Workflows in n8n, Zapier and Make, bots, webhooks and integrations connecting customer service, CRM, marketing and internal operations.",
+    "Automações que conectam o trabalho inteiro.": "Automation that connects the entire workflow.",
+    "Desenvolvi automações em CRMs, sites, planilhas e projetos para conectar dados, atendimento e operação. Meu trabalho vai do formulário que recebe um contato ao fluxo que organiza as próximas ações da equipe.": "I have developed automations across CRMs, websites, spreadsheets and projects to connect data, customer service and operations. My work spans the form that captures a contact and the workflow that organizes the team's next actions.",
+    "Uso n8n, Make, Zapier e Google Sheets para integrar ferramentas, organizar informações e reduzir tarefas repetitivas. Cada fluxo nasce do processo da empresa e do que precisa acontecer depois de cada interação.": "I use n8n, Make, Zapier and Google Sheets to integrate tools, organize information and reduce repetitive tasks. Each workflow starts with the company's processes and what needs to happen after each interaction.",
+    "CRMs e operação comercial": "CRMs and sales operations",
+    "Automações para conectar a entrada de leads ao CRM, organizar origem e histórico, distribuir contatos e acionar alertas, tarefas e follow-ups. O objetivo é dar continuidade ao atendimento e manter marketing e comercial trabalhando com os mesmos dados.": "Automations connecting incoming leads to the CRM, organizing sources and history, routing contacts and triggering alerts, tasks and follow-ups. The goal is to keep conversations moving and give marketing and sales access to the same data.",
+    "Sites e landing pages": "Websites and landing pages",
+    "Integrações de formulários, webhooks e APIs para levar informações do site às ferramentas da operação. Conecto captação, CRM, planilhas e mensuração para que o contato recebido se transforme em uma próxima ação clara.": "Form, webhook and API integrations that send website information to operational tools. I connect lead capture, CRM, spreadsheets and measurement so each new contact leads to a clear next action.",
+    "Google Sheets e dados": "Google Sheets and data",
+    "Automações em planilhas para centralizar registros, atualizar informações e apoiar relatórios e acompanhamento de indicadores. O Sheets também funciona como ponte entre sistemas, ajudando a equipe a consultar e trabalhar os dados no dia a dia.": "Spreadsheet automations that centralize records, update information and support reporting and performance tracking. Sheets also acts as a bridge between systems, helping teams access and work with data every day.",
+    "Projetos, rotinas e bots": "Projects, routines and bots",
+    "Fluxos que conectam ferramentas de projeto, notificações, tarefas e rotinas internas. Também desenvolvo bots e integrações para apoiar atendimento, organizar solicitações e encaminhar informações às pessoas e aos sistemas certos.": "Workflows connecting project tools, notifications, tasks and internal routines. I also develop bots and integrations to support customer service, organize requests and route information to the right people and systems.",
+    "n8n, Make e Zapier na prática": "n8n, Make and Zapier in practice",
+    "Combino gatilhos, condições, transformação de dados e integrações entre ferramentas para construir fluxos adaptados à operação. A escolha da plataforma acompanha o escopo, os sistemas existentes e a forma como a equipe vai manter a rotina.": "I combine triggers, conditions, data transformation and tool integrations to build workflows tailored to the operation. Platform choices follow the scope, existing systems and how the team will maintain its daily processes.",
+    "Uma estrutura que acompanha o plano": "A setup tailored to your plan",
+    "Conforme o plano e o diagnóstico, posso disponibilizar meu CRM, configurar automações, integrar planilhas e desenvolver bots. Tráfego, dados e processos passam a fazer parte de uma operação conectada, com entregas definidas para a necessidade de cada empresa.": "Depending on the plan and discovery process, I can provide my CRM, configure automations, integrate spreadsheets and develop bots. Paid media, data and processes become part of a connected operation, with deliverables defined around each company's needs.",
+    "Como construímos.": "How we build.",
+    "Um processo lógico, técnico e estratégico.": "A logical, technical and strategic process.",
+    "01 Diagnóstico": "01 Discovery",
+    "Entendimento Profundo": "Deep Understanding",
+    "Entendo o negócio, o público, o produto, a oferta e onde está o principal gargalo comercial hoje.": "I learn about the business, audience, product, offer and its main sales bottleneck today.",
+    "02 Estratégia": "02 Strategy",
+    "Desenho do Ecossistema": "Ecosystem Design",
+    "Defino a estrutura ideal: mídia, página, eventos, Meta CAPI, CRM, automações e o melhor caminho para conversão.": "I define the right structure: media, pages, events, Meta CAPI, CRM, automations and the best path to conversion.",
+    "03 Construção": "03 Build",
+    "Desenvolvimento & Integração": "Development & Integration",
+    "Desenvolvo páginas e sistemas, configuro mensuração e conecto CRM, canais, webhooks, automações e bots.": "I develop pages and systems, configure measurement and connect CRM, channels, webhooks, automations and bots.",
+    "04 Aquisição": "04 Acquisition",
+    "Tráfego & Visibilidade": "Paid Media & Visibility",
+    "Estruturo campanhas, canais, públicos, criativos e testes para gerar demanda qualificada com leitura de performance.": "I structure campaigns, channels, audiences, creative and tests to generate qualified demand with performance insights.",
+    "05 Conversão": "05 Conversion",
+    "Operação & Otimização": "Operations & Optimization",
+    "Acompanho leads e vendas no CRM, automatizo rotinas e uso o retorno do comercial para orientar novas otimizações.": "I track leads and sales in the CRM, automate routines and use sales feedback to guide further optimization.",
+    "Gestão de Performance Digital": "Digital Performance Management",
+    "Integração Tráfego + CRM": "Paid Media + CRM Integration",
+    "Tráfego Pago Meta/Google": "Meta/Google Paid Media",
+    "Criação de Landing Pages": "Landing Page Development",
+    "Sites Institucionais Premium": "Premium Company Websites",
+    "CRM Próprio / Personalizado": "Proprietary / Custom CRM",
+    "Dashboards Comerciais": "Sales Dashboards",
+    "Automações n8n / Zapier / Make": "n8n / Zapier / Make Automation",
+    "Bots, Alertas & Follow-ups": "Bots, Alerts & Follow-ups",
+    "Integrações WhatsApp": "WhatsApp Integrations",
+    "Estruturação de Funil": "Funnel Design",
+    "SEO Técnico": "Technical SEO",
+    "Retorno comercial gerado": "Revenue generated",
+    "Investimento em mídia": "Ad spend",
+    "+": "+",
+    "Campanhas Analisadas": "Campaigns Analyzed",
+    "CAPI + CRM": "CAPI + CRM",
+    "Mensuração e comercial conectados": "Measurement and sales connected",
+    "Perguntas Frequentes": "Frequently Asked Questions",
+    "Tráfego pago é hoje o seu principal serviço?": "Is paid media your main service today?",
+    "Sim. Meu principal produto hoje é performance digital. Cuido da estratégia de mídia, campanhas, criativos, testes e otimização, mas também conecto a aquisição às landing pages, ao CRM e ao processo comercial para entender o que realmente se transforma em oportunidade e venda.": "Yes. My core service today is digital performance. I handle media strategy, campaigns, creative, testing and optimization, while connecting acquisition to landing pages, CRM and the sales process to understand what actually becomes an opportunity or sale.",
+    "Você trabalha com a API de Conversões da Meta?": "Do you work with Meta Conversions API?",
+    "Sim. Uso bastante a Meta Conversions API para estruturar eventos e conectar dados da captação e do funil à mensuração das campanhas. A implementação é planejada conforme a estrutura do site, do CRM e os eventos relevantes para cada operação.": "Yes. I regularly use Meta Conversions API to structure events and connect lead and funnel data to campaign measurement. Implementation is planned around the website, CRM and events relevant to each operation.",
+    "Você faz apenas o design ou também desenvolve?": "Do you only design, or do you develop too?",
+    "Faço de ponta a ponta. Crio o design estratégico focado em conversão e também faço o desenvolvimento completo da plataforma e integrações necessárias, garantindo que a execução seja fiel à estratégia comercial.": "I work end to end. I create strategic, conversion-focused design and develop the full platform and required integrations, keeping delivery aligned with the sales strategy.",
+    "Você também cria CRM?": "Do you build CRMs too?",
+    "Sim. Tenho uma estrutura própria de CRM para acompanhar dados da empresa, origem dos leads, histórico, responsáveis, etapas e vendas. Ela pode ser configurada e adaptada para a operação ou, quando necessário, posso desenvolver uma solução ainda mais específica.": "Yes. I have a proprietary CRM for tracking business data, lead sources, history, owners, stages and sales. It can be configured and adapted to the operation or, when needed, I can develop a more specialized solution.",
+    "CRM, automações e bots estão incluídos no plano?": "Are CRM, automations and bots included in the plan?",
+    "Depende do plano e do escopo definido no diagnóstico. Posso disponibilizar o CRM, criar automações em n8n, Zapier ou Make, integrar ferramentas e desenvolver bots ou fluxos de follow-up. A solução é montada conforme o que realmente reduz trabalho manual e melhora a operação.": "It depends on the plan and scope defined during discovery. I can provide the CRM, create automations in n8n, Zapier or Make, integrate tools and develop bots or follow-up workflows. The solution is shaped around reducing manual work and improving operations.",
+    "Você entrega estratégia ou só execução?": "Do you deliver strategy or just execution?",
+    "Não executo sem estratégia. Antes de criar qualquer página ou campanha, entendo seu modelo de negócio, funil de vendas e jornada do cliente para que a estrutura construída tenha função comercial clara.": "Strategy comes first. Before creating a page or campaign, I understand your business model, sales funnel and customer journey so the resulting setup has a clear business purpose.",
+    "Quer conectar tráfego, dados e comercial em uma única operação?": "Ready to connect paid media, data and sales in one operation?",
+    "Montamos um plano com o que a empresa realmente precisa: mídia, Meta CAPI, landing pages, CRM próprio, automações, integrações e bots.": "We build a plan around what the company actually needs: media, Meta CAPI, landing pages, a proprietary CRM, automations, integrations and bots.",
+    "Chamar no WhatsApp": "Chat on WhatsApp",
+    "Performance digital, tecnologia e estratégia comercial.": "Digital performance, technology and sales strategy.",
+    "Projetos": "Projects",
+    "Contato": "Contact",
+    "&copy; 2024 Lucas.": "&copy; 2024 Lucas.",
+    "Idioma": "Language",
+    "Resultados e especialidades em destaque": "Selected results and expertise",
+    "Qualificações em performance digital": "Digital performance expertise",
+    "Soluções que podem compor o plano": "Solutions available depending on the plan",
+    "Portfólio de Lucas em performance digital, tráfego pago, Meta Conversions API, CRM próprio, automações, sites e estratégia comercial conectada.": "Lucas's portfolio in digital performance, paid media, Meta Conversions API, proprietary CRM, automation, websites and connected sales strategy.",
+    "Lucas | Performance Digital": "Lucas | Digital Performance",
+    "Tráfego, Meta Conversions API, CRM próprio e automações conectados para transformar investimento em crescimento comercial.": "Paid media, Meta Conversions API, proprietary CRM and automation connected to turn investment into business growth.",
+    "Lucas Performance Digital, com estrela branca sobre fundo preto.": "Lucas Digital Performance, with a white star on a black background.",
+    "Abrir o site Essence Residence, de Vinícius Mozzer, em uma nova aba": "Open Vinícius Mozzer's Essence Residence website in a new tab",
+    "Página inicial do site Essence Residence, com vista aérea do mar e chamada para apartamentos em Camboriú": "Essence Residence homepage with an aerial ocean view and apartments in Camboriú",
+    "Abrir o CRM imobiliário de Vinícius Mozzer em uma nova aba": "Open Vinícius Mozzer's real estate CRM in a new tab",
+    "Tela de acesso do CRM imobiliário Vini Imóveis, em verde-limão e preto": "Vini Imóveis CRM sign-in screen in lime green and black",
+    "Abrir o site da Imobiliária San Martins em uma nova aba": "Open the San Martins real estate website in a new tab",
+    "Página inicial da Imobiliária San Martins, com vista de Camboriú e busca de imóveis": "San Martins real estate homepage with a view of Camboriú and property search",
+    "Abrir o site FIT Global, de Rudy Daniel, em uma nova aba": "Open Rudy Daniel's FIT Global website in a new tab",
+    "Página inicial da FIT Global, com Rudy Daniel em destaque e a chamada Unlock your English": "FIT Global homepage featuring Rudy Daniel and the headline Unlock your English",
+    "Galeria em leque com designs autorais": "Fan gallery of original designs",
+    "Abrir design imobiliário para Balneário Camboriú em tamanho completo": "Open the Balneário Camboriú real estate design at full size",
+    "Design imobiliário com corretor e chamada sobre comprar imóvel em Balneário Camboriú": "Real estate design with an agent and a headline about buying property in Balneário Camboriú",
+    "Abrir design sobre diamante e investimento em tamanho completo": "Open the diamond investment design at full size",
+    "Design de investimento com diamante em uma caixa e informações sobre segurança e cashback": "Investment design with a diamond in a box and information about security and cashback",
+    "Preview da primeira publicação de design no Instagram": "Preview of the first Instagram design post",
+    "Preview da segunda publicação de design no Instagram": "Preview of the second Instagram design post",
+    "Chamar Lucas no WhatsApp com uma mensagem sobre o projeto": "Chat with Lucas on WhatsApp about your project",
+    "Carregando publicação": "Loading post"
+};
+    const isEnglish = new URLSearchParams(window.location.search).get('lang') === 'en';
+    const language = isEnglish ? 'en' : 'pt';
+    document.querySelectorAll('[data-language]').forEach(link => {
+        if (link.dataset.language === language) {
+            link.setAttribute('aria-current', 'page');
+            link.classList.add('underline', 'underline-offset-4');
+        }
+        link.addEventListener('click', () => {
+            link.href = '?lang=' + link.dataset.language + window.location.hash;
+        });
+    });
+    const base = 'https://lucasluk.vercel.app/';
+    [['pt-BR', base], ['en', base + '?lang=en'], ['x-default', base]].forEach(([lang, href]) => {
+        const alternate = document.createElement('link');
+        alternate.rel = 'alternate';
+        alternate.hreflang = lang;
+        alternate.href = href;
+        document.head.appendChild(alternate);
+    });
+    if (!isEnglish) return;
+    document.documentElement.lang = 'en';
+    document.documentElement.dataset.language = 'en';
+    const translate = value => {
+        const key = value.trim();
+        return Object.hasOwn(english, key) ? value.replace(key, english[key]) : value;
+    };
+    const walker = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_TEXT, {
+        acceptNode: node => node.parentElement.closest('script, style, noscript')
+            ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => { node.nodeValue = translate(node.nodeValue); });
+    document.querySelectorAll('[aria-label], [alt], [title], meta[content]').forEach(element => {
+        ['aria-label', 'alt', 'title', 'content'].forEach(attribute => {
+            if (element.hasAttribute(attribute)) {
+                element.setAttribute(attribute, translate(element.getAttribute(attribute)));
+            }
+        });
+    });
+    document.querySelector('meta[property="og:locale"]').content = 'en_US';
+    document.querySelector('meta[property="og:url"]').content = base + '?lang=en';
+    document.querySelector('link[rel="canonical"]').href = base + '?lang=en';
+    document.querySelectorAll('a[href*="wa.me/"]').forEach(link => {
+        const url = new URL(link.href);
+        url.searchParams.set('text', 'Hi Lucas! I saw your portfolio and would like to discuss a digital performance, CRM or automation project.');
+        link.href = url.href;
+    });
+    const style = document.createElement('style');
+    style.textContent = '.instagram-embed-frame::before { content: "Loading post"; }';
+    document.head.appendChild(style);
+})();

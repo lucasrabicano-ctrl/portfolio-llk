@@ -1019,7 +1019,11 @@
     <!-- Assinatura da hero -->
     <header class="absolute top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 mix-blend-difference pointer-events-none">
         <div class="font-medium tracking-tighter text-xl">LUCAS.</div>
-        <div class="text-xs font-bold tracking-widest uppercase text-zinc-400">Performance Digital</div>
+        <nav class="pointer-events-auto flex items-center gap-4 text-xs font-semibold" aria-label="Idioma">
+            <a href="?lang=pt" lang="pt-BR" data-language="pt" class="py-2">PT</a>
+            <span aria-hidden="true" class="text-zinc-600">/</span>
+            <a href="?lang=en" lang="en" data-language="en" class="py-2">EN</a>
+        </nav>
     </header>
 
     <main>
@@ -1612,6 +1616,46 @@
             </div>
         </section>
 
+        <section id="automacoes" class="py-24 md:py-32 bg-zinc-950 border-t border-zinc-900" aria-labelledby="automation-title">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-14">
+                    <h2 id="automation-title" class="text-4xl md:text-6xl font-medium tracking-tight leading-tight">Automações que conectam o trabalho inteiro.</h2>
+                    <div class="text-zinc-400 font-light leading-relaxed space-y-5">
+                        <p>Desenvolvi automações em CRMs, sites, planilhas e projetos para conectar dados, atendimento e operação. Meu trabalho vai do formulário que recebe um contato ao fluxo que organiza as próximas ações da equipe.</p>
+                        <p>Uso n8n, Make, Zapier e Google Sheets para integrar ferramentas, organizar informações e reduzir tarefas repetitivas. Cada fluxo nasce do processo da empresa e do que precisa acontecer depois de cada interação.</p>
+                    </div>
+                </div>
+                <div class="border-t border-zinc-800">
+                    <article class="grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-5 md:gap-12 py-8 border-b border-zinc-800">
+                        <h3 class="text-2xl font-medium tracking-tight">CRMs e operação comercial</h3>
+                        <p class="text-zinc-400 font-light leading-relaxed">Automações para conectar a entrada de leads ao CRM, organizar origem e histórico, distribuir contatos e acionar alertas, tarefas e follow-ups. O objetivo é dar continuidade ao atendimento e manter marketing e comercial trabalhando com os mesmos dados.</p>
+                    </article>
+                    <article class="grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-5 md:gap-12 py-8 border-b border-zinc-800">
+                        <h3 class="text-2xl font-medium tracking-tight">Sites e landing pages</h3>
+                        <p class="text-zinc-400 font-light leading-relaxed">Integrações de formulários, webhooks e APIs para levar informações do site às ferramentas da operação. Conecto captação, CRM, planilhas e mensuração para que o contato recebido se transforme em uma próxima ação clara.</p>
+                    </article>
+                    <article class="grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-5 md:gap-12 py-8 border-b border-zinc-800">
+                        <h3 class="text-2xl font-medium tracking-tight">Google Sheets e dados</h3>
+                        <p class="text-zinc-400 font-light leading-relaxed">Automações em planilhas para centralizar registros, atualizar informações e apoiar relatórios e acompanhamento de indicadores. O Sheets também funciona como ponte entre sistemas, ajudando a equipe a consultar e trabalhar os dados no dia a dia.</p>
+                    </article>
+                    <article class="grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-5 md:gap-12 py-8 border-b border-zinc-800">
+                        <h3 class="text-2xl font-medium tracking-tight">Projetos, rotinas e bots</h3>
+                        <p class="text-zinc-400 font-light leading-relaxed">Fluxos que conectam ferramentas de projeto, notificações, tarefas e rotinas internas. Também desenvolvo bots e integrações para apoiar atendimento, organizar solicitações e encaminhar informações às pessoas e aos sistemas certos.</p>
+                    </article>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 mt-12">
+                    <div>
+                        <h3 class="text-2xl font-medium tracking-tight mb-4">n8n, Make e Zapier na prática</h3>
+                        <p class="text-zinc-400 font-light leading-relaxed">Combino gatilhos, condições, transformação de dados e integrações entre ferramentas para construir fluxos adaptados à operação. A escolha da plataforma acompanha o escopo, os sistemas existentes e a forma como a equipe vai manter a rotina.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-medium tracking-tight mb-4">Uma estrutura que acompanha o plano</h3>
+                        <p class="text-zinc-400 font-light leading-relaxed">Conforme o plano e o diagnóstico, posso disponibilizar meu CRM, configurar automações, integrar planilhas e desenvolver bots. Tráfego, dados e processos passam a fazer parte de uma operação conectada, com entregas definidas para a necessidade de cada empresa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- 5. SEÇÃO “PROCESSO” -->
         <section class="py-32 bg-zinc-900 border-y border-zinc-800 relative">
             <div class="max-w-4xl mx-auto px-6">
@@ -1852,7 +1896,7 @@
             </div>
             <div class="flex gap-6 text-sm text-zinc-400 font-medium">
                 <a href="#projetos" class="hover:text-white transition-colors">Projetos</a>
-                <a href="#" class="hover:text-white transition-colors">Serviços</a>
+                <a href="#automacoes" class="hover:text-white transition-colors">Automações</a>
                 <a href="#contato" class="hover:text-white transition-colors">Contato</a>
             </div>
             <div class="text-sm text-zinc-600 font-light">
@@ -1861,6 +1905,7 @@
         </div>
     </footer>
 
+    <script src="languages.js"></script>
     <script>
         // Inicializar Ícones
         lucide.createIcons();
