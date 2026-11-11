@@ -19,6 +19,8 @@ A economia de tempo é uma simulação editável, e o protocolo de LLM é demons
 - [Vini Imóveis CRM](https://crm.viniciusmozzer.com.br/)
 - [Imobiliária San Martins](https://imobmartins.vercel.app/)
 - [FIT Global — Rudy Daniel](https://rudydaniel.com.br/)
+- [Golden Brasil](https://goldenbrasil.com.br/novo/)
+- [Guímel Roeher](https://guimelroeher.vercel.app/)
 
 ## Executar localmente
 

@@ -34,6 +34,18 @@ Este registro distingue experiência informada pelo autor, artefatos públicos e
 - Evidência: `https://rudydaniel.com.br/` e imagem já publicada no portfólio.
 - Limite: sem número informado de alunos ou resultado financeiro por projeto.
 
+### Golden Brasil
+- Problema apresentado: reunir a apresentação institucional, os produtos e os canais de atendimento em um site.
+- Atuação: desenvolvimento do site institucional pelo autor.
+- Evidência: `https://goldenbrasil.com.br/novo/` e captura da página inicial no portfólio.
+- Limite: sem métricas de uso ou conversão informadas.
+
+### Guímel Roeher
+- Problema apresentado: mostrar trabalhos e serviços de um editor de vídeo e videomaker de Balneário Camboriú.
+- Atuação: desenvolvimento do portfólio pelo autor.
+- Evidência: `https://guimelroeher.vercel.app/` e captura da página principal no portfólio.
+- Limite: sem métricas de uso ou conversão informadas.
+
 ## Material reproduzível
 
 - `portfolio-assets/lab/lead-triage.pt.md` e `lead-triage.en.md`: papel, contexto, entrada, tarefa, restrições, saída e aceite.
