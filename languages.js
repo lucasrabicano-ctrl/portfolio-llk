@@ -536,36 +536,6 @@
         "Usei a imagem do diamante como ponto focal e organizei as informações em blocos curtos.": "I used the diamond as the focal point and organized the information into short sections.",
         "Os números abaixo resumem operações comerciais acompanhadas.": "These figures summarize sales operations I supported."
     });
-    Object.assign(english, {
-        "Biblioteca": "Library",
-        "Biblioteca de projetos | Lucas Rabicano": "Project library | Lucas Rabicano",
-        "Uma seleção de sistemas, peças de design e experimentos de automação e IA criados por Lucas Rabicano.": "A selection of systems, design work, and automation and AI experiments by Lucas Rabicano.",
-        "Seleção autoral": "Selected work",
-        "Biblioteca de projetos.": "Project library.",
-        "Do painel de um CRM a uma peça de campanha: explore o que criei, por que fiz assim e como cada entrega funciona.": "From a CRM dashboard to campaign artwork: explore what I built, the decisions behind it, and how it works.",
-        "Capítulos da biblioteca": "Library chapters",
-        "Sistemas": "Systems",
-        "Automação e IA": "Automation and AI",
-        "Performance no mesmo painel.": "Performance in one dashboard.",
-        "No MVPLLK, conectei a Meta Marketing API ao Supabase para consolidar indicadores. O dashboard em React apresenta os dados por workspace e traz análises com Gemini para revisão da equipe.": "For MVPLLK, I connected the Meta Marketing API to Supabase to consolidate metrics. The React dashboard shows data by workspace and presents Gemini analyses for the team to review.",
-        "Ler o case do MVPLLK": "Read the MVPLLK case study",
-        "Ver demonstração do CRM": "View the CRM demo",
-        "Demonstração do CRM com dados fictícios.": "CRM demo with fictional data.",
-        "A oferta em primeiro plano.": "Put the offer first.",
-        "Na peça imobiliária, o retrato dá um rosto à oferta. Na de investimentos, o diamante guia o olhar e a tipografia separa as informações para facilitar a leitura.": "The portrait puts a face to the real estate offer. In the investment piece, the diamond guides the eye and the typography breaks up the information for easier reading.",
-        "Ver a galeria de design": "View the design gallery",
-        "Campanha imobiliária": "Real estate campaign",
-        "Campanha de investimento": "Investment campaign",
-        "Da tarefa manual ao fluxo testável.": "From manual tasks to testable workflows.",
-        "Uso Google Sheets, n8n, Make e Zapier para conectar formulários, CRMs e rotinas de acompanhamento. No laboratório, documento como estruturo prompts e comparo respostas de modelos.": "I use Google Sheets, n8n, Make, and Zapier to connect forms, CRMs, and follow-up workflows. In the lab, I document how I structure prompts and compare model responses.",
-        "Explorar o laboratório de IA": "Explore the AI lab",
-        "Prompt de triagem de leads": "Lead triage prompt",
-        "Entradas, regras e saída estruturada.": "Inputs, rules, and structured output.",
-        "Protocolo de avaliação de LLMs": "LLM evaluation protocol",
-        "Critérios para comparar modelos no mesmo cenário.": "Criteria for comparing models on the same task.",
-        "Automações de processos": "Process automation",
-        "Exemplos de integrações e etapas manuais removidas.": "Examples of integrations and the manual steps they replace."
-    });
     const isEnglish = new URLSearchParams(window.location.search).get('lang') === 'en';
     const language = isEnglish ? 'en' : 'pt';
     document.querySelectorAll('[data-language]').forEach(link => {
