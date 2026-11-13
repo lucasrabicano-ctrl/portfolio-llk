@@ -11,6 +11,7 @@
     <link rel="canonical" href="https://lucasluk.vercel.app/">
     <link rel="stylesheet" href="evidence.css">
     <link rel="stylesheet" href="technical.css">
+    <link rel="stylesheet" href="home.css">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Lucas Rabicano","url":"https://lucasluk.vercel.app/","jobTitle":"AI Builder"}</script>
     <meta name="theme-color" content="#09090b">
     <meta name="color-scheme" content="dark">
@@ -34,1076 +35,309 @@
     <meta name="twitter:image" content="https://lucasluk.vercel.app/og-preview.png">
     <meta name="twitter:image:alt" content="Lucas Performance Digital, com estrela branca sobre fundo preto.">
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Movimento cinematográfico: Lenis + GSAP + ScrollTrigger -->
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
-    <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Font Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Configurações Tailwind personalizadas -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        zinc: {
-                            850: '#1f1f22',
-                            950: '#09090b',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            text-rendering: optimizeLegibility;
-        }
-
-        html {
-            scroll-padding-top: 5rem;
-        }
-
-        :focus-visible {
-            outline: 2px solid #fafafa;
-            outline-offset: 4px;
-        }
-
-        /* Efeito de Film Grain (Ruído) */
-        .film-grain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.04;
-            mix-blend-mode: overlay;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        /* Grid de fundo sutil */
-        .bg-grid {
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-            background-size: 4rem 4rem;
-            mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%);
-            -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%);
-        }
-
-        /* Hero editorial em camadas, inspirada no preview social da marca */
-        .hero-track {
-            height: 200vh;
-            background: #09090b;
-        }
-
-        .hero-stage {
-            position: sticky;
-            top: 0;
-            min-height: 100vh;
-            min-height: 100svh;
-            overflow: hidden;
-            isolation: isolate;
-            background: #09090b;
-        }
-
-        .hero-visuals,
-        .hero-layer {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-        }
-
-        .hero-layer {
-            will-change: transform;
-        }
-
-        .hero-preview-layer {
-            z-index: 0;
-            top: 5%;
-            right: -8%;
-            bottom: auto;
-            left: auto;
-            width: min(68rem, 66vw);
-            aspect-ratio: 1200 / 630;
-            opacity: 0.12;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            mask-image: linear-gradient(90deg, transparent 4%, rgba(0, 0, 0, 0.55) 38%, #000 66%);
-            -webkit-mask-image: linear-gradient(90deg, transparent 4%, rgba(0, 0, 0, 0.55) 38%, #000 66%);
-        }
-
-        .hero-preview-layer img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(1) contrast(1.08);
-            transform: scale(1.025);
-        }
-
-        .hero-grid-layer {
-            z-index: 1;
-            opacity: 0.58;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
-            background-size: clamp(3.5rem, 7vw, 7rem) clamp(3.5rem, 7vw, 7rem);
-            mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
-        }
-
-        .hero-axis {
-            position: absolute;
-            z-index: 2;
-            background: rgba(255, 255, 255, 0.1);
-            pointer-events: none;
-        }
-
-        .hero-axis--horizontal {
-            top: 31%;
-            left: 0;
-            width: 100%;
-            height: 1px;
-        }
-
-        .hero-axis--vertical {
-            top: 0;
-            right: clamp(8rem, 22vw, 22rem);
-            width: 1px;
-            height: 100%;
-        }
-
-        .hero-orbit-layer {
-            z-index: 4;
-            top: clamp(4.5rem, 9vh, 7rem);
-            right: clamp(-3.5rem, 3vw, 4rem);
-            bottom: auto;
-            left: auto;
-            width: clamp(15rem, 34vw, 34rem);
-            aspect-ratio: 1;
-        }
-
-        .hero-orbit,
-        .hero-orbit::before,
-        .hero-orbit::after {
-            position: absolute;
-            inset: 0;
-            border: 1px solid rgba(255, 255, 255, 0.13);
-            border-radius: 50%;
-            content: '';
-        }
-
-        .hero-orbit::before {
-            inset: 17%;
-            border-color: rgba(255, 255, 255, 0.08);
-        }
-
-        .hero-orbit::after {
-            top: 50%;
-            right: -8%;
-            bottom: auto;
-            left: -8%;
-            height: 1px;
-            border: 0;
-            border-radius: 0;
-            background: rgba(255, 255, 255, 0.1);
-            transform: rotate(-42deg);
-            transform-origin: center;
-        }
-
-        .hero-star-layer {
-            z-index: 6;
-            top: clamp(7.5rem, 15vh, 11rem);
-            right: clamp(1rem, 8vw, 9rem);
-            bottom: auto;
-            left: auto;
-            width: clamp(8rem, 18vw, 18rem);
-            aspect-ratio: 1;
-            display: grid;
-            place-items: center;
-        }
-
-        .hero-star-interaction {
-            width: 100%;
-            height: 100%;
-            display: grid;
-            place-items: center;
-            will-change: transform;
-        }
-
-        .hero-star {
-            width: 78%;
-            height: 78%;
-            color: #fafafa;
-            filter: drop-shadow(0 0 1.5rem rgba(255, 255, 255, 0.34));
-        }
-
-        .hero-copy {
-            position: absolute;
-            z-index: 12;
-            top: 48%;
-            left: clamp(1.5rem, 5vw, 5rem);
-            width: min(67rem, calc(100% - 3rem));
-            transform: translateY(-50%);
-            transform-origin: left center;
-        }
-
-        .hero-kicker {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: #d4d4d8;
-            font-size: 0.68rem;
-            font-weight: 600;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-        }
-
-        .hero-kicker::before {
-            width: 2.5rem;
-            height: 1px;
-            background: #fafafa;
-            content: '';
-        }
-
-        .hero-title {
-            margin-top: clamp(1.1rem, 2vh, 1.75rem);
-            color: #fafafa;
-            font-size: clamp(5.1rem, 13.5vw, 13.5rem);
-            font-weight: 500;
-            letter-spacing: -0.075em;
-            line-height: 0.76;
-            white-space: nowrap;
-        }
-
-        .hero-title-dot {
-            color: #a1a1aa;
-        }
-
-        .hero-positioning {
-            margin-top: clamp(2rem, 5vh, 3.75rem);
-            padding-top: clamp(1.2rem, 2.5vh, 1.75rem);
-            width: min(45rem, 100%);
-            border-top: 1px solid rgba(255, 255, 255, 0.26);
-        }
-
-        .hero-positioning-label {
-            color: #fafafa;
-            font-size: clamp(0.72rem, 1vw, 0.82rem);
-            font-weight: 600;
-            letter-spacing: 0.32em;
-            text-transform: uppercase;
-        }
-
-        .hero-description {
-            margin-top: 0.9rem;
-            max-width: 42rem;
-            color: #d4d4d8;
-            font-size: clamp(1.12rem, 2vw, 1.55rem);
-            font-weight: 300;
-            letter-spacing: -0.025em;
-            line-height: 1.45;
-        }
-
-        .hero-supporting-copy {
-            margin-top: 0.75rem;
-            max-width: 37rem;
-            color: #a1a1aa;
-            font-size: 0.9rem;
-            line-height: 1.65;
-        }
-
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 0.75rem;
-            margin-top: 1.75rem;
-        }
-
-        .hero-action {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.65rem;
-            min-height: 3.25rem;
-            padding: 0.85rem 1.35rem;
-            border: 1px solid rgba(255, 255, 255, 0.17);
-            border-radius: 999px;
-            color: #fafafa;
-            background: rgba(9, 9, 11, 0.42);
-            backdrop-filter: blur(12px);
-            font-size: 0.84rem;
-            font-weight: 600;
-            transition: color 220ms ease, background-color 220ms ease, border-color 220ms ease, transform 220ms ease;
-        }
-
-        .hero-action--primary {
-            color: #09090b;
-            background: #fafafa;
-            border-color: #fafafa;
-        }
-
-        .hero-action:hover {
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .hero-action--primary:hover {
-            background: #ffffff;
-            border-color: #ffffff;
-        }
-
-        .hero-proof {
-            position: absolute;
-            z-index: 14;
-            right: clamp(1.5rem, 5vw, 5rem);
-            bottom: clamp(1.5rem, 4vh, 3rem);
-            display: grid;
-            grid-template-columns: repeat(3, auto);
-            align-items: end;
-            gap: clamp(1.2rem, 3vw, 3.5rem);
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.14);
-        }
-
-        .hero-proof strong {
-            display: block;
-            color: #fafafa;
-            font-size: clamp(1.05rem, 1.8vw, 1.45rem);
-            font-weight: 500;
-            letter-spacing: -0.035em;
-        }
-
-        .hero-proof span {
-            display: block;
-            margin-top: 0.2rem;
-            color: #71717a;
-            font-size: 0.63rem;
-            font-weight: 600;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .hero-scroll-cue {
-            position: absolute;
-            z-index: 14;
-            bottom: clamp(1.6rem, 4vh, 3rem);
-            left: clamp(1.5rem, 5vw, 5rem);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: #71717a;
-            font-size: 0.62rem;
-            font-weight: 600;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-        }
-
-        .hero-scroll-cue::before {
-            width: 2.5rem;
-            height: 1px;
-            background: #52525b;
-            content: '';
-        }
-
-        .hero-index {
-            position: absolute;
-            z-index: 14;
-            top: 31%;
-            right: clamp(0.9rem, 2vw, 2rem);
-            color: #52525b;
-            font-size: 0.6rem;
-            letter-spacing: 0.2em;
-            writing-mode: vertical-rl;
-        }
-
-        .hero-bottom-fade {
-            position: absolute;
-            z-index: 10;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            height: 22vh;
-            pointer-events: none;
-            background: linear-gradient(to bottom, transparent, #09090b 88%);
-        }
-
-        @media (max-width: 767px) {
-            .hero-track {
-                height: 175vh;
-            }
-
-            .hero-preview-layer {
-                top: 2.5rem;
-                right: -72vw;
-                width: 165vw;
-                opacity: 0.1;
-            }
-
-            .hero-axis--horizontal {
-                top: 26%;
-            }
-
-            .hero-axis--vertical {
-                right: 4.25rem;
-            }
-
-            .hero-orbit-layer {
-                top: 4.25rem;
-                right: -4.5rem;
-                width: 17rem;
-            }
-
-            .hero-star-layer {
-                top: 7.5rem;
-                right: -0.75rem;
-                width: 10rem;
-            }
-
-            .hero-copy {
-                top: 52%;
-                left: 1.25rem;
-                width: calc(100% - 2.5rem);
-            }
-
-            .hero-title {
-                font-size: clamp(4.8rem, 25vw, 7.25rem);
-            }
-
-            .hero-positioning {
-                margin-top: 2.2rem;
-            }
-
-            .hero-description {
-                max-width: 22rem;
-                font-size: clamp(1rem, 5vw, 1.25rem);
-            }
-
-            .hero-supporting-copy {
-                max-width: 20rem;
-                font-size: 0.78rem;
-            }
-
-            .hero-actions {
-                align-items: stretch;
-            }
-
-            .hero-action {
-                min-height: 3rem;
-                padding-inline: 1rem;
-                font-size: 0.75rem;
-            }
-
-            .hero-proof {
-                right: 1.25rem;
-                bottom: 1.35rem;
-                left: 1.25rem;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .hero-proof-item:nth-child(3) {
-                display: none;
-            }
-
-            .hero-proof span {
-                white-space: normal;
-            }
-
-            .hero-scroll-cue,
-            .hero-index {
-                display: none;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .hero-kicker {
-                gap: 0.5rem;
-                font-size: 0.58rem;
-                letter-spacing: 0.18em;
-                white-space: nowrap;
-            }
-
-            .hero-kicker::before {
-                width: 2rem;
-            }
-
-            .hero-orbit-layer {
-                top: 3.5rem;
-                right: -3.5rem;
-                width: 14rem;
-            }
-
-            .hero-star-layer {
-                top: 6.25rem;
-                right: -0.35rem;
-                width: 8.5rem;
-            }
-
-            .hero-actions {
-                gap: 0.5rem;
-            }
-
-            .hero-action {
-                padding-inline: 0.85rem;
-            }
-        }
-
-        /* Utilitários 3D */
-        .perspective-1000 {
-            perspective: 1000px;
-        }
-
-        .transform-style-3d {
-            transform-style: preserve-3d;
-        }
-
-        /* Esconder scrollbar mantendo a funcionalidade */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #09090b;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #27272a;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3f3f46;
-        }
-
-        /* Accordion transition */
-        .accordion-content {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.3s ease;
-        }
-        .accordion-content.open {
-            grid-template-rows: 1fr;
-        }
-        .accordion-inner {
-            overflow: hidden;
-        }
-
-        /* --- NOVA SEÇÃO: Galeria Imersiva --- */
-        .portfolio-shot {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: #18181b;
-            border-radius: 1rem;
-            overflow: hidden;
-        }
-        .portfolio-shot img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-            border-radius: inherit;
-        }
-        .card-glow {
-            background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.08) 0%, transparent 60%);
-        }
-
-        .gallery-title {
-            background: radial-gradient(ellipse at center, rgba(9, 9, 11, 0.94) 0%, rgba(9, 9, 11, 0.74) 44%, rgba(9, 9, 11, 0.2) 68%, transparent 80%);
-        }
-
-        /* Cards editoriais dos projetos publicados */
-        .project-card {
-            position: relative;
-            display: block;
-            height: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.09);
-            border-radius: 1rem;
-            background: rgba(24, 24, 27, 0.66);
-            overflow: hidden;
-            transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
-                        border-color 260ms ease,
-                        background-color 260ms ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(24, 24, 27, 0.9);
-        }
-
-        .project-preview {
-            position: relative;
-            aspect-ratio: 16 / 10;
-            overflow: hidden;
-            background: #111113;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .project-preview::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background: linear-gradient(to top, rgba(9, 9, 11, 0.5), transparent 35%);
-        }
-
-        .project-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .project-card:hover .project-preview img {
-            transform: scale(1.025);
-        }
-
-        .project-domain {
-            position: absolute;
-            top: 0.75rem;
-            left: 0.75rem;
-            z-index: 2;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            max-width: calc(100% - 1.5rem);
-            padding: 0.5rem 0.75rem;
-            border-radius: 999px;
-            color: #e4e4e7;
-            background: rgba(9, 9, 11, 0.82);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            font-size: 0.6875rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .project-domain::before {
-            content: '';
-            flex: 0 0 auto;
-            width: 0.45rem;
-            height: 0.45rem;
-            border-radius: 999px;
-            background: #34d399;
-        }
-
-        .project-arrow {
-            transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .project-card:hover .project-arrow {
-            transform: translate(3px, -3px);
-        }
-
-        .crm-video-showcase {
-            margin-top: clamp(4rem, 8vw, 7rem);
-            padding-top: clamp(3rem, 6vw, 5rem);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .crm-video-intro {
-            display: grid;
-            gap: 1.5rem;
-            align-items: end;
-        }
-
-        .crm-video-frame {
-            position: relative;
-            margin-top: clamp(2.5rem, 5vw, 4rem);
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 1rem;
-            background: #000000;
-            box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.38);
-        }
-
-        .crm-video-frame::after {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            border-radius: inherit;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
-            content: '';
-        }
-
-        .crm-video-frame video {
-            display: block;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: #000000;
-            object-fit: contain;
-        }
-
-        .crm-video-frame:focus-within {
-            border-color: rgba(255, 255, 255, 0.32);
-        }
-
-        @media (min-width: 900px) {
-            .crm-video-intro {
-                grid-template-columns: minmax(0, 7fr) minmax(18rem, 4fr);
-                gap: 4rem;
-            }
-        }
-
-        /* Galeria autoral: leque de artes e publicações incorporadas */
-        .design-showcase {
-            position: relative;
-            overflow: hidden;
-            background: #09090b;
-        }
-
-        .design-showcase::before {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.06), transparent 42%);
-            content: '';
-        }
-
-        .arch-gallery-shell {
-            position: relative;
-            margin-top: clamp(3rem, 7vw, 6rem);
-            min-height: clamp(34rem, 58vw, 45rem);
-        }
-
-        .arch-gallery-stage {
-            position: absolute;
-            inset: 0;
-            margin: auto;
-            width: min(100%, 64rem);
-        }
-
-        .arch-card {
-            --arch-x: 0px;
-            --arch-y: 0px;
-            --arch-rotate: 0deg;
-            position: absolute;
-            top: 46%;
-            left: 50%;
-            width: clamp(17rem, 29vw, 23rem);
-            aspect-ratio: 4 / 5;
-            overflow: hidden;
-            border-radius: 1rem;
-            background: #f4f4f5;
-            box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.46), 0 0.35rem 1rem rgba(0, 0, 0, 0.28);
-            transform: translate(calc(-50% + var(--arch-x)), calc(-50% + var(--arch-y))) rotate(var(--arch-rotate));
-            transform-origin: center 112%;
-            transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 320ms ease;
-            will-change: transform;
-        }
-
-        .arch-card:first-child {
-            --arch-x: -48%;
-            --arch-y: 2.6rem;
-            --arch-rotate: -8deg;
-            z-index: 1;
-        }
-
-        .arch-card:last-child {
-            --arch-x: 48%;
-            --arch-y: 2.6rem;
-            --arch-rotate: 8deg;
-            z-index: 2;
-        }
-
-        .arch-card:hover,
-        .arch-card:focus-visible {
-            z-index: 5;
-            box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.58), 0 0.5rem 1.5rem rgba(0, 0, 0, 0.32);
-            transform: translate(calc(-50% + var(--arch-x)), calc(-50% + var(--arch-y) - 1.35rem)) rotate(0deg) scale(1.045);
-        }
-
-        .arch-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            user-select: none;
-        }
-
-        .arch-card-label {
-            position: absolute;
-            right: 0.75rem;
-            bottom: 0.75rem;
-            left: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            padding: 0.85rem 1rem;
-            border-radius: 0.75rem;
-            color: #fafafa;
-            background: rgba(9, 9, 11, 0.88);
-            backdrop-filter: blur(12px);
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .instagram-work-grid {
-            display: grid;
-            margin-top: clamp(4rem, 9vw, 8rem);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .instagram-work {
-            min-width: 0;
-            padding: clamp(1.25rem, 3vw, 2.5rem);
-        }
-
-        .instagram-work + .instagram-work {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .instagram-work-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .instagram-work-header p {
-            color: #a1a1aa;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-        }
-
-        .instagram-embed-frame {
-            position: relative;
-            width: 100%;
-            min-height: 39rem;
-            overflow: hidden;
-            border-radius: 0.875rem;
-            background: #ffffff;
-        }
-
-        .instagram-embed-frame::before {
-            position: absolute;
-            inset: 0;
-            display: grid;
-            place-items: center;
-            color: #71717a;
-            background: #f4f4f5;
-            font-size: 0.8rem;
-            content: 'Carregando publicação';
-        }
-
-        .instagram-embed-frame iframe {
-            position: relative;
-            z-index: 1;
-            display: block;
-            width: 100%;
-            min-height: 39rem;
-            border: 0;
-            background: #ffffff;
-        }
-
-        .instagram-work-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            color: #d4d4d8;
-            font-size: 0.82rem;
-            font-weight: 600;
-            transition: color 200ms ease, transform 200ms ease;
-        }
-
-        .instagram-work-link:hover {
-            color: #ffffff;
-            transform: translateX(0.2rem);
-        }
-
-        @media (min-width: 900px) {
-            .instagram-work-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .instagram-work + .instagram-work {
-                border-top: 0;
-                border-left: 1px solid rgba(255, 255, 255, 0.1);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .arch-gallery-shell {
-                min-height: 37rem;
-            }
-
-            .arch-card {
-                top: 45%;
-                width: min(64vw, 16rem);
-            }
-
-            .arch-card:first-child {
-                --arch-x: -16%;
-                --arch-y: -1rem;
-                --arch-rotate: -7deg;
-            }
-
-            .arch-card:last-child {
-                --arch-x: 16%;
-                --arch-y: 6.5rem;
-                --arch-rotate: 7deg;
-            }
-
-            .arch-card-label {
-                padding: 0.7rem 0.8rem;
-                font-size: 0.62rem;
-            }
-
-            .instagram-embed-frame,
-            .instagram-embed-frame iframe {
-                min-height: 35rem;
-            }
-        }
-
-        @media (max-width: 767px), (max-height: 680px) {
-            .hero-track { height: auto; }
-            .hero-stage { position: relative; padding: 7rem 1.25rem 1.75rem; }
-            .hero-copy { position: relative; top: auto; left: auto; width: 100%; transform: none; }
-            .hero-proof { position: relative; inset: auto; margin-top: 2rem; }
-            .hero-scroll-cue, .hero-index { display: none; }
-            .hero-supporting-copy { max-width: 38rem; }
-            .hero-preview-layer { display: none; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto !important;
-            }
-
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
-            .hero-proof,
-            .hero-scroll-cue,
-            .gsap-fade-up,
-            .gsap-fade-left,
-            .gsap-fade-right,
-            .gallery-title,
-            .gallery-layer-back,
-            .gallery-layer-front {
-                opacity: 1 !important;
-                transform: none !important;
-                filter: none !important;
-            }
-
-            .hero-star-interaction {
-                transform: none !important;
-            }
-
-            .arch-card {
-                transition: none !important;
-            }
-        }
-    </style>
+    <script>if (window.tailwind) tailwind.config = { theme: { extend: { colors: { zinc: { 850: '#1f1f22' } } } } };</script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="languages.js" defer></script>
+    <script src="evidence.js" defer></script>
+    <script src="site.js" defer></script>
 </head>
-<body class="antialiased selection:bg-zinc-800 selection:text-white">
-
-    <!-- Efeito de ruído global -->
-    <div class="film-grain"></div>
-
-    <!-- Assinatura da hero -->
-    <header class="absolute top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 mix-blend-difference pointer-events-none">
-        <a href="/" data-localized class="pointer-events-auto font-medium tracking-tight text-sm sm:text-lg">Lucas Rabicano</a>
-        <nav class="pointer-events-auto flex items-center gap-3 text-xs font-semibold" aria-label="Navegação principal">
-            <a href="/ia" data-localized class="py-2 hover:underline">IA aplicada</a>
-            <a href="?lang=pt" lang="pt-BR" data-language="pt" class="py-2">PT</a>
-            <span aria-hidden="true" class="text-zinc-600">/</span>
-            <a href="?lang=en" lang="en" data-language="en" class="py-2">EN</a>
-        </nav>
+<body class="home">
+    <a class="home-skip" href="#conteudo">Pular para o conteúdo</a>
+    <header class="home-header">
+        <div class="home-wrap home-topbar">
+            <a href="/" class="home-brand" data-localized>Lucas Rabicano</a>
+            <nav aria-label="Navegação principal">
+                <a href="#projetos">Projetos</a>
+                <a href="/ia" data-localized>IA aplicada</a>
+                <a href="#especialidades">Especialidades</a>
+                <a href="#contato">Contato</a>
+            </nav>
+            <nav class="home-languages" aria-label="Idioma">
+                <a href="?lang=pt" lang="pt-BR" data-language="pt">PT</a>
+                <a href="?lang=en" lang="en" data-language="en">EN</a>
+            </nav>
+        </div>
     </header>
-
-    <main>
-        <!-- 1. HERO EDITORIAL COM PARALLAX -->
-        <section id="inicio" class="hero-track relative" aria-labelledby="hero-title">
-            <div class="hero-stage" data-hero-stage>
-                <div class="hero-visuals" data-parallax-layers aria-hidden="true">
-                    <figure class="hero-layer hero-preview-layer" data-parallax-layer="preview">
-                        <img src="/og-preview.png" width="1200" height="630" alt="" loading="eager" fetchpriority="high">
-                    </figure>
-
-                    <div class="hero-layer hero-grid-layer" data-parallax-layer="grid"></div>
-                    <div class="hero-axis hero-axis--horizontal"></div>
-                    <div class="hero-axis hero-axis--vertical"></div>
-
-                    <div class="hero-layer hero-orbit-layer" data-parallax-layer="orbit">
-                        <div class="hero-orbit"></div>
-                    </div>
-
-                    <div class="hero-layer hero-star-layer" data-parallax-layer="star">
-                        <div class="hero-star-interaction">
-                            <svg class="hero-star" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <main id="conteudo" tabindex="-1">
+        <section id="inicio" class="home-hero home-wrap" aria-labelledby="hero-title">
+            <div>
+                <p class="home-label">AI Builder · Tecnologia · Performance</p>
+                <h1 id="hero-title">Lucas Rabicano<span aria-hidden="true">.</span></h1>
+                <p class="home-subtitle">Desenvolvimento de sistemas, IA e automação.</p>
+                <p class="home-lead">Crio CRMs, experiências digitais e produtos com IA. Conecto interface, dados e operação para resolver problemas de negócio.</p>
+                <div class="home-actions">
+                    <a class="home-button primary" href="#projetos">Ver projetos <span aria-hidden="true">↓</span></a>
+                    <a class="home-button" href="/ia" data-localized>Explorar projetos de IA</a>
+                </div>
+            </div>
+            <div class="home-mark" aria-hidden="true"><svg class="home-star" aria-hidden="true" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill="currentColor" d="M32 7 36 26.7 50.5 13.5 37.3 28 57 32l-19.7 4 13.2 14.5L36 37.3 32 57l-4-19.7-14.5 13.2L26.7 36 7 32l19.7-4-13.2-14.5L28 26.7 32 7Z"/>
-                            </svg>
+                            </svg></div>
+        </section>
+
+        <div id="galeria-portfolio" class="home-anchor"></div>
+        <section id="projetos" class="home-band" aria-labelledby="work-title">
+            <div class="home-wrap">
+                <div class="home-intro">
+                    <h2 id="work-title">Projetos selecionados</h2>
+                    <p>Veja o que cada projeto resolve e as decisões que deram forma à entrega.</p>
+                </div>
+                <div class="project-filters" role="group" aria-label="Filtrar projetos por categoria" hidden>
+                    <button type="button" data-filter="all" aria-pressed="true">Todos</button>
+                    <button type="button" data-filter="ai" aria-pressed="false">Inteligência Artificial</button>
+                    <button type="button" data-filter="systems" aria-pressed="false">Sistemas e CRM</button>
+                    <button type="button" data-filter="automation" aria-pressed="false">Automações</button>
+                    <button type="button" data-filter="marketing" aria-pressed="false">Marketing e Performance</button>
+                    <button type="button" data-filter="sites" aria-pressed="false">Sites e Experiências Digitais</button>
+                </div>
+                <p id="project-filter-status" class="sr-only" role="status"></p>
+                <div class="work-grid">
+                    <article id="mvpllk" class="work-card work-feature" data-project-category="ai systems automation marketing">
+                        <img class="work-image" src="portfolio-assets/mvpllk-demo-poster.jpg" width="1280" height="720" alt="Funil comercial do MVPLLK com dados fictícios" loading="lazy" decoding="async">
+                        <div class="work-copy">
+                            <p class="home-label">Produto próprio · Aplicação publicada</p>
+                            <h3>MVPLLK</h3>
+                            <p>Um CRM que reúne oportunidades, tarefas e indicadores de mídia em uma operação.</p>
+                            <dl class="work-build"><dt>Como foi feito</dt><dd>React e TypeScript organizam o funil. No módulo de performance, funções do Supabase normalizam dados da Meta, e o Gemini analisa os indicadores e sugere próximos passos para revisão humana.</dd></dl>
+                            <a class="work-link" href="/projetos/mvpllk" data-localized aria-label="Ler o case técnico: MVPLLK">Ler o case técnico <span aria-hidden="true">↗</span></a>
+                        </div>
+                    </article>
+                    <article id="essence-residence" class="work-card" data-project-category="sites marketing">
+                        <img class="work-image" src="portfolio-assets/vinicius-mozzer-site.png" width="1440" height="900" alt="Página inicial do Essence Residence, com vista do litoral" loading="lazy" decoding="async">
+                        <div class="work-copy">
+                            <p class="home-label">Landing page imobiliária</p>
+                            <h3>Essence Residence</h3>
+                            <p>Página para apresentar um lançamento em Camboriú e encaminhar interessados ao corretor.</p>
+                            <dl class="work-build"><dt>Como foi feito</dt><dd>Organizei a página como uma visita guiada: imagens do empreendimento, detalhes do lançamento e acesso ao atendimento no mesmo percurso.</dd></dl>
+                            <a class="work-link" href="https://viniciusmozzer.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Abrir projeto: Essence Residence">Abrir projeto <span aria-hidden="true">↗</span></a>
+                        </div>
+                    </article>
+                    <article id="vini-imoveis-crm" class="work-card" data-project-category="systems">
+                        <img class="work-image" src="portfolio-assets/vinicius-mozzer-crm.png" width="1440" height="900" alt="Tela de acesso do Vini Imóveis CRM em preto e verde" loading="lazy" decoding="async">
+                        <div class="work-copy">
+                            <p class="home-label">Produto digital</p>
+                            <h3>Vini Imóveis CRM</h3>
+                            <p>Sistema imobiliário para acompanhar leads, visitas, propostas e comissões.</p>
+                            <dl class="work-build"><dt>Como foi feito</dt><dd>Estruturei a interface em torno da rotina do corretor, da entrada de um contato ao acompanhamento das negociações. O link público abre a tela de acesso.</dd></dl>
+                            <a class="work-link" href="https://crm.viniciusmozzer.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Abrir tela de acesso: Vini Imóveis CRM">Abrir tela de acesso <span aria-hidden="true">↗</span></a>
+                        </div>
+                    </article>
+                    <article id="san-martins" class="work-card" data-project-category="sites">
+                        <img class="work-image" src="portfolio-assets/imob-martins-site.png" width="1440" height="900" alt="Site da San Martins com busca de imóveis sobre uma vista da cidade" loading="lazy" decoding="async">
+                        <div class="work-copy">
+                            <p class="home-label">Site imobiliário</p>
+                            <h3>Imobiliária San Martins</h3>
+                            <p>Site institucional com catálogo de imóveis e acesso ao atendimento.</p>
+                            <dl class="work-build"><dt>Como foi feito</dt><dd>Coloquei a busca no início da experiência e organizei o catálogo para encurtar o caminho entre encontrar um imóvel e falar com a imobiliária.</dd></dl>
+                            <a class="work-link" href="https://imobmartins.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir projeto: Imobiliária San Martins">Abrir projeto <span aria-hidden="true">↗</span></a>
+                        </div>
+                    </article>
+                    <article id="fit-global" class="work-card" data-project-category="sites marketing">
+                        <img class="work-image" src="portfolio-assets/rudy-daniel-site.png" width="1440" height="900" alt="Página da FIT Global com Rudy Daniel em destaque" loading="lazy" decoding="async">
+                        <div class="work-copy">
+                            <p class="home-label">Plataforma de educação</p>
+                            <h3>FIT Global: Rudy Daniel</h3>
+                            <p>Página para apresentar o método de inglês da FIT Global e encaminhar alunos à plataforma.</p>
+                            <dl class="work-build"><dt>Como foi feito</dt><dd>Estruturei a página para explicar a proposta de treino diário, mostrar o método na prática e deixar o acesso do aluno fácil de encontrar.</dd></dl>
+                            <a class="work-link" href="https://rudydaniel.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Abrir projeto: FIT Global: Rudy Daniel">Abrir projeto <span aria-hidden="true">↗</span></a>
+                        </div>
+                    </article>
+                    <article id="golden-brasil" class="work-card" data-project-category="sites">
+                        <img class="work-image" src="portfolio-assets/golden-brasil-site.jpg" width="1440" height="900" alt="Página institucional da Golden Brasil com marca dourada" loading="lazy" decoding="async">
+                        <div class="work-copy">
+                            <p class="home-label">Site institucional</p>
+                            <h3>Golden Brasil</h3>
+                            <p>Site institucional que reúne a apresentação da empresa, seus produtos e os canais de atendimento.</p>
+                            <dl class="work-build"><dt>Como foi feito</dt><dd>Separei a apresentação institucional da navegação de produtos e mantive o contato acessível. Também trabalhei no CRM e nos painéis internos da empresa.</dd></dl>
+                            <a class="work-link" href="https://goldenbrasil.com.br/novo/" target="_blank" rel="noopener noreferrer" aria-label="Abrir projeto: Golden Brasil">Abrir projeto <span aria-hidden="true">↗</span></a>
+                        </div>
+                    </article>
+                    <article id="guimel-roeher" class="work-card" data-project-category="sites">
+                        <img class="work-image" src="portfolio-assets/gui-melroeher-site.jpg" width="1440" height="900" alt="Portfólio de Guímel Roeher com a chamada Sua marca. Em foco." loading="lazy" decoding="async">
+                        <div class="work-copy">
+                            <p class="home-label">Portfólio audiovisual</p>
+                            <h3>Guímel Roeher</h3>
+                            <p>Portfólio de direção, edição e produção de vídeo para um profissional de Balneário Camboriú.</p>
+                            <dl class="work-build"><dt>Como foi feito</dt><dd>Usei React e TypeScript para separar a abertura, os cases e a galeria de filmes em páginas próprias. A abertura animada apresenta a marca; os vídeos mostram o trabalho.</dd></dl>
+                            <a class="work-link" href="https://guimelroeher.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir projeto: Guímel Roeher">Abrir projeto <span aria-hidden="true">↗</span></a>
+                        </div>
+                    </article>
+                </div>
+                <p id="project-filter-empty" class="project-filter-empty" hidden>Nenhum projeto nesta categoria.</p>
+                <details class="home-disclosure crm-demo" id="crm-em-operacao">
+                    <summary id="crm-video-title">Demonstração em vídeo do CRM MVPLLK</summary>
+                    <p id="crm-video-description">Veja como o funil organiza oportunidades, responsáveis e próximos contatos. O vídeo usa dados fictícios.</p>
+                    <video controls playsinline preload="none" width="1280" height="720" poster="/portfolio-assets/mvpllk-demo-poster.jpg" aria-labelledby="crm-video-title" aria-describedby="crm-video-description">
+                            <source src="portfolio-assets/videos/crm-llk-demo.mp4" type="video/mp4">
+                            Seu navegador não reproduz este vídeo. <a href="portfolio-assets/videos/crm-llk-demo.mp4">Abra a demonstração do CRM</a>.
+                        </video>
+                </details>
+            </div>
+        </section>
+
+        <section id="especialidades" class="home-band" aria-labelledby="practice-title">
+            <div class="home-wrap">
+                <div class="home-intro">
+                    <h2 id="practice-title">Especialidades</h2>
+                    <p>Do desenvolvimento da interface à automação dos processos que ela precisa atender.</p>
+                </div>
+                <div class="practice-grid">
+                    <article><h3>IA e sistemas</h3><p>Construo CRMs, dashboards e fluxos que usam modelos de IA para organizar informações ou apoiar uma decisão.</p><a class="work-link" href="/ia" data-localized>IA aplicada <span aria-hidden="true">↗</span></a></article>
+                    <article><h3>Automações</h3><p>Integro formulários, APIs, Google Sheets e CRMs com n8n, Make e Zapier para que os dados cheguem ao próximo passo do processo.</p><a class="work-link" href="#automacoes">Automações <span aria-hidden="true">↓</span></a></article>
+                    <article><h3>Marketing e Performance</h3><p>Planejo campanhas, configuro a mensuração e conecto o que acontece no anúncio, na página e no CRM.</p><a class="work-link" href="#performance">Ver resultados comerciais <span aria-hidden="true">↓</span></a></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="performance" class="home-band" aria-labelledby="performance-title">
+            <div class="home-wrap">
+                <div class="home-intro"><h2 id="performance-title">Performance, dados e operação comercial</h2><p>Os números abaixo resumem operações comerciais acompanhadas.</p></div>
+                <div class="home-results">
+                    <div><strong>R$ 1 mi+</strong><p>Retorno comercial gerado nas operações acompanhadas.</p></div>
+                    <div><strong>≈ R$ 50 mil</strong><p>Investimento aproximado gerido em campanhas.</p></div>
+                </div>
+                <p class="home-note">Valores aproximados informados com base no histórico dos projetos acompanhados. Retorno comercial não representa lucro líquido e varia conforme oferta, operação e processo de vendas.</p>
+                <details class="home-disclosure" id="operacao-digital">
+                    <summary>Mais sobre performance e integrações</summary>
+        <section class="home-nested">
+
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="">
+                        <h2 class="text-4xl md:text-5xl font-medium tracking-tight mb-8">
+                            Eu construo a camada que o anúncio não mostra.<br/>
+                            <span class="text-zinc-500">Dados, CRM, automação e resposta comercial.</span>
+                        </h2>
+                        <p class="text-lg text-zinc-400 font-light leading-relaxed mb-8">
+                            Uso a API de Conversões da Meta para estruturar eventos, meu CRM para acompanhar os dados da empresa e ferramentas como n8n, Zapier e Make para eliminar tarefas manuais e acelerar a operação. O objetivo é fazer mídia e comercial trabalharem com o mesmo contexto.
+                        </p>
+
+                        <div class="mt-10 pt-8 border-t border-zinc-800">
+                            <p class="text-xs font-semibold tracking-[0.24em] text-zinc-500 uppercase mb-4">Conforme o plano contratado</p>
+                            <p class="text-zinc-300 font-light leading-relaxed mb-5">
+                                O projeto pode incluir acesso e configuração do CRM, automações, integrações e bots, sempre definidos de acordo com o processo e a necessidade da empresa.
+                            </p>
+                            <div class="flex flex-wrap gap-2" aria-label="Soluções que podem compor o plano">
+                                <span class="px-3 py-2 border border-zinc-800 rounded-lg text-xs text-zinc-400">CRM próprio</span>
+                                <span class="px-3 py-2 border border-zinc-800 rounded-lg text-xs text-zinc-400">Automações</span>
+                                <span class="px-3 py-2 border border-zinc-800 rounded-lg text-xs text-zinc-400">Integrações</span>
+                                <span class="px-3 py-2 border border-zinc-800 rounded-lg text-xs text-zinc-400">Bots</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Diagrama Vertical -->
+                    <div class="relative pl-4 md:pl-8">
+                        <!-- Linha conectora -->
+                        <div class="absolute inset-y-8 left-[2.25rem] md:left-[3.25rem] w-px bg-gradient-to-b from-zinc-800 via-zinc-600 to-transparent"></div>
+
+                        <div class="space-y-8">
+                            <!-- Steps -->
+                            <div class="flex items-center gap-6 relative z-10 group">
+                                <div class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-zinc-400 shadow-lg group-hover:border-blue-500 group-hover:text-blue-400 transition-colors">
+                                    <i data-lucide="target" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1 p-4 rounded-xl bg-zinc-900/30 border border-zinc-800/50 group-hover:border-zinc-600 transition-colors">
+                                    <span class="font-medium text-zinc-200 block mb-1">Mídia / Aquisição</span>
+                                    <span class="text-xs text-zinc-500">Meta Ads, Google Ads, oferta e criativos</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-6 relative z-10 group">
+                                <div class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-zinc-400 shadow-lg group-hover:border-emerald-500 group-hover:text-emerald-400 transition-colors">
+                                    <i data-lucide="layout-template" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1 p-4 rounded-xl bg-zinc-900/30 border border-zinc-800/50 group-hover:border-zinc-600 transition-colors">
+                                    <span class="font-medium text-zinc-200 block mb-1">Landing Page / WhatsApp</span>
+                                    <span class="text-xs text-zinc-500">Captação, contexto e identificação do lead</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-6 relative z-10 group">
+                                <div class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-zinc-400 shadow-lg group-hover:border-purple-500 group-hover:text-purple-400 transition-colors">
+                                    <i data-lucide="waypoints" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1 p-4 rounded-xl bg-zinc-900/30 border border-zinc-800/50 group-hover:border-zinc-600 transition-colors">
+                                    <span class="font-medium text-zinc-200 block mb-1">Meta Conversions API</span>
+                                    <span class="text-xs text-zinc-500">Eventos e dados de conversão conectados à mídia</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-6 relative z-10 group">
+                                <div class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-zinc-400 shadow-lg group-hover:border-rose-500 group-hover:text-rose-400 transition-colors">
+                                    <i data-lucide="database" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1 p-4 rounded-xl bg-zinc-900/30 border border-zinc-800/50 group-hover:border-zinc-600 transition-colors">
+                                    <span class="font-medium text-zinc-200 block mb-1">CRM Próprio / Dados</span>
+                                    <span class="text-xs text-zinc-500">Empresa, origem, histórico, responsável e pipeline</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-6 relative z-10 group">
+                                <div class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-zinc-400 shadow-lg group-hover:border-amber-500 group-hover:text-amber-400 transition-colors">
+                                    <i data-lucide="workflow" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1 p-4 rounded-xl bg-zinc-900/30 border border-zinc-800/50 group-hover:border-zinc-600 transition-colors">
+                                    <span class="font-medium text-zinc-200 block mb-1">Automações & Bots</span>
+                                    <span class="text-xs text-zinc-500">n8n, Zapier, Make, alertas e follow-ups</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-6 relative z-10 group">
+                                <div class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-zinc-400 shadow-lg group-hover:border-blue-500 group-hover:text-blue-400 transition-colors">
+                                    <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1 p-4 rounded-xl bg-zinc-900/30 border border-zinc-800/50 group-hover:border-zinc-600 transition-colors">
+                                    <span class="font-medium text-zinc-200 block mb-1">Venda / Feedback de Dados</span>
+                                    <span class="text-xs text-zinc-500">Resultado comercial retorna para análise e otimização</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="hero-copy">
-                    <div class="hero-kicker" data-hero-intro>Estratégia · Mídia · Tecnologia</div>
-                    <h1 id="hero-title" class="hero-title" aria-label="Lucas Rabicano" data-hero-intro>LUCAS<span class="hero-title-dot">.</span></h1>
-
-                    <div class="hero-positioning" data-hero-intro>
-                        <p class="hero-positioning-label">AI Builder · Tecnologia · Performance</p>
-                        <p class="hero-description">Tecnologia, IA e performance para transformar problemas em soluções.</p>
-                        <p class="hero-supporting-copy">Desenvolvo sistemas, automações e experiências digitais que conectam dados e estratégia de negócios.</p>
-
-                        <div class="hero-actions">
-                            <a href="/ia" data-localized class="hero-action hero-action--primary">
-                                <span>Explorar projetos de IA</span>
-                                <i data-lucide="arrow-up-right" class="w-4 h-4" aria-hidden="true"></i>
-                            </a>
-                            <a href="#projetos" class="hero-action">Conhecer projetos comerciais</a>
-                            <a href="#contato" class="hero-action hero-contact">Entrar em contato</a>
-                        </div>
+            </div>
+        </section>
+        <section id="automacoes" class="home-nested" aria-labelledby="automation-title">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-14">
+                    <h2 id="automation-title" class="text-4xl md:text-6xl font-medium tracking-tight leading-tight">Automações que conectam o trabalho inteiro.</h2>
+                    <div class="text-zinc-400 font-light leading-relaxed space-y-5">
+                        <p>Desenvolvi automações em CRMs, sites, planilhas e projetos para conectar dados, atendimento e operação. Meu trabalho vai do formulário que recebe um contato ao fluxo que organiza as próximas ações da equipe.</p>
+                        <p>Uso n8n, Make, Zapier e Google Sheets para integrar ferramentas, organizar informações e reduzir tarefas repetitivas. Cada fluxo nasce do processo da empresa e do que precisa acontecer depois de cada interação.</p>
                     </div>
                 </div>
-
-                <div class="hero-scroll-cue" aria-hidden="true">Role para explorar</div>
-                <div class="hero-index" aria-hidden="true">PORTFÓLIO / 2026</div>
-
-                <div class="hero-proof" aria-label="Resultados e especialidades em destaque">
-                    <div class="hero-proof-item">
-                        <strong>R$ 1M+</strong>
-                        <span>em retorno gerado</span>
+                <div class="border-t border-zinc-800">
+                    <article class="grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-5 md:gap-12 py-8 border-b border-zinc-800">
+                        <h3 class="text-2xl font-medium tracking-tight">CRMs e operação comercial</h3>
+                        <p class="text-zinc-400 font-light leading-relaxed">Automações para conectar a entrada de leads ao CRM, organizar origem e histórico, distribuir contatos e acionar alertas, tarefas e follow-ups. O objetivo é dar continuidade ao atendimento e manter marketing e comercial trabalhando com os mesmos dados.</p>
+                    </article>
+                    <article class="grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-5 md:gap-12 py-8 border-b border-zinc-800">
+                        <h3 class="text-2xl font-medium tracking-tight">Sites e landing pages</h3>
+                        <p class="text-zinc-400 font-light leading-relaxed">Integrações de formulários, webhooks e APIs para levar informações do site às ferramentas da operação. Conecto captação, CRM, planilhas e mensuração para que o contato recebido se transforme em uma próxima ação clara.</p>
+                    </article>
+                    <article class="grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-5 md:gap-12 py-8 border-b border-zinc-800">
+                        <h3 class="text-2xl font-medium tracking-tight">Google Sheets e dados</h3>
+                        <p class="text-zinc-400 font-light leading-relaxed">Automações em planilhas para centralizar registros, atualizar informações e apoiar relatórios e acompanhamento de indicadores. O Sheets também funciona como ponte entre sistemas, ajudando a equipe a consultar e trabalhar os dados no dia a dia.</p>
+                    </article>
+                    <article class="grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-5 md:gap-12 py-8 border-b border-zinc-800">
+                        <h3 class="text-2xl font-medium tracking-tight">Projetos, rotinas e bots</h3>
+                        <p class="text-zinc-400 font-light leading-relaxed">Fluxos que conectam ferramentas de projeto, notificações, tarefas e rotinas internas. Também desenvolvo bots e integrações para apoiar atendimento, organizar solicitações e encaminhar informações às pessoas e aos sistemas certos.</p>
+                    </article>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 mt-12">
+                    <div>
+                        <h3 class="text-2xl font-medium tracking-tight mb-4">n8n, Make e Zapier na prática</h3>
+                        <p class="text-zinc-400 font-light leading-relaxed">Combino gatilhos, condições, transformação de dados e integrações entre ferramentas para construir fluxos adaptados à operação. A escolha da plataforma acompanha o escopo, os sistemas existentes e a forma como a equipe vai manter a rotina.</p>
                     </div>
-                    <div class="hero-proof-item">
-                        <strong>~R$ 50 mil</strong>
-                        <span>em investimento</span>
-                    </div>
-                    <div class="hero-proof-item">
-                        <strong>Tráfego + CRM</strong>
-                        <span>uma só operação</span>
+                    <div>
+                        <h3 class="text-2xl font-medium tracking-tight mb-4">Uma estrutura que acompanha o plano</h3>
+                        <p class="text-zinc-400 font-light leading-relaxed">Conforme o plano e o diagnóstico, posso disponibilizar meu CRM, configurar automações, integrar planilhas e desenvolver bots. Tráfego, dados e processos passam a fazer parte de uma operação conectada, com entregas definidas para a necessidade de cada empresa.</p>
                     </div>
                 </div>
-
-                <div class="hero-bottom-fade"></div>
+            </div>
+        </section>
+                </details>
             </div>
         </section>
 
@@ -1113,6 +347,8 @@
                     <h2 id="evidence-title">Da ideia à ferramenta que alguém usa.</h2>
                     <p>Prompts estruturados, experimentação com LLMs, automações e produtos publicados. Um recorte do meu trabalho conectando inteligência artificial, dados e operação.</p>
                 </div>
+                <details class="home-disclosure evidence-disclosure" id="evidence-details">
+                    <summary>Ver exemplos de IA e automação</summary>
                 <nav class="evidence-index" aria-label="Explorar evidências do trabalho">
                     <a href="#prompts">Prompts</a>
                     <a href="#experimentos-llm">LLMs e IA local</a>
@@ -1253,477 +489,16 @@
                         <a href="#projetos" class="evidence-link">Explorar projetos publicados</a>
                     </div>
                 </article>
+                </details>
             </div>
         </section>
 
-        <!-- 2. SEÇÃO “O QUE EU FAÇO” -->
-        <section class="py-32 bg-zinc-950 relative border-t border-zinc-900">
-            <div class="max-w-7xl mx-auto px-6 relative z-10">
-                <div class="gsap-fade-up">
-                    <h2 class="text-sm font-semibold tracking-widest text-zinc-500 uppercase mb-4">Áreas de Atuação</h2>
-                    <h3 class="text-4xl md:text-5xl font-medium tracking-tight mb-16 max-w-4xl">Aquisição é o centro. Dados, CRM próprio e automações fazem o resultado continuar depois do clique.</h3>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="gsap-fade-up p-8 rounded-2xl bg-zinc-900/30 border border-zinc-800/80 hover:bg-zinc-800/50 hover:border-zinc-700 transition-all flex flex-col">
-                        <i data-lucide="monitor" class="w-8 h-8 text-blue-400 mb-6"></i>
-                        <h4 class="text-xl font-medium mb-3">Sites, Landing Pages & SEO</h4>
-                        <p class="text-zinc-400 font-light leading-relaxed">Páginas preparadas para posicionar, captar demanda e transformar visitantes em oportunidades rastreáveis.</p>
-                    </div>
-                    <div class="gsap-fade-up p-8 rounded-2xl bg-zinc-900/30 border border-zinc-800/80 hover:bg-zinc-800/50 hover:border-zinc-700 transition-all flex flex-col" style="transition-delay: 100ms;">
-                        <i data-lucide="database" class="w-8 h-8 text-emerald-400 mb-6"></i>
-                        <h4 class="text-xl font-medium mb-3">CRM Próprio & Sistemas</h4>
-                        <p class="text-zinc-400 font-light leading-relaxed">Uma estrutura própria para acompanhar dados da empresa, origem dos leads, atendimentos, histórico, pipeline e vendas.</p>
-                    </div>
-                    <div class="gsap-fade-up p-8 rounded-2xl bg-zinc-900/30 border border-zinc-800/80 hover:bg-zinc-800/50 hover:border-zinc-700 transition-all flex flex-col" style="transition-delay: 200ms;">
-                        <i data-lucide="target" class="w-8 h-8 text-rose-400 mb-6"></i>
-                        <h4 class="text-xl font-medium mb-3">Tráfego Pago & Performance</h4>
-                        <p class="text-zinc-400 font-light leading-relaxed">Planejamento de mídia, criativos, segmentação, testes, otimização e leitura comercial de cada campanha.</p>
-                    </div>
-                    <div class="gsap-fade-up p-8 rounded-2xl bg-zinc-900/30 border border-zinc-800/80 hover:bg-zinc-800/50 hover:border-zinc-700 transition-all flex flex-col">
-                        <i data-lucide="waypoints" class="w-8 h-8 text-amber-400 mb-6"></i>
-                        <h4 class="text-xl font-medium mb-3">Meta CAPI & Mensuração</h4>
-                        <p class="text-zinc-400 font-light leading-relaxed">Implementação da API de Conversões da Meta, eventos e integrações para aproximar dados de mídia e resultado comercial.</p>
-                    </div>
-                    <div class="gsap-fade-up p-8 rounded-2xl bg-zinc-900/30 border border-zinc-800/80 hover:bg-zinc-800/50 hover:border-zinc-700 transition-all flex flex-col" style="transition-delay: 100ms;">
-                        <i data-lucide="workflow" class="w-8 h-8 text-purple-400 mb-6"></i>
-                        <h4 class="text-xl font-medium mb-3">Automações & Bots</h4>
-                        <p class="text-zinc-400 font-light leading-relaxed">Fluxos em n8n, Zapier e Make, integrações entre ferramentas, distribuição de leads, alertas, follow-ups e bots.</p>
-                    </div>
-                    <div class="gsap-fade-up p-8 rounded-2xl bg-zinc-900/30 border border-zinc-800/80 hover:bg-zinc-800/50 hover:border-zinc-700 transition-all flex flex-col" style="transition-delay: 200ms;">
-                        <i data-lucide="crosshair" class="w-8 h-8 text-purple-400 mb-6"></i>
-                        <h4 class="text-xl font-medium mb-3">Marketing Estratégico</h4>
-                        <p class="text-zinc-400 font-light leading-relaxed">Posicionamento, copy, jornada, funil, criativos, conteúdo e desenho da operação comercial completa.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. PERFORMANCE DIGITAL -->
-        <section id="performance" class="py-24 md:py-32 bg-zinc-900 border-y border-zinc-800 relative overflow-hidden">
-            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-rose-950/20 via-zinc-900 to-zinc-900 pointer-events-none"></div>
-            <div class="max-w-7xl mx-auto px-6 relative z-10">
-                <div class="grid lg:grid-cols-12 gap-14 lg:gap-20 items-start">
-                    <div class="lg:col-span-5 gsap-fade-right">
-                        <h2 class="text-4xl md:text-6xl font-medium tracking-tight leading-[1.05] mb-8">
-                            Tráfego pago é hoje o centro do meu trabalho.
-                        </h2>
-                        <p class="text-lg text-zinc-300 font-light leading-relaxed mb-5">
-                            Meu principal produto é performance digital: planejo e otimizo campanhas, trabalho com a API de Conversões da Meta, conecto a captação ao meu CRM e acompanho o caminho do lead até a oportunidade comercial.
-                        </p>
-                        <p class="text-zinc-400 font-light leading-relaxed">
-                            A mídia não termina no clique. Eventos, landing page, WhatsApp, qualificação, histórico, follow-up, automações e leitura de vendas fazem parte da mesma operação.
-                        </p>
-
-                        <ul class="mt-10 border-t border-zinc-700/70 divide-y divide-zinc-800" aria-label="Qualificações em performance digital">
-                            <li class="py-4 flex items-center gap-4 text-zinc-300">
-                                <i data-lucide="badge-check" class="w-5 h-5 text-rose-400 shrink-0" aria-hidden="true"></i>
-                                Planejamento de campanhas, verba e canais
-                            </li>
-                            <li class="py-4 flex items-center gap-4 text-zinc-300">
-                                <i data-lucide="badge-check" class="w-5 h-5 text-rose-400 shrink-0" aria-hidden="true"></i>
-                                Segmentação, criativos, testes e otimização
-                            </li>
-                            <li class="py-4 flex items-center gap-4 text-zinc-300">
-                                <i data-lucide="badge-check" class="w-5 h-5 text-rose-400 shrink-0" aria-hidden="true"></i>
-                                Meta Conversions API, eventos e mensuração
-                            </li>
-                            <li class="py-4 flex items-center gap-4 text-zinc-300">
-                                <i data-lucide="badge-check" class="w-5 h-5 text-rose-400 shrink-0" aria-hidden="true"></i>
-                                Integração entre tráfego, landing page e CRM próprio
-                            </li>
-                            <li class="py-4 flex items-center gap-4 text-zinc-300">
-                                <i data-lucide="badge-check" class="w-5 h-5 text-rose-400 shrink-0" aria-hidden="true"></i>
-                                Análise de leads, pipeline e retorno comercial
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="lg:col-span-7 gsap-fade-left lg:pt-4">
-                        <p class="text-xl md:text-2xl text-zinc-200 leading-relaxed max-w-3xl mb-10">
-                            Em operações acompanhadas, mais de <strong class="font-medium text-white">R$ 1 milhão em retorno comercial</strong> foi gerado com aproximadamente <strong class="font-medium text-white">R$ 50 mil investidos em mídia.</strong>
-                        </p>
-
-                        <div class="border-y border-zinc-700 py-8 md:py-12 flex flex-col md:flex-row md:items-center gap-8 md:gap-10">
-                            <div class="flex-1">
-                                <div class="text-5xl md:text-6xl font-medium tracking-tighter text-zinc-100">≈ R$ 50 mil</div>
-                                <p class="mt-3 text-sm text-zinc-400 max-w-xs">Investimento aproximado gerido em campanhas.</p>
-                            </div>
-                            <i data-lucide="arrow-right" class="hidden md:block w-8 h-8 text-zinc-600 shrink-0" aria-hidden="true"></i>
-                            <i data-lucide="arrow-down" class="md:hidden w-7 h-7 text-zinc-600" aria-hidden="true"></i>
-                            <div class="flex-1 md:text-right">
-                                <div class="text-5xl md:text-6xl font-medium tracking-tighter text-white">R$ 1 mi+</div>
-                                <p class="mt-3 text-sm text-zinc-400 md:ml-auto max-w-xs">Retorno comercial gerado nas operações acompanhadas.</p>
-                            </div>
-                        </div>
-
-                        <p class="mt-5 text-xs text-zinc-500 leading-relaxed">
-                            Valores aproximados informados com base no histórico dos projetos acompanhados. Retorno comercial não representa lucro líquido e varia conforme oferta, operação e processo de vendas.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="mt-20 pt-10 border-t border-zinc-800 grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
-                    <div class="pt-6 border-t border-zinc-800 gsap-fade-up">
-                        <i data-lucide="mouse-pointer-click" class="w-6 h-6 text-rose-400 mb-5" aria-hidden="true"></i>
-                        <h3 class="text-xl font-medium mb-3">Aquisição de demanda</h3>
-                        <p class="text-sm text-zinc-400 font-light leading-relaxed">Meta Ads, Google Ads, ofertas, públicos, criativos e páginas alinhados ao objetivo comercial.</p>
-                    </div>
-                    <div class="pt-6 border-t border-zinc-800 gsap-fade-up">
-                        <i data-lucide="waypoints" class="w-6 h-6 text-amber-400 mb-5" aria-hidden="true"></i>
-                        <h3 class="text-xl font-medium mb-3">Meta Conversions API</h3>
-                        <p class="text-sm text-zinc-400 font-light leading-relaxed">Eventos enviados com uma estrutura de dados mais completa para aproximar plataforma, captação e conversão real.</p>
-                    </div>
-                    <div class="pt-6 border-t border-zinc-800 gsap-fade-up">
-                        <i data-lucide="database" class="w-6 h-6 text-emerald-400 mb-5" aria-hidden="true"></i>
-                        <h3 class="text-xl font-medium mb-3">Dados no CRM próprio</h3>
-                        <p class="text-sm text-zinc-400 font-light leading-relaxed">Origem, qualificação, histórico, responsável e estágio de cada lead visíveis para marketing e comercial.</p>
-                    </div>
-                    <div class="pt-6 border-t border-zinc-800 gsap-fade-up">
-                        <i data-lucide="workflow" class="w-6 h-6 text-purple-400 mb-5" aria-hidden="true"></i>
-                        <h3 class="text-xl font-medium mb-3">Automação da operação</h3>
-                        <p class="text-sm text-zinc-400 font-light leading-relaxed">n8n, Zapier e Make conectando leads, alertas, tarefas, follow-ups, bots e devolução de dados ao marketing.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. SEÇÃO “NÃO É SÓ SITE” -->
-        <section class="py-32 bg-zinc-950 relative overflow-hidden border-y border-zinc-900">
-            <!-- Glow background sutil -->
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-900/10 blur-[120px] rounded-full pointer-events-none"></div>
-
-            <div class="max-w-7xl mx-auto px-6 relative z-10">
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
-                    <div class="gsap-fade-right">
-                        <h2 class="text-4xl md:text-5xl font-medium tracking-tight mb-8">
-                            Eu construo a camada que o anúncio não mostra.<br/>
-                            <span class="text-zinc-500">Dados, CRM, automação e resposta comercial.</span>
-                        </h2>
-                        <p class="text-lg text-zinc-400 font-light leading-relaxed mb-8">
-                            Uso a API de Conversões da Meta para estruturar eventos, meu CRM para acompanhar os dados da empresa e ferramentas como n8n, Zapier e Make para eliminar tarefas manuais e acelerar a operação. O objetivo é fazer mídia e comercial trabalharem com o mesmo contexto.
-                        </p>
-
-                        <div class="mt-10 pt-8 border-t border-zinc-800">
-                            <p class="text-xs font-semibold tracking-[0.24em] text-zinc-500 uppercase mb-4">Conforme o plano contratado</p>
-                            <p class="text-zinc-300 font-light leading-relaxed mb-5">
-                                O projeto pode incluir acesso e configuração do CRM, automações, integrações e bots, sempre definidos de acordo com o processo e a necessidade da empresa.
-                            </p>
-                            <div class="flex flex-wrap gap-2" aria-label="Soluções que podem compor o plano">
-                                <span class="px-3 py-2 border border-zinc-800 rounded-lg text-xs text-zinc-400">CRM próprio</span>
-                                <span class="px-3 py-2 border border-zinc-800 rounded-lg text-xs text-zinc-400">Automações</span>
-                                <span class="px-3 py-2 border border-zinc-800 rounded-lg text-xs text-zinc-400">Integrações</span>
-                                <span class="px-3 py-2 border border-zinc-800 rounded-lg text-xs text-zinc-400">Bots</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Diagrama Vertical -->
-                    <div class="relative pl-4 md:pl-8 gsap-fade-left">
-                        <!-- Linha conectora -->
-                        <div class="absolute inset-y-8 left-[2.25rem] md:left-[3.25rem] w-px bg-gradient-to-b from-zinc-800 via-zinc-600 to-transparent"></div>
-
-                        <div class="space-y-8">
-                            <!-- Steps -->
-                            <div class="flex items-center gap-6 relative z-10 group">
-                                <div class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-zinc-400 shadow-lg group-hover:border-blue-500 group-hover:text-blue-400 transition-colors">
-                                    <i data-lucide="target" class="w-5 h-5"></i>
-                                </div>
-                                <div class="flex-1 p-4 rounded-xl bg-zinc-900/30 border border-zinc-800/50 group-hover:border-zinc-600 transition-colors">
-                                    <span class="font-medium text-zinc-200 block mb-1">Mídia / Aquisição</span>
-                                    <span class="text-xs text-zinc-500">Meta Ads, Google Ads, oferta e criativos</span>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center gap-6 relative z-10 group">
-                                <div class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-zinc-400 shadow-lg group-hover:border-emerald-500 group-hover:text-emerald-400 transition-colors">
-                                    <i data-lucide="layout-template" class="w-5 h-5"></i>
-                                </div>
-                                <div class="flex-1 p-4 rounded-xl bg-zinc-900/30 border border-zinc-800/50 group-hover:border-zinc-600 transition-colors">
-                                    <span class="font-medium text-zinc-200 block mb-1">Landing Page / WhatsApp</span>
-                                    <span class="text-xs text-zinc-500">Captação, contexto e identificação do lead</span>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center gap-6 relative z-10 group">
-                                <div class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-zinc-400 shadow-lg group-hover:border-purple-500 group-hover:text-purple-400 transition-colors">
-                                    <i data-lucide="waypoints" class="w-5 h-5"></i>
-                                </div>
-                                <div class="flex-1 p-4 rounded-xl bg-zinc-900/30 border border-zinc-800/50 group-hover:border-zinc-600 transition-colors">
-                                    <span class="font-medium text-zinc-200 block mb-1">Meta Conversions API</span>
-                                    <span class="text-xs text-zinc-500">Eventos e dados de conversão conectados à mídia</span>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center gap-6 relative z-10 group">
-                                <div class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-zinc-400 shadow-lg group-hover:border-rose-500 group-hover:text-rose-400 transition-colors">
-                                    <i data-lucide="database" class="w-5 h-5"></i>
-                                </div>
-                                <div class="flex-1 p-4 rounded-xl bg-zinc-900/30 border border-zinc-800/50 group-hover:border-zinc-600 transition-colors">
-                                    <span class="font-medium text-zinc-200 block mb-1">CRM Próprio / Dados</span>
-                                    <span class="text-xs text-zinc-500">Empresa, origem, histórico, responsável e pipeline</span>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center gap-6 relative z-10 group">
-                                <div class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-zinc-400 shadow-lg group-hover:border-amber-500 group-hover:text-amber-400 transition-colors">
-                                    <i data-lucide="workflow" class="w-5 h-5"></i>
-                                </div>
-                                <div class="flex-1 p-4 rounded-xl bg-zinc-900/30 border border-zinc-800/50 group-hover:border-zinc-600 transition-colors">
-                                    <span class="font-medium text-zinc-200 block mb-1">Automações & Bots</span>
-                                    <span class="text-xs text-zinc-500">n8n, Zapier, Make, alertas e follow-ups</span>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center gap-6 relative z-10 group">
-                                <div class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-zinc-400 shadow-lg group-hover:border-blue-500 group-hover:text-blue-400 transition-colors">
-                                    <i data-lucide="refresh-cw" class="w-5 h-5"></i>
-                                </div>
-                                <div class="flex-1 p-4 rounded-xl bg-zinc-900/30 border border-zinc-800/50 group-hover:border-zinc-600 transition-colors">
-                                    <span class="font-medium text-zinc-200 block mb-1">Venda / Feedback de Dados</span>
-                                    <span class="text-xs text-zinc-500">Resultado comercial retorna para análise e otimização</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NOVA SEÇÃO: GALERIA IMERSIVA DE PORTFÓLIO -->
-        <section id="galeria-portfolio" class="portfolio-gallery-track relative h-[210vh] md:h-[240vh] bg-zinc-950 border-y border-zinc-900 overflow-visible">
-            <div class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
-                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-zinc-950 to-zinc-950 z-0 pointer-events-none"></div>
-
-                <div class="gallery-title absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-40 pointer-events-none">
-                    <h2 class="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white mb-6 max-w-4xl drop-shadow-2xl leading-tight">
-                        Projetos que unem design, dados e <span class="text-zinc-500">estrutura comercial.</span>
-                    </h2>
-                    <p class="text-lg md:text-xl text-zinc-300 font-light max-w-2xl mx-auto drop-shadow-md mb-6">
-                        Landing pages, CRMs, dashboards, campanhas, criativos e estratégias construídas para transformar presença digital em oportunidade real.
-                    </p>
-                    <p class="text-sm text-zinc-400 font-light max-w-2xl mx-auto drop-shadow-md mb-10">
-                        Meu trabalho começa na interface, mas não termina nela. Cada projeto conecta página, captação, CRM, campanha, análise e melhoria comercial.
-                    </p>
-                    <a href="#projetos" class="px-8 py-4 bg-zinc-100 text-zinc-950 font-medium rounded-full hover:bg-zinc-300 transition-colors pointer-events-auto flex items-center gap-2 shadow-[0_0_40px_rgba(255,255,255,0.2)]">
-                        Ver aplicações práticas <i data-lucide="arrow-down" class="w-4 h-4"></i>
-                    </a>
-                </div>
-
-                <!-- Quatro projetos reais em duas profundidades leves -->
-                <div class="gallery-layer-back absolute inset-0 opacity-60 z-10 pointer-events-none" aria-hidden="true">
-                    <div class="portfolio-shot absolute top-[68vh] left-[4vw] w-[58vw] md:w-[360px] aspect-[16/10] rotate-[-2deg]">
-                        <span class="project-domain">viniciusmozzer.com.br</span>
-                        <img src="portfolio-assets/vinicius-mozzer-site.png" alt="" width="1440" height="900" loading="lazy" decoding="async">
-                    </div>
-                    <div class="portfolio-shot absolute top-[145vh] right-[4vw] w-[60vw] md:w-[380px] aspect-[16/10] rotate-[2deg]">
-                        <span class="project-domain">imobmartins.vercel.app</span>
-                        <img src="portfolio-assets/imob-martins-site.png" alt="" width="1440" height="900" loading="lazy" decoding="async">
-                    </div>
-                </div>
-
-                <div class="gallery-layer-front absolute inset-0 z-30 pointer-events-none" aria-hidden="true">
-                    <div class="portfolio-shot absolute top-[104vh] right-[3vw] md:right-[9vw] w-[76vw] md:w-[460px] aspect-[16/10] rotate-[1deg]">
-                        <span class="project-domain">rudydaniel.com.br</span>
-                        <img src="portfolio-assets/rudy-daniel-site.png" alt="" width="1440" height="900" loading="lazy" decoding="async">
-                    </div>
-                    <div class="portfolio-shot absolute top-[178vh] left-[5vw] md:left-[12vw] w-[78vw] md:w-[440px] aspect-[16/10] rotate-[-1deg]">
-                        <span class="project-domain">crm.viniciusmozzer.com.br</span>
-                        <img src="portfolio-assets/vinicius-mozzer-crm.png" alt="" width="1440" height="900" loading="lazy" decoding="async">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. SEÇÃO DE PROJETOS -->
-        <section id="projetos" class="py-24 md:py-32 bg-zinc-950">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="gsap-fade-up mb-12 md:mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-                    <div>
-                        <h2 class="text-4xl md:text-5xl font-medium tracking-tight mb-4">Aplicações práticas</h2>
-                        <p class="text-zinc-400 text-lg max-w-2xl font-light">Projetos publicados, navegáveis e construídos para objetivos reais de marca, captação e operação comercial.</p>
-                    </div>
-                    <p class="text-sm text-zinc-500 md:text-right max-w-xs">Clique em qualquer projeto para conhecer a experiência no ar.</p>
-                </div>
-
-                <div class="project-filters" role="group" aria-label="Filtrar projetos por categoria" hidden>
-                    <button type="button" data-filter="all" aria-pressed="true">Todos</button>
-                    <button type="button" data-filter="ai" aria-pressed="false">Inteligência Artificial</button>
-                    <button type="button" data-filter="systems" aria-pressed="false">Sistemas e CRM</button>
-                    <button type="button" data-filter="automation" aria-pressed="false">Automações</button>
-                    <button type="button" data-filter="marketing" aria-pressed="false">Marketing e Performance</button>
-                    <button type="button" data-filter="sites" aria-pressed="false">Sites e Experiências Digitais</button>
-                </div>
-                <p id="project-filter-status" class="sr-only" role="status"></p>
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
-                    <a id="mvpllk" href="/projetos/mvpllk" data-localized data-project-category="ai systems automation marketing" class="project-card lg:col-span-12 group">
-                        <article class="p-6 md:p-8">
-                            <p class="text-xs font-semibold tracking-[0.14em] uppercase text-emerald-200 mb-3">Case técnico · Produto próprio</p>
-                            <h3 class="text-2xl md:text-3xl font-medium tracking-tight">MVPLLK: inteligência de performance com IA</h3>
-                            <p class="text-zinc-400 font-light mt-4 max-w-2xl">Coleta de indicadores da Meta, processamento por workspace e recomendações com Gemini no dashboard.</p>
-                            <span class="inline-block mt-5 text-sm underline underline-offset-4">Ler o case técnico</span>
-                        </article>
-                    </a>
-                    <a data-project-category="sites marketing" href="https://viniciusmozzer.com.br/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-7 group" aria-label="Abrir o site Essence Residence, de Vinícius Mozzer, em uma nova aba">
-                        <article class="h-full flex flex-col">
-                            <div class="project-preview">
-                                <span class="project-domain">viniciusmozzer.com.br</span>
-                                <img src="portfolio-assets/vinicius-mozzer-site.png" alt="Página inicial do site Essence Residence, com vista aérea do mar e chamada para apartamentos em Camboriú" width="1440" height="900" loading="lazy" decoding="async">
-                            </div>
-                            <div class="p-6 md:p-8 flex flex-col flex-1">
-                                <div class="flex items-start justify-between gap-6">
-                                    <div>
-                                        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-amber-300 mb-3">Landing page imobiliária</p>
-                                        <h3 class="text-2xl md:text-3xl font-medium tracking-tight">Vinícius Mozzer: Essence Residence</h3>
-                                    </div>
-                                    <i data-lucide="arrow-up-right" class="project-arrow w-5 h-5 text-zinc-400 shrink-0" aria-hidden="true"></i>
-                                </div>
-                                <p class="text-zinc-400 font-light mt-4 text-sm leading-relaxed max-w-2xl">Experiência imersiva para um lançamento em Camboriú, conectando narrativa visual, detalhes do empreendimento e contato direto com o corretor.</p>
-                                <div class="mt-auto pt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-zinc-500 uppercase tracking-wider">
-                                    <span>UX/UI</span><span>Front-end</span><span>Conversão</span>
-                                </div>
-                            </div>
-                        </article>
-                    </a>
-
-                    <a data-project-category="systems" href="https://crm.viniciusmozzer.com.br/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-5 group" aria-label="Abrir o CRM imobiliário de Vinícius Mozzer em uma nova aba">
-                        <article class="h-full flex flex-col">
-                            <div class="project-preview">
-                                <span class="project-domain">crm.viniciusmozzer.com.br</span>
-                                <img src="portfolio-assets/vinicius-mozzer-crm.png" alt="Tela de acesso do CRM imobiliário Vini Imóveis, em verde-limão e preto" width="1440" height="900" loading="lazy" decoding="async">
-                            </div>
-                            <div class="p-6 md:p-8 flex flex-col flex-1">
-                                <div class="flex items-start justify-between gap-6">
-                                    <div>
-                                        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-lime-300 mb-3">Produto digital</p>
-                                        <h3 class="text-2xl md:text-3xl font-medium tracking-tight">Vini Imóveis CRM</h3>
-                                    </div>
-                                    <i data-lucide="arrow-up-right" class="project-arrow w-5 h-5 text-zinc-400 shrink-0" aria-hidden="true"></i>
-                                </div>
-                                <p class="text-zinc-400 font-light mt-4 text-sm leading-relaxed">Sistema imobiliário criado para concentrar leads, visitas, propostas e comissões em uma operação comercial mais clara.</p>
-                                <div class="mt-auto pt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-zinc-500 uppercase tracking-wider">
-                                    <span>CRM</span><span>UX de produto</span><span>Operação</span>
-                                </div>
-                            </div>
-                        </article>
-                    </a>
-
-                    <a data-project-category="sites" href="https://imobmartins.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-5 group" aria-label="Abrir o site da Imobiliária San Martins em uma nova aba">
-                        <article class="h-full flex flex-col">
-                            <div class="project-preview">
-                                <span class="project-domain">imobmartins.vercel.app</span>
-                                <img src="portfolio-assets/imob-martins-site.png" alt="Página inicial da Imobiliária San Martins, com vista de Camboriú e busca de imóveis" width="1440" height="900" loading="lazy" decoding="async">
-                            </div>
-                            <div class="p-6 md:p-8 flex flex-col flex-1">
-                                <div class="flex items-start justify-between gap-6">
-                                    <div>
-                                        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-amber-200 mb-3">Site imobiliário</p>
-                                        <h3 class="text-2xl md:text-3xl font-medium tracking-tight">Imobiliária San Martins</h3>
-                                    </div>
-                                    <i data-lucide="arrow-up-right" class="project-arrow w-5 h-5 text-zinc-400 shrink-0" aria-hidden="true"></i>
-                                </div>
-                                <p class="text-zinc-400 font-light mt-4 text-sm leading-relaxed">Site institucional com busca de imóveis, apresentação do portfólio próprio e caminhos diretos para atendimento.</p>
-                                <div class="mt-auto pt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-zinc-500 uppercase tracking-wider">
-                                    <span>Estratégia</span><span>UI responsiva</span><span>Catálogo</span>
-                                </div>
-                            </div>
-                        </article>
-                    </a>
-
-                    <a data-project-category="sites marketing" href="https://rudydaniel.com.br/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-7 group" aria-label="Abrir o site FIT Global, de Rudy Daniel, em uma nova aba">
-                        <article class="h-full flex flex-col">
-                            <div class="project-preview">
-                                <span class="project-domain">rudydaniel.com.br</span>
-                                <img src="portfolio-assets/rudy-daniel-site.png" alt="Página inicial da FIT Global, com Rudy Daniel em destaque e a chamada Unlock your English" width="1440" height="900" loading="lazy" decoding="async">
-                            </div>
-                            <div class="p-6 md:p-8 flex flex-col flex-1">
-                                <div class="flex items-start justify-between gap-6">
-                                    <div>
-                                        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-sky-300 mb-3">Plataforma de educação</p>
-                                        <h3 class="text-2xl md:text-3xl font-medium tracking-tight">FIT Global: Rudy Daniel</h3>
-                                    </div>
-                                    <i data-lucide="arrow-up-right" class="project-arrow w-5 h-5 text-zinc-400 shrink-0" aria-hidden="true"></i>
-                                </div>
-                                <p class="text-zinc-400 font-light mt-4 text-sm leading-relaxed max-w-2xl">Landing page para um método de inglês baseado em treino diário, com posicionamento direto, prova visual e acesso à área do aluno.</p>
-                                <div class="mt-auto pt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-zinc-500 uppercase tracking-wider">
-                                    <span>Direção visual</span><span>Front-end</span><span>Jornada</span>
-                                </div>
-                            </div>
-                        </article>
-                    </a>
-                    <a id="golden-brasil" data-project-category="sites" href="https://goldenbrasil.com.br/novo/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-7 group" aria-label="Abrir o site institucional da Golden Brasil em uma nova aba">
-                        <article class="h-full flex flex-col">
-                            <div class="project-preview">
-                                <span class="project-domain">goldenbrasil.com.br/novo</span>
-                                <img src="portfolio-assets/golden-brasil-site.jpg" alt="Página inicial da Golden Brasil, com fundo claro, símbolo dourado e apresentação institucional" width="1440" height="900" loading="lazy" decoding="async">
-                            </div>
-                            <div class="p-6 md:p-8 flex flex-col flex-1">
-                                <div class="flex items-start justify-between gap-6">
-                                    <div>
-                                        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-amber-300 mb-3">Site institucional</p>
-                                        <h3 class="text-2xl md:text-3xl font-medium tracking-tight">Golden Brasil</h3>
-                                    </div>
-                                    <i data-lucide="arrow-up-right" class="project-arrow w-5 h-5 text-zinc-400 shrink-0" aria-hidden="true"></i>
-                                </div>
-                                <p class="text-zinc-400 font-light mt-4 text-sm leading-relaxed">Site que desenvolvi para apresentar a Golden Brasil, seus produtos e seus canais de atendimento, com uma identidade visual que destaca a marca.</p>
-                                <div class="mt-auto pt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-zinc-500 uppercase tracking-wider">
-                                    <span>Institucional</span><span>Front-end</span><span>UI responsiva</span>
-                                </div>
-                            </div>
-                        </article>
-                    </a>
-
-                    <a id="guimel-roeher" data-project-category="sites" href="https://guimelroeher.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-5 group" aria-label="Abrir o portfólio audiovisual de Guímel Roeher em uma nova aba">
-                        <article class="h-full flex flex-col">
-                            <div class="project-preview">
-                                <span class="project-domain">guimelroeher.vercel.app</span>
-                                <img src="portfolio-assets/gui-melroeher-site.jpg" alt="Página inicial de Guímel Roeher, com a frase Sua marca. Em foco. e uma câmera desenhada em verde" width="1440" height="900" loading="lazy" decoding="async">
-                            </div>
-                            <div class="p-6 md:p-8 flex flex-col flex-1">
-                                <div class="flex items-start justify-between gap-6">
-                                    <div>
-                                        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-lime-300 mb-3">Portfólio audiovisual</p>
-                                        <h3 class="text-2xl md:text-3xl font-medium tracking-tight">Guímel Roeher</h3>
-                                    </div>
-                                    <i data-lucide="arrow-up-right" class="project-arrow w-5 h-5 text-zinc-400 shrink-0" aria-hidden="true"></i>
-                                </div>
-                                <p class="text-zinc-400 font-light mt-4 text-sm leading-relaxed">Portfólio que desenvolvi para um editor de vídeo e videomaker de Balneário Camboriú, com uma abertura animada e espaço para apresentar trabalhos de direção, edição e produção audiovisual.</p>
-                                <div class="mt-auto pt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-zinc-500 uppercase tracking-wider">
-                                    <span>Audiovisual</span><span>Direção visual</span><span>Front-end</span>
-                                </div>
-                            </div>
-                        </article>
-                    </a>
-                </div>
-
-                <p id="project-filter-empty" class="project-filter-empty" hidden>Nenhum projeto nesta categoria.</p>
-                <div id="crm-em-operacao" class="crm-video-showcase" aria-labelledby="crm-video-title">
-                    <div class="crm-video-intro gsap-fade-up">
-                        <h3 id="crm-video-title" class="text-4xl md:text-6xl font-medium tracking-tight leading-[1.02]">
-                            CRM próprio em operação.
-                        </h3>
-                        <p id="crm-video-description" class="text-zinc-400 font-light leading-relaxed">
-                            Uma demonstração real do produto que desenvolvi para organizar oportunidades, etapas e próximos contatos em uma única visão comercial.
-                        </p>
-                    </div>
-
-                    <div class="crm-video-frame gsap-fade-up">
-                        <video controls playsinline preload="none" poster="/portfolio-assets/mvpllk-demo-poster.jpg" aria-labelledby="crm-video-title" aria-describedby="crm-video-description">
-                            <source src="portfolio-assets/videos/crm-llk-demo.mp4" type="video/mp4">
-                            Seu navegador não reproduz este vídeo. <a href="portfolio-assets/videos/crm-llk-demo.mp4">Abra a demonstração do CRM</a>.
-                        </video>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- GALERIA DE DESIGN AUTORAL -->
-        <section id="designs" class="design-showcase py-24 md:py-32 border-y border-zinc-900" aria-labelledby="designs-title">
-            <div class="max-w-7xl mx-auto px-6 relative z-10">
-                <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-end gsap-fade-up">
+        <section id="designs" class="home-band" aria-labelledby="designs-title">
+            <div class="home-wrap">
+                <div class="home-intro">
                     <div class="lg:col-span-8">
                         <h2 id="designs-title" class="text-4xl md:text-6xl font-medium tracking-tight leading-[1.02] max-w-4xl">
-                            Design que transforma estratégia em presença visual.
+                            Design e conteúdo
                         </h2>
                     </div>
                     <p class="lg:col-span-4 text-zinc-400 font-light leading-relaxed lg:pb-1">
@@ -1731,13 +506,13 @@
                     </p>
                 </div>
 
-                <div class="arch-gallery-shell gsap-fade-up" role="group" aria-label="Galeria em leque com designs autorais">
+                <div class="arch-gallery-shell" role="group" aria-label="Galeria de designs autorais">
                     <div class="arch-gallery-stage">
                         <a href="portfolio-assets/designs/design-imobiliario-balneario.webp" target="_blank" rel="noopener noreferrer" class="arch-card" aria-label="Abrir design imobiliário para Balneário Camboriú em tamanho completo">
                             <img src="portfolio-assets/designs/design-imobiliario-balneario.webp" alt="Design imobiliário com corretor e chamada sobre comprar imóvel em Balneário Camboriú" width="1080" height="1350" loading="lazy" decoding="async">
                             <span class="arch-card-label">
                                 <span>Mercado imobiliário</span>
-                                <i data-lucide="maximize-2" class="w-4 h-4" aria-hidden="true"></i>
+                                <span class="arch-card-caption">Combinei retrato e texto em destaque para dar clareza à mensagem sobre a compra de imóveis.</span>
                             </span>
                         </a>
 
@@ -1745,16 +520,14 @@
                             <img src="portfolio-assets/designs/design-diamante-investimento.webp" alt="Design de investimento com diamante em uma caixa e informações sobre segurança e cashback" width="1080" height="1350" loading="lazy" decoding="async">
                             <span class="arch-card-label">
                                 <span>Produto e investimento</span>
-                                <i data-lucide="maximize-2" class="w-4 h-4" aria-hidden="true"></i>
+                                <span class="arch-card-caption">Usei a imagem do diamante como ponto focal e organizei as informações em blocos curtos.</span>
                             </span>
                         </a>
                     </div>
                 </div>
 
-                <div id="designs-instagram" class="mt-24 md:mt-32 gsap-fade-up">
-                    <div class="mb-10 md:mb-14">
-                        <h3 class="text-3xl md:text-5xl font-medium tracking-tight">Publicações no Instagram</h3>
-                    </div>
+                <details id="designs-instagram" class="home-disclosure">
+                    <summary>Ver publicações no Instagram</summary>
 
                     <div class="instagram-work-grid">
                         <article class="instagram-work">
@@ -1770,7 +543,7 @@
                                 <iframe src="https://www.instagram.com/p/Da5KmBjACMW/embed/" title="Preview da primeira publicação de design no Instagram" loading="lazy" scrolling="no" allow="encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                             </div>
                             <a href="https://www.instagram.com/p/Da5KmBjACMW/?img_index=1" target="_blank" rel="noopener noreferrer" class="instagram-work-link">
-                                Abrir publicação <i data-lucide="arrow-up-right" class="w-4 h-4" aria-hidden="true"></i>
+                                Abrir publicação <span aria-hidden="true">↗</span>
                             </a>
                         </article>
 
@@ -1787,18 +560,24 @@
                                 <iframe src="https://www.instagram.com/p/DbEIeiFCY7A/embed/" title="Preview da segunda publicação de design no Instagram" loading="lazy" scrolling="no" allow="encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                             </div>
                             <a href="https://www.instagram.com/p/DbEIeiFCY7A/?img_index=1" target="_blank" rel="noopener noreferrer" class="instagram-work-link">
-                                Abrir publicação <i data-lucide="arrow-up-right" class="w-4 h-4" aria-hidden="true"></i>
+                                Abrir publicação <span aria-hidden="true">↗</span>
                             </a>
                         </article>
                     </div>
-                </div>
+                </details>
             </div>
         </section>
 
-        <!-- REPERTÓRIO ALÉM DOS CASES PUBLICADOS -->
-        <section id="repertorio" class="py-24 md:py-32 bg-zinc-950 border-t border-zinc-900">
+        <section id="sobre" class="home-band" aria-labelledby="about-title">
+            <div class="home-wrap">
+                <div class="home-intro"><h2 id="about-title">Sobre meu trabalho</h2>
+                <p>Minha experiência em marketing e operações orienta as decisões de produto. Parto da rotina de quem usa a ferramenta para definir o que construir, integrar e medir.</p></div>
+                <a href="/ia#trajetoria" class="work-link" data-localized>Conhecer minha trajetória <span aria-hidden="true">↗</span></a>
+                <details class="home-disclosure" id="mais-sobre">
+                    <summary>Método, repertório e perguntas frequentes</summary>
+        <section id="repertorio" class="py-10  border-t border-zinc-900">
             <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-14 lg:gap-20">
-                <div class="lg:col-span-5 gsap-fade-right">
+                <div class="lg:col-span-5">
                     <h2 class="text-4xl md:text-6xl font-medium tracking-tight leading-[1.05] mb-8">
                         O que está publicado é só parte do que já produzi.
                     </h2>
@@ -1807,7 +586,7 @@
                     </p>
                 </div>
 
-                <div class="lg:col-span-7 border-t border-zinc-800 gsap-fade-left">
+                <div class="lg:col-span-7 border-t border-zinc-800">
                     <article class="py-7 md:py-8 border-b border-zinc-800 grid md:grid-cols-[220px_1fr] gap-4 md:gap-8">
                         <h3 class="text-xl font-medium flex items-center gap-3">
                             <i data-lucide="monitor" class="w-5 h-5 text-blue-400" aria-hidden="true"></i>
@@ -1839,51 +618,9 @@
                 </div>
             </div>
         </section>
-
-        <section id="automacoes" class="py-24 md:py-32 bg-zinc-950 border-t border-zinc-900" aria-labelledby="automation-title">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-14">
-                    <h2 id="automation-title" class="text-4xl md:text-6xl font-medium tracking-tight leading-tight">Automações que conectam o trabalho inteiro.</h2>
-                    <div class="text-zinc-400 font-light leading-relaxed space-y-5">
-                        <p>Desenvolvi automações em CRMs, sites, planilhas e projetos para conectar dados, atendimento e operação. Meu trabalho vai do formulário que recebe um contato ao fluxo que organiza as próximas ações da equipe.</p>
-                        <p>Uso n8n, Make, Zapier e Google Sheets para integrar ferramentas, organizar informações e reduzir tarefas repetitivas. Cada fluxo nasce do processo da empresa e do que precisa acontecer depois de cada interação.</p>
-                    </div>
-                </div>
-                <div class="border-t border-zinc-800">
-                    <article class="grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-5 md:gap-12 py-8 border-b border-zinc-800">
-                        <h3 class="text-2xl font-medium tracking-tight">CRMs e operação comercial</h3>
-                        <p class="text-zinc-400 font-light leading-relaxed">Automações para conectar a entrada de leads ao CRM, organizar origem e histórico, distribuir contatos e acionar alertas, tarefas e follow-ups. O objetivo é dar continuidade ao atendimento e manter marketing e comercial trabalhando com os mesmos dados.</p>
-                    </article>
-                    <article class="grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-5 md:gap-12 py-8 border-b border-zinc-800">
-                        <h3 class="text-2xl font-medium tracking-tight">Sites e landing pages</h3>
-                        <p class="text-zinc-400 font-light leading-relaxed">Integrações de formulários, webhooks e APIs para levar informações do site às ferramentas da operação. Conecto captação, CRM, planilhas e mensuração para que o contato recebido se transforme em uma próxima ação clara.</p>
-                    </article>
-                    <article class="grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-5 md:gap-12 py-8 border-b border-zinc-800">
-                        <h3 class="text-2xl font-medium tracking-tight">Google Sheets e dados</h3>
-                        <p class="text-zinc-400 font-light leading-relaxed">Automações em planilhas para centralizar registros, atualizar informações e apoiar relatórios e acompanhamento de indicadores. O Sheets também funciona como ponte entre sistemas, ajudando a equipe a consultar e trabalhar os dados no dia a dia.</p>
-                    </article>
-                    <article class="grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-5 md:gap-12 py-8 border-b border-zinc-800">
-                        <h3 class="text-2xl font-medium tracking-tight">Projetos, rotinas e bots</h3>
-                        <p class="text-zinc-400 font-light leading-relaxed">Fluxos que conectam ferramentas de projeto, notificações, tarefas e rotinas internas. Também desenvolvo bots e integrações para apoiar atendimento, organizar solicitações e encaminhar informações às pessoas e aos sistemas certos.</p>
-                    </article>
-                </div>
-                <div class="grid md:grid-cols-2 gap-8 mt-12">
-                    <div>
-                        <h3 class="text-2xl font-medium tracking-tight mb-4">n8n, Make e Zapier na prática</h3>
-                        <p class="text-zinc-400 font-light leading-relaxed">Combino gatilhos, condições, transformação de dados e integrações entre ferramentas para construir fluxos adaptados à operação. A escolha da plataforma acompanha o escopo, os sistemas existentes e a forma como a equipe vai manter a rotina.</p>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-medium tracking-tight mb-4">Uma estrutura que acompanha o plano</h3>
-                        <p class="text-zinc-400 font-light leading-relaxed">Conforme o plano e o diagnóstico, posso disponibilizar meu CRM, configurar automações, integrar planilhas e desenvolver bots. Tráfego, dados e processos passam a fazer parte de uma operação conectada, com entregas definidas para a necessidade de cada empresa.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. SEÇÃO “PROCESSO” -->
-        <section class="py-32 bg-zinc-900 border-y border-zinc-800 relative">
+        <section class="py-10  border-y border-zinc-800 relative">
             <div class="max-w-4xl mx-auto px-6">
-                <div class="text-center mb-20 gsap-fade-up">
+                <div class="text-center mb-20">
                     <h2 class="text-4xl md:text-5xl font-medium tracking-tight mb-4">Como construímos.</h2>
                     <p class="text-zinc-400 font-light">Um processo lógico, técnico e estratégico.</p>
                 </div>
@@ -1895,10 +632,10 @@
                     <!-- Etapas -->
                     <div class="space-y-12">
                         <!-- Step 1 -->
-                        <div class="gsap-fade-up relative flex flex-col md:flex-row items-start md:items-center">
+                        <div class=" relative flex flex-col md:flex-row items-start md:items-center">
                             <div class="absolute left-6 md:left-1/2 w-4 h-4 rounded-full bg-zinc-300 md:-translate-x-1/2 -translate-x-[7px] ring-4 ring-zinc-900 z-10 mt-6 md:mt-0"></div>
                             <div class="pl-16 md:pl-0 md:w-1/2 md:pr-16 md:text-right w-full">
-                                <div class="p-6 bg-zinc-950/50 border border-zinc-800 rounded-2xl hover:border-zinc-700 transition-colors">
+                                <div class="p-6 /50 border border-zinc-800 rounded-2xl hover:border-zinc-700 transition-colors">
                                     <span class="text-sm font-bold text-zinc-600 mb-2 block">01 Diagnóstico</span>
                                     <h3 class="text-xl font-medium mb-2">Entendimento Profundo</h3>
                                     <p class="text-zinc-400 font-light text-sm">Entendo o negócio, o público, o produto, a oferta e onde está o principal gargalo comercial hoje.</p>
@@ -1907,10 +644,10 @@
                         </div>
 
                         <!-- Step 2 -->
-                        <div class="gsap-fade-up relative flex flex-col md:flex-row-reverse items-start md:items-center">
+                        <div class=" relative flex flex-col md:flex-row-reverse items-start md:items-center">
                             <div class="absolute left-6 md:left-1/2 w-4 h-4 rounded-full bg-zinc-300 md:-translate-x-1/2 -translate-x-[7px] ring-4 ring-zinc-900 z-10 mt-6 md:mt-0"></div>
                             <div class="pl-16 md:pl-16 md:w-1/2 w-full text-left">
-                                <div class="p-6 bg-zinc-950/50 border border-zinc-800 rounded-2xl hover:border-zinc-700 transition-colors">
+                                <div class="p-6 /50 border border-zinc-800 rounded-2xl hover:border-zinc-700 transition-colors">
                                     <span class="text-sm font-bold text-zinc-600 mb-2 block">02 Estratégia</span>
                                     <h3 class="text-xl font-medium mb-2">Desenho do Ecossistema</h3>
                                     <p class="text-zinc-400 font-light text-sm">Defino a estrutura ideal: mídia, página, eventos, Meta CAPI, CRM, automações e o melhor caminho para conversão.</p>
@@ -1919,10 +656,10 @@
                         </div>
 
                         <!-- Step 3 -->
-                        <div class="gsap-fade-up relative flex flex-col md:flex-row items-start md:items-center">
+                        <div class=" relative flex flex-col md:flex-row items-start md:items-center">
                             <div class="absolute left-6 md:left-1/2 w-4 h-4 rounded-full bg-zinc-300 md:-translate-x-1/2 -translate-x-[7px] ring-4 ring-zinc-900 z-10 mt-6 md:mt-0"></div>
                             <div class="pl-16 md:pl-0 md:w-1/2 md:pr-16 md:text-right w-full">
-                                <div class="p-6 bg-zinc-950/50 border border-zinc-800 rounded-2xl hover:border-zinc-700 transition-colors">
+                                <div class="p-6 /50 border border-zinc-800 rounded-2xl hover:border-zinc-700 transition-colors">
                                     <span class="text-sm font-bold text-zinc-600 mb-2 block">03 Construção</span>
                                     <h3 class="text-xl font-medium mb-2">Desenvolvimento & Integração</h3>
                                     <p class="text-zinc-400 font-light text-sm">Desenvolvo páginas e sistemas, configuro mensuração e conecto CRM, canais, webhooks, automações e bots.</p>
@@ -1931,10 +668,10 @@
                         </div>
 
                         <!-- Step 4 -->
-                        <div class="gsap-fade-up relative flex flex-col md:flex-row-reverse items-start md:items-center">
+                        <div class=" relative flex flex-col md:flex-row-reverse items-start md:items-center">
                             <div class="absolute left-6 md:left-1/2 w-4 h-4 rounded-full bg-zinc-300 md:-translate-x-1/2 -translate-x-[7px] ring-4 ring-zinc-900 z-10 mt-6 md:mt-0"></div>
                             <div class="pl-16 md:pl-16 md:w-1/2 w-full text-left">
-                                <div class="p-6 bg-zinc-950/50 border border-zinc-800 rounded-2xl hover:border-zinc-700 transition-colors">
+                                <div class="p-6 /50 border border-zinc-800 rounded-2xl hover:border-zinc-700 transition-colors">
                                     <span class="text-sm font-bold text-zinc-600 mb-2 block">04 Aquisição</span>
                                     <h3 class="text-xl font-medium mb-2">Tráfego & Visibilidade</h3>
                                     <p class="text-zinc-400 font-light text-sm">Estruturo campanhas, canais, públicos, criativos e testes para gerar demanda qualificada com leitura de performance.</p>
@@ -1943,10 +680,10 @@
                         </div>
 
                         <!-- Step 5 -->
-                        <div class="gsap-fade-up relative flex flex-col md:flex-row items-start md:items-center">
+                        <div class=" relative flex flex-col md:flex-row items-start md:items-center">
                             <div class="absolute left-6 md:left-1/2 w-4 h-4 rounded-full bg-zinc-300 md:-translate-x-1/2 -translate-x-[7px] ring-4 ring-zinc-900 z-10 mt-6 md:mt-0"></div>
                             <div class="pl-16 md:pl-0 md:w-1/2 md:pr-16 md:text-right w-full">
-                                <div class="p-6 bg-zinc-950/50 border border-zinc-800 rounded-2xl hover:border-zinc-700 transition-colors">
+                                <div class="p-6 /50 border border-zinc-800 rounded-2xl hover:border-zinc-700 transition-colors">
                                     <span class="text-sm font-bold text-zinc-600 mb-2 block">05 Conversão</span>
                                     <h3 class="text-xl font-medium mb-2">Operação & Otimização</h3>
                                     <p class="text-zinc-400 font-light text-sm">Acompanho leads e vendas no CRM, automatizo rotinas e uso o retorno do comercial para orientar novas otimizações.</p>
@@ -1957,436 +694,35 @@
                 </div>
             </div>
         </section>
-
-        <!-- 6. SEÇÃO DE SERVIÇOS DETALHADOS -->
-        <section class="py-16 bg-zinc-950 border-b border-zinc-900">
-            <div class="max-w-6xl mx-auto px-6 flex flex-wrap justify-center gap-3">
-                <span class="px-5 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-300 text-sm font-medium">Gestão de Performance Digital</span>
-                <span class="px-5 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-300 text-sm font-medium">Integração Tráfego + CRM</span>
-                <span class="px-5 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-400 text-sm font-medium">Tráfego Pago Meta/Google</span>
-                <span class="px-5 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-300 text-sm font-medium">Meta Conversions API</span>
-                <span class="px-5 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-400 text-sm font-medium">Criação de Landing Pages</span>
-                <span class="px-5 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-400 text-sm font-medium">Sites Institucionais Premium</span>
-                <span class="px-5 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-300 text-sm font-medium">CRM Próprio / Personalizado</span>
-                <span class="px-5 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-400 text-sm font-medium">Dashboards Comerciais</span>
-                <span class="px-5 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-300 text-sm font-medium">Automações n8n / Zapier / Make</span>
-                <span class="px-5 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-400 text-sm font-medium">Bots, Alertas & Follow-ups</span>
-                <span class="px-5 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-400 text-sm font-medium">Integrações WhatsApp</span>
-                <span class="px-5 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-400 text-sm font-medium">Estruturação de Funil</span>
-                <span class="px-5 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-400 text-sm font-medium">SEO Técnico</span>
+                    <section class="home-nested faq-list"><h3>Perguntas Frequentes</h3>
+                        <details class="home-disclosure faq-row"><summary>Tráfego pago é hoje o seu principal serviço?</summary><p>Sim. Meu principal produto hoje é performance digital. Cuido da estratégia de mídia, campanhas, criativos, testes e otimização, mas também conecto a aquisição às landing pages, ao CRM e ao processo comercial para entender o que realmente se transforma em oportunidade e venda.</p></details>
+                        <details class="home-disclosure faq-row"><summary>Você trabalha com a API de Conversões da Meta?</summary><p>Sim. Uso bastante a Meta Conversions API para estruturar eventos e conectar dados da captação e do funil à mensuração das campanhas. A implementação é planejada conforme a estrutura do site, do CRM e os eventos relevantes para cada operação.</p></details>
+                        <details class="home-disclosure faq-row"><summary>Você faz apenas o design ou também desenvolve?</summary><p>Faço de ponta a ponta. Crio o design estratégico focado em conversão e também faço o desenvolvimento completo da plataforma e integrações necessárias, garantindo que a execução seja fiel à estratégia comercial.</p></details>
+                        <details class="home-disclosure faq-row"><summary>Você também cria CRM?</summary><p>Sim. Tenho uma estrutura própria de CRM para acompanhar dados da empresa, origem dos leads, histórico, responsáveis, etapas e vendas. Ela pode ser configurada e adaptada para a operação ou, quando necessário, posso desenvolver uma solução ainda mais específica.</p></details>
+                        <details class="home-disclosure faq-row"><summary>CRM, automações e bots estão incluídos no plano?</summary><p>Depende do plano e do escopo definido no diagnóstico. Posso disponibilizar o CRM, criar automações em n8n, Zapier ou Make, integrar ferramentas e desenvolver bots ou fluxos de follow-up. A solução é montada conforme o que realmente reduz trabalho manual e melhora a operação.</p></details>
+                        <details class="home-disclosure faq-row"><summary>Você entrega estratégia ou só execução?</summary><p>Não executo sem estratégia. Antes de criar qualquer página ou campanha, entendo seu modelo de negócio, funil de vendas e jornada do cliente para que a estrutura construída tenha função comercial clara.</p></details>
+                    </section>
+                </details>
             </div>
         </section>
 
-        <!-- 8. SEÇÃO DE MÉTRICAS / AUTORIDADE -->
-        <section class="py-24 bg-zinc-950 border-t border-zinc-900">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:divide-x divide-zinc-800">
-                    <div class="gsap-fade-up text-center px-4">
-                        <div class="text-3xl sm:text-4xl md:text-5xl font-light tracking-tighter text-white mb-2">R$ 1 mi+</div>
-                        <div class="text-xs md:text-sm text-zinc-500 font-medium uppercase tracking-wider">Retorno comercial gerado</div>
-                    </div>
-                    <div class="gsap-fade-up text-center px-4" style="transition-delay: 100ms;">
-                        <div class="text-3xl sm:text-4xl md:text-5xl font-light tracking-tighter text-white mb-2">≈ R$ 50 mil</div>
-                        <div class="text-xs md:text-sm text-zinc-500 font-medium uppercase tracking-wider">Investimento em mídia</div>
-                    </div>
-                    <div class="gsap-fade-up text-center px-4" style="transition-delay: 200ms;">
-                        <div class="text-3xl sm:text-4xl md:text-5xl font-light tracking-tighter text-white mb-2">Meta Ads</div>
-                        <div class="text-xs md:text-sm text-zinc-500 font-medium uppercase tracking-wider">Análise de mídia</div>
-                    </div>
-                    <div class="gsap-fade-up text-center px-4" style="transition-delay: 300ms;">
-                        <div class="text-3xl sm:text-4xl md:text-5xl font-light tracking-tighter text-white mb-2">CAPI + CRM</div>
-                        <div class="text-xs md:text-sm text-zinc-500 font-medium uppercase tracking-wider">Mensuração e comercial conectados</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 11. FAQ -->
-        <section class="py-32 bg-zinc-900 border-t border-zinc-800">
-            <div class="max-w-3xl mx-auto px-6">
-                <h2 class="text-3xl font-medium tracking-tight mb-12 text-center gsap-fade-up">Perguntas Frequentes</h2>
-
-                <div class="space-y-4">
-                    <!-- Item FAQ -->
-                    <div class="gsap-fade-up border border-zinc-800 bg-zinc-950/50 rounded-2xl overflow-hidden">
-                        <button class="faq-btn w-full text-left p-6 flex justify-between items-center hover:bg-zinc-900 transition-colors">
-                            <span class="font-medium pr-8">Tráfego pago é hoje o seu principal serviço?</span>
-                            <i data-lucide="plus" class="w-5 h-5 text-zinc-500 flex-shrink-0 transition-transform duration-300"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="accordion-inner p-6 pt-0 text-zinc-400 font-light leading-relaxed">
-                                Sim. Meu principal produto hoje é performance digital. Cuido da estratégia de mídia, campanhas, criativos, testes e otimização, mas também conecto a aquisição às landing pages, ao CRM e ao processo comercial para entender o que realmente se transforma em oportunidade e venda.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item FAQ -->
-                    <div class="gsap-fade-up border border-zinc-800 bg-zinc-950/50 rounded-2xl overflow-hidden">
-                        <button class="faq-btn w-full text-left p-6 flex justify-between items-center hover:bg-zinc-900 transition-colors">
-                            <span class="font-medium pr-8">Você trabalha com a API de Conversões da Meta?</span>
-                            <i data-lucide="plus" class="w-5 h-5 text-zinc-500 flex-shrink-0 transition-transform duration-300"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="accordion-inner p-6 pt-0 text-zinc-400 font-light leading-relaxed">
-                                Sim. Uso bastante a Meta Conversions API para estruturar eventos e conectar dados da captação e do funil à mensuração das campanhas. A implementação é planejada conforme a estrutura do site, do CRM e os eventos relevantes para cada operação.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item FAQ -->
-                    <div class="gsap-fade-up border border-zinc-800 bg-zinc-950/50 rounded-2xl overflow-hidden">
-                        <button class="faq-btn w-full text-left p-6 flex justify-between items-center hover:bg-zinc-900 transition-colors">
-                            <span class="font-medium pr-8">Você faz apenas o design ou também desenvolve?</span>
-                            <i data-lucide="plus" class="w-5 h-5 text-zinc-500 flex-shrink-0 transition-transform duration-300"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="accordion-inner p-6 pt-0 text-zinc-400 font-light leading-relaxed">
-                                Faço de ponta a ponta. Crio o design estratégico focado em conversão e também faço o desenvolvimento completo da plataforma e integrações necessárias, garantindo que a execução seja fiel à estratégia comercial.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item FAQ -->
-                    <div class="gsap-fade-up border border-zinc-800 bg-zinc-950/50 rounded-2xl overflow-hidden">
-                        <button class="faq-btn w-full text-left p-6 flex justify-between items-center hover:bg-zinc-900 transition-colors">
-                            <span class="font-medium pr-8">Você também cria CRM?</span>
-                            <i data-lucide="plus" class="w-5 h-5 text-zinc-500 flex-shrink-0 transition-transform duration-300"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="accordion-inner p-6 pt-0 text-zinc-400 font-light leading-relaxed">
-                                Sim. Tenho uma estrutura própria de CRM para acompanhar dados da empresa, origem dos leads, histórico, responsáveis, etapas e vendas. Ela pode ser configurada e adaptada para a operação ou, quando necessário, posso desenvolver uma solução ainda mais específica.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item FAQ -->
-                    <div class="gsap-fade-up border border-zinc-800 bg-zinc-950/50 rounded-2xl overflow-hidden">
-                        <button class="faq-btn w-full text-left p-6 flex justify-between items-center hover:bg-zinc-900 transition-colors">
-                            <span class="font-medium pr-8">CRM, automações e bots estão incluídos no plano?</span>
-                            <i data-lucide="plus" class="w-5 h-5 text-zinc-500 flex-shrink-0 transition-transform duration-300"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="accordion-inner p-6 pt-0 text-zinc-400 font-light leading-relaxed">
-                                Depende do plano e do escopo definido no diagnóstico. Posso disponibilizar o CRM, criar automações em n8n, Zapier ou Make, integrar ferramentas e desenvolver bots ou fluxos de follow-up. A solução é montada conforme o que realmente reduz trabalho manual e melhora a operação.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item FAQ -->
-                    <div class="gsap-fade-up border border-zinc-800 bg-zinc-950/50 rounded-2xl overflow-hidden">
-                        <button class="faq-btn w-full text-left p-6 flex justify-between items-center hover:bg-zinc-900 transition-colors">
-                            <span class="font-medium pr-8">Você entrega estratégia ou só execução?</span>
-                            <i data-lucide="plus" class="w-5 h-5 text-zinc-500 flex-shrink-0 transition-transform duration-300"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="accordion-inner p-6 pt-0 text-zinc-400 font-light leading-relaxed">
-                                Não executo sem estratégia. Antes de criar qualquer página ou campanha, entendo seu modelo de negócio, funil de vendas e jornada do cliente para que a estrutura construída tenha função comercial clara.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 10. SEÇÃO CTA -->
-        <section id="contato" class="py-32 bg-zinc-950 relative overflow-hidden text-center border-t border-zinc-900">
-            <!-- Glow background -->
-            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/30 via-zinc-950 to-zinc-950 pointer-events-none"></div>
-
-            <div class="max-w-4xl mx-auto px-6 relative z-10">
-                <div class="gsap-fade-up">
-                    <h2 class="text-4xl md:text-6xl font-medium tracking-tight mb-8">
-                        Quer conectar tráfego, dados e comercial em uma única operação?
-                    </h2>
-                    <p class="text-lg md:text-xl text-zinc-400 font-light mb-12 max-w-2xl mx-auto">
-                        Montamos um plano com o que a empresa realmente precisa: mídia, Meta CAPI, landing pages, CRM próprio, automações, integrações e bots.
-                    </p>
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="https://wa.me/5547997831930?text=Ol%C3%A1%2C%20Lucas%21%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto%20de%20performance%20digital%2C%20CRM%20ou%20automa%C3%A7%C3%B5es." target="_blank" rel="noopener noreferrer" aria-label="Chamar Lucas no WhatsApp com uma mensagem sobre o projeto" class="w-full sm:w-auto px-10 py-5 bg-white text-zinc-950 text-lg font-medium rounded-full hover:bg-zinc-200 transition-colors shadow-[0_0_40px_rgba(255,255,255,0.1)] flex justify-center items-center gap-2">
-                            <i data-lucide="message-circle" class="w-5 h-5"></i> Chamar no WhatsApp
-                        </a>
-                    </div>
-                </div>
+        <section id="contato" class="home-band" aria-labelledby="contact-title">
+            <div class="home-wrap home-contact">
+                <div class="home-intro"><h2 id="contact-title">Tem um projeto ou uma oportunidade em mente?</h2><p>Converso sobre desenvolvimento de sistemas, IA aplicada, automações, sites e performance comercial.</p></div>
+                <a href="https://wa.me/5547997831930?text=Ol%C3%A1%2C%20Lucas%21%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto%20de%20performance%20digital%2C%20CRM%20ou%20automa%C3%A7%C3%B5es." target="_blank" rel="noopener noreferrer" class="home-button primary">Chamar no WhatsApp <span aria-hidden="true">↗</span></a>
             </div>
         </section>
     </main>
-
-    <!-- FOOTER -->
-    <footer class="py-12 bg-zinc-950 border-t border-zinc-900 text-white">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="text-center md:text-left">
-                <div class="text-xl font-medium tracking-tight mb-1">LUCAS.</div>
-                <div class="text-sm text-zinc-500">Performance digital, tecnologia e estratégia comercial.</div>
-            </div>
-            <div class="flex flex-wrap justify-center gap-6 text-sm text-zinc-400 font-medium">
-                <a href="#projetos" class="hover:text-white transition-colors">Projetos</a>
-                <a href="#automacoes" class="hover:text-white transition-colors">Automações</a>
-                <a href="/ia" data-localized class="hover:text-white transition-colors">IA aplicada</a>
-                <a href="#contato" class="hover:text-white transition-colors">Contato</a>
-            </div>
-            <div class="text-sm text-zinc-600 font-light">
-                &copy; <span data-year>2026</span> Lucas Rabicano.
-            </div>
+    <footer class="home-footer">
+        <div class="home-wrap home-topbar">
+            <a href="/" class="home-brand" data-localized>Lucas Rabicano</a>
+            <nav aria-label="Navegação do rodapé">
+                <a href="#projetos">Projetos</a>
+                <a href="/ia" data-localized>IA aplicada</a>
+                <a href="#contato">Contato</a>
+            </nav>
+            <small>© <span data-year>2026</span> Lucas Rabicano.</small>
         </div>
     </footer>
-
-    <script src="languages.js"></script>
-    <script src="evidence.js"></script>
-    <script src="site.js"></script>
-    <script>
-        // Inicializar Ícones
-        lucide.createIcons();
-
-        // --------------------------------------------------------
-        // ANIMAÇÕES GSAP
-        // --------------------------------------------------------
-        gsap.registerPlugin(ScrollTrigger);
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        let lenis = null;
-        let lenisTicker = null;
-
-        // Lenis é o único motor de scroll suave e compartilha o mesmo loop do GSAP.
-        if (!reduceMotion && typeof Lenis !== 'undefined') {
-            lenis = new Lenis({
-                duration: 1.05,
-                smoothWheel: true,
-                syncTouch: false,
-                anchors: false,
-                respectReducedMotion: true
-            });
-
-            lenis.on('scroll', ScrollTrigger.update);
-            lenisTicker = time => lenis.raf(time * 1000);
-            gsap.ticker.add(lenisTicker);
-            gsap.ticker.lagSmoothing(0);
-        }
-
-        if (!reduceMotion) {
-            // A primeira imagem já funciona sem JS; o intro apenas compõe sua entrada.
-            const introTl = gsap.timeline({ defaults: { ease: "power3.out" } });
-            introTl.from(".hero-star", { autoAlpha: 0, scale: 0.58, rotation: -12, duration: 1.15 }, 0.08);
-            introTl.from(".hero-orbit", { autoAlpha: 0, scale: 0.82, duration: 1.25 }, 0);
-            introTl.from("[data-hero-intro]", {
-                autoAlpha: 0,
-                y: 28,
-                duration: 0.85,
-                stagger: 0.08,
-                clearProps: "transform,opacity,visibility"
-            }, 0.18);
-            introTl.from(".hero-proof-item", {
-                autoAlpha: 0,
-                y: 16,
-                duration: 0.7,
-                stagger: 0.08,
-                clearProps: "transform,opacity,visibility"
-            }, 0.48);
-
-            if (window.matchMedia('(min-width: 768px) and (min-height: 681px)').matches) {
-            const heroTl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".hero-track",
-                    start: "top top",
-                    end: "bottom bottom",
-                    scrub: 0.72,
-                    invalidateOnRefresh: true
-                }
-            });
-
-            heroTl.to('[data-parallax-layer="preview"]', {
-                yPercent: 18,
-                scale: 1.08,
-                opacity: 0.035,
-                ease: "none"
-            }, 0);
-            heroTl.to('[data-parallax-layer="grid"]', { yPercent: 25, ease: "none" }, 0);
-            heroTl.to('[data-parallax-layer="orbit"]', {
-                yPercent: 34,
-                rotation: 10,
-                scale: 0.93,
-                ease: "none"
-            }, 0);
-            heroTl.to('[data-parallax-layer="star"]', {
-                yPercent: 52,
-                scale: 0.84,
-                ease: "none"
-            }, 0);
-            heroTl.to(".hero-copy", {
-                yPercent: 38,
-                scale: 0.985,
-                autoAlpha: 0.06,
-                ease: "none"
-            }, 0);
-            heroTl.to(".hero-proof, .hero-scroll-cue, .hero-index", {
-                yPercent: 24,
-                autoAlpha: 0,
-                ease: "none"
-            }, 0.24);
-            }
-
-            // Movimento de ponteiro sutil e separado do parallax de rolagem.
-            const heroStage = document.querySelector('[data-hero-stage]');
-            const starInteraction = document.querySelector('.hero-star-interaction');
-            const finePointer = window.matchMedia('(pointer: fine)').matches;
-
-            if (heroStage && starInteraction && finePointer) {
-                const moveStarX = gsap.quickTo(starInteraction, "x", { duration: 0.55, ease: "power3.out" });
-                const moveStarY = gsap.quickTo(starInteraction, "y", { duration: 0.55, ease: "power3.out" });
-                const resetStar = () => {
-                    moveStarX(0);
-                    moveStarY(0);
-                };
-
-                heroStage.addEventListener('pointermove', event => {
-                    const bounds = heroStage.getBoundingClientRect();
-                    const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 18;
-                    const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 14;
-                    moveStarX(x);
-                    moveStarY(y);
-                }, { passive: true });
-                heroStage.addEventListener('pointerleave', resetStar);
-                window.addEventListener('blur', resetStar);
-                document.addEventListener('visibilitychange', () => {
-                    if (document.hidden) resetStar();
-                });
-            }
-
-            // Entradas curtas, executadas uma única vez para não disputar com a rolagem.
-            gsap.utils.toArray('.gsap-fade-up').forEach(element => {
-                gsap.from(element, {
-                    opacity: 0,
-                    y: 24,
-                    duration: 0.65,
-                    ease: "power3.out",
-                    clearProps: "transform,opacity",
-                    scrollTrigger: {
-                        trigger: element,
-                        start: "top 88%",
-                        once: true
-                    }
-                });
-            });
-
-            gsap.utils.toArray('.gsap-fade-right').forEach(element => {
-                gsap.from(element, {
-                    opacity: 0,
-                    x: -24,
-                    duration: 0.65,
-                    ease: "power3.out",
-                    clearProps: "transform,opacity",
-                    scrollTrigger: { trigger: element, start: "top 84%", once: true }
-                });
-            });
-
-            gsap.utils.toArray('.gsap-fade-left').forEach(element => {
-                gsap.from(element, {
-                    opacity: 0,
-                    x: 24,
-                    duration: 0.65,
-                    ease: "power3.out",
-                    clearProps: "transform,opacity",
-                    scrollTrigger: { trigger: element, start: "top 84%", once: true }
-                });
-            });
-
-            const galleryTrack = document.querySelector('.portfolio-gallery-track');
-            if (galleryTrack) {
-                const galleryTl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: galleryTrack,
-                        start: "top top",
-                        end: "bottom bottom",
-                        scrub: 0.6
-                    }
-                });
-
-                galleryTl.to(".gallery-layer-back", { y: "-92vh", ease: "none" }, 0);
-                galleryTl.to(".gallery-layer-front", { y: "-148vh", ease: "none" }, 0);
-                galleryTl.to(".gallery-title", {
-                    opacity: 0.12,
-                    y: -36,
-                    duration: 0.42,
-                    ease: "power1.out"
-                }, 0.42);
-            }
-        } else {
-            gsap.set(".hero-copy, .hero-proof, .hero-scroll-cue, .hero-index", {
-                opacity: 1,
-                clearProps: "transform,visibility"
-            });
-        }
-
-        // Navegação interna previsível, inclusive ao abrir a página com uma âncora.
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', event => {
-                const selector = link.getAttribute('href');
-                const target = selector && selector !== '#' ? document.querySelector(selector) : null;
-                if (!target) return;
-
-                event.preventDefault();
-                if (lenis) {
-                    lenis.scrollTo(target, { offset: 0, duration: 1.05 });
-                } else {
-                    target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-                }
-                history.pushState(null, '', selector);
-            });
-        });
-
-        window.addEventListener('load', () => {
-            ScrollTrigger.refresh();
-            if (!window.location.hash) return;
-
-            const initialTarget = document.querySelector(window.location.hash);
-            if (initialTarget) {
-                requestAnimationFrame(() => {
-                    if (lenis) {
-                        lenis.scrollTo(initialTarget, { immediate: true });
-                    } else {
-                        initialTarget.scrollIntoView({ behavior: 'auto', block: 'start' });
-                    }
-                });
-            }
-        }, { once: true });
-
-        window.addEventListener('pagehide', () => {
-            if (!lenis) return;
-            if (lenisTicker) gsap.ticker.remove(lenisTicker);
-            lenis.destroy();
-        }, { once: true });
-
-        // --------------------------------------------------------
-        // LÓGICA DO FAQ (Accordion)
-        // --------------------------------------------------------
-        const faqButtons = document.querySelectorAll('.faq-btn');
-
-        faqButtons.forEach((button, index) => {
-            const content = button.nextElementSibling;
-            const contentId = `faq-content-${index + 1}`;
-
-            button.setAttribute('aria-expanded', 'false');
-            button.setAttribute('aria-controls', contentId);
-            content.id = contentId;
-            content.setAttribute('aria-hidden', 'true');
-
-            button.addEventListener('click', () => {
-                const icon = button.querySelector('svg, i');
-                const isOpen = content.classList.contains('open');
-
-                document.querySelectorAll('.accordion-content').forEach(el => {
-                    el.classList.remove('open');
-                    el.setAttribute('aria-hidden', 'true');
-                });
-                faqButtons.forEach(el => el.setAttribute('aria-expanded', 'false'));
-                document.querySelectorAll('.faq-btn svg, .faq-btn i').forEach(el => el.style.transform = 'rotate(0deg)');
-
-                if (!isOpen) {
-                    content.classList.add('open');
-                    content.setAttribute('aria-hidden', 'false');
-                    button.setAttribute('aria-expanded', 'true');
-                    if (icon) icon.style.transform = 'rotate(45deg)';
-                }
-            });
-        });
-    </script>
 </body>
 </html>

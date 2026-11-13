@@ -8,6 +8,30 @@
         if (en && url.origin === location.origin) url.searchParams.set('lang', 'en');
         link.href = url.href;
     });
+
+    // Keep existing deep links usable after grouping related material in disclosures.
+    const reveal = hash => {
+        let id;
+        try { id = decodeURIComponent(hash.slice(1)); } catch { return null; }
+        const target = document.getElementById(id);
+        if (!target) return null;
+        let container = target.closest('details');
+        while (container) {
+            container.open = true;
+            container = container.parentElement.closest('details');
+        }
+        return target;
+    };
+    const initialTarget = reveal(location.hash);
+    if (initialTarget) requestAnimationFrame(() => initialTarget.scrollIntoView());
+    window.addEventListener('hashchange', () => {
+        const target = reveal(location.hash);
+        if (target) target.scrollIntoView();
+    });
+    document.addEventListener('click', event => {
+        const link = event.target.closest('a[href^="#"]');
+        if (link) reveal(link.hash);
+    });
     const group = document.querySelector('.project-filters');
     if (!group) return;
     group.hidden = false;
@@ -26,6 +50,5 @@
         });
         empty.hidden = count > 0;
         status.textContent = en ? count + ' projects shown' : count + ' projetos exibidos';
-        window.ScrollTrigger?.refresh();
     });
 })();
