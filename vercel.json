@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/ia", "destination": "/ia/index.html" },
+    { "source": "/biblioteca", "destination": "/biblioteca/index.html" },
     { "source": "/projetos/mvpllk", "destination": "/projetos/mvpllk/index.html" }
   ]
 }

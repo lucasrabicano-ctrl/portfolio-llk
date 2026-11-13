@@ -26,7 +26,9 @@ A economia de tempo é uma simulação editável, e o protocolo de LLM é demons
 
 ## Executar localmente
 
-O portfólio mantém HTML, CSS e JavaScript estáticos. As páginas novas ficam em `ia/index.html` e `projetos/mvpllk/index.html`; `vercel.json` serve as URLs sem extensão na Vercel. O servidor local simples pode acrescentar uma barra ao final dessas URLs.
+O portfólio mantém HTML, CSS e JavaScript estáticos. As páginas internas ficam em `ia/index.html`, `biblioteca/index.html` e `projetos/mvpllk/index.html`; `vercel.json` serve as URLs sem extensão na Vercel. O servidor local simples pode acrescentar uma barra ao final dessas URLs.
+
+A rota `/biblioteca` reúne três capítulos sobre sistemas, design e automação com IA. `library.css` e `library.js` cuidam da virada de painel ligada à rolagem. Em telas pequenas, com movimento reduzido ou sem JavaScript, os capítulos permanecem no fluxo normal.
 
 A página inicial apresenta os projetos após a abertura, com objetivo, construção e links individuais. `home.css` organiza a grade e as seções complementares; o vídeo do CRM, os exemplos de IA, o repertório e o FAQ usam painéis expansíveis. A rota `/ia` reúne trajetória, competências, projetos técnicos e metodologia. O laboratório de RAG está identificado como proposta na seção `/ia#laboratorio`. Os dois idiomas usam `languages.js`; `site.js` mantém idioma entre rotas, filtros, links diretos e ano do rodapé.
 
