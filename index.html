@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="evidence.css">
     <link rel="stylesheet" href="technical.css">
     <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="motion.css">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Lucas Rabicano","url":"https://lucasluk.vercel.app/","jobTitle":"AI Builder"}</script>
     <meta name="theme-color" content="#09090b">
     <meta name="color-scheme" content="dark">
@@ -41,6 +42,7 @@
     <script src="languages.js" defer></script>
     <script src="evidence.js" defer></script>
     <script src="site.js" defer></script>
+    <script src="motion.js" defer></script>
 </head>
 <body class="home">
     <a class="home-skip" href="#conteudo">Pular para o conteúdo</a>
@@ -71,9 +73,13 @@
                     <a class="home-button" href="/ia" data-localized>Explorar projetos de IA</a>
                 </div>
             </div>
-            <div class="home-mark" aria-hidden="true"><svg class="home-star" aria-hidden="true" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="home-mark" aria-hidden="true">
+                <div class="home-orbit"></div>
+                <div class="home-orbit home-orbit-inner"></div>
+                <div class="home-star-position"><svg class="home-star" aria-hidden="true" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill="currentColor" d="M32 7 36 26.7 50.5 13.5 37.3 28 57 32l-19.7 4 13.2 14.5L36 37.3 32 57l-4-19.7-14.5 13.2L26.7 36 7 32l19.7-4-13.2-14.5L28 26.7 32 7Z"/>
                             </svg></div>
+            </div>
         </section>
 
         <div id="galeria-portfolio" class="home-anchor"></div>

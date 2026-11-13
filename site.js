@@ -23,7 +23,7 @@
         return target;
     };
     const initialTarget = reveal(location.hash);
-    if (initialTarget) requestAnimationFrame(() => initialTarget.scrollIntoView());
+    if (initialTarget) requestAnimationFrame(() => initialTarget.scrollIntoView({ behavior: 'instant' }));
     window.addEventListener('hashchange', () => {
         const target = reveal(location.hash);
         if (target) target.scrollIntoView();
