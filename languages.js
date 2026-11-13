@@ -347,6 +347,128 @@
     "Experiência com modelos": "Model experience",
     "Casos de avaliação para LLMs": "LLM evaluation cases"
 });
+    Object.assign(english, {
+    "Entrar em contato": "Get in touch",
+    "Início": "Home",
+    "IA e tecnologia": "AI and technology",
+    "Navegação principal": "Main navigation",
+    "Pular para o conteúdo": "Skip to content",
+    "Idioma": "Language",
+    "IA aplicada": "Applied AI",
+    "Integração de LLMs, engenharia de prompts e análises com saída estruturada. Gemini no produto; Codex e Lovable como apoio ao desenvolvimento.": "LLM integration, prompt engineering and structured analysis. Gemini in the product; Codex and Lovable as development tools.",
+    "Desenvolvimento de sistemas": "Systems development",
+    "Interfaces em React e TypeScript, lógica em JavaScript, APIs REST, webhooks e persistência com Supabase e PostgreSQL.": "React and TypeScript interfaces, JavaScript logic, REST APIs, webhooks, and persistence with Supabase and PostgreSQL.",
+    "Automação e dados": "Automation and data",
+    "Integrações com a Meta Marketing API, Edge Functions, normalização de dados, registro de sincronizações, dashboards e CRM.": "Meta Marketing API integrations, Edge Functions, data normalization, synchronization logs, dashboards and CRM.",
+    "Entendimento do problema": "Understand the problem",
+    "Identifico necessidades, usuários, restrições e objetivos.": "Identify needs, users, constraints and goals.",
+    "Planejamento técnico": "Technical planning",
+    "Defino arquitetura, integrações, dados e indicadores.": "Define architecture, integrations, data and metrics.",
+    "Desenvolvimento do MVP": "Build the MVP",
+    "Construo uma primeira versão funcional para colocar o fluxo em uso.": "Build a working first version to try the workflow.",
+    "Validação e segurança": "Validation and security",
+    "Testo fluxos, falhas, permissões e confiabilidade.": "Test workflows, failures, permissions and reliability.",
+    "Melhoria contínua": "Continuous improvement",
+    "Incorporo feedback e acompanho os resultados.": "Incorporate feedback and track results.",
+    "MVPLLK: inteligência de performance com IA": "MVPLLK: AI-powered performance intelligence",
+    "Ler o case técnico": "Read the technical case",
+    "Proposta em planejamento": "Proposal in planning",
+    "Construindo soluções reais com inteligência artificial.": "Building real solutions with artificial intelligence.",
+    "Desenvolvo sistemas que integram dados, APIs e modelos de IA para resolver desafios operacionais, da coleta de dados à decisão no dashboard.": "I build systems that connect data, APIs and AI models to solve operational problems, from data collection to decisions in a dashboard.",
+    "Ver projetos técnicos": "View technical projects",
+    "Explorar arquitetura": "Explore the architecture",
+    "De dados a decisões": "From data to decisions",
+    "Dados de campanhas, conjuntos e anúncios.": "Campaign, ad set and ad data.",
+    "Coleta, normalização e armazenamento por workspace.": "Collection, normalization and storage by workspace.",
+    "Análise de indicadores agregados sob demanda.": "On-demand analysis of aggregated metrics.",
+    "Indicadores e recomendações para revisão da equipe.": "Metrics and recommendations for the team to review.",
+    "Tecnologia com visão de negócio.": "Technology with a business perspective.",
+    "Tenho cerca de quatro anos de experiência em marketing digital e operações, com mais de três anos em gestão de tráfego pago. Desenvolvo ferramentas internas, CRMs, dashboards e integrações a partir dos problemas que aparecem na operação.": "I have around four years of experience in digital marketing and operations, including over three years managing paid media. I build internal tools, CRMs, dashboards and integrations around problems that arise in operations.",
+    "Minha formação em Administração e a graduação em Psicologia em andamento me ajudam a entender tanto o processo de negócio quanto as pessoas que usam o sistema.": "My background in Business Administration and ongoing Psychology degree help me understand both the business process and the people using the system.",
+    "Competências aplicadas": "Skills applied in projects",
+    "Projetos técnicos": "Technical projects",
+    "Produto próprio · Aplicação publicada": "Independent product · Published application",
+    "Uma plataforma que reúne indicadores da Meta, organiza os dados por workspace e usa Gemini para apresentar recomendações no dashboard.": "A platform that brings Meta metrics together, organizes data by workspace and uses Gemini to present recommendations in the dashboard.",
+    "Abrir aplicação": "Open application",
+    "Golden Brasil: CRM e ferramentas internas": "Golden Brasil: CRM and internal tools",
+    "Projeto de cliente. Atuei no desenvolvimento e aprimoramento do CRM interno, dos painéis e de ferramentas de apoio à operação comercial, além do site institucional. O case público mostra o site; as ferramentas internas são de acesso restrito.": "Client project. I developed and improved the internal CRM, dashboards and tools supporting sales operations, alongside the corporate website. The public case shows the website; internal tools have restricted access.",
+    "Ver o projeto Golden Brasil": "View the Golden Brasil project",
+    "Vinícius Mozzer: CRM imobiliário": "Vinícius Mozzer: real estate CRM",
+    "Projeto de cliente para centralizar leads, visitas, propostas e comissões. A interface pública é a entrada do CRM; os dados e rotinas internas ficam restritos à operação.": "Client project to bring leads, viewings, offers and commissions together. The public interface is the CRM entry point; operational data and routines are restricted.",
+    "Abrir CRM publicado": "Open published CRM",
+    "Ver todos os projetos": "View all projects",
+    "Como eu trabalho": "How I work",
+    "Do diagnóstico à primeira versão em uso, cada etapa tem uma pergunta a responder e um critério para avançar.": "From discovery to a working first version, each step has a question to answer and a criterion for moving forward.",
+    "Laboratório de IA": "AI lab",
+    "Prompts, experimentação com LLMs e modelos locais, com exemplos de avaliação documentados.": "Prompts, LLM experimentation and local models, with documented evaluation examples.",
+    "Ver exemplos e protocolo de avaliação": "View examples and evaluation protocol",
+    "Assistente com RAG e base de conhecimento": "RAG assistant with a knowledge base",
+    "O plano é usar documentos autorizados, segmentar conteúdo, gerar embeddings e recuperar trechos por busca semântica. As respostas devem citar suas fontes, indicar quando faltam informações e respeitar permissões de acesso.": "The plan is to use authorized documents, split content into chunks, generate embeddings and retrieve passages using semantic search. Answers should cite sources, indicate when information is missing and respect access permissions.",
+    "A validar: infraestrutura com pgvector, qualidade da recuperação, isolamento de documentos e resistência a instruções embutidas no conteúdo.": "To validate: pgvector infrastructure, retrieval quality, document isolation and resistance to instructions embedded in content.",
+    "Vamos conversar sobre tecnologia?": "Let's talk about technology.",
+    "Estou aberto a oportunidades em IA aplicada, automação e desenvolvimento de produtos digitais.": "I am open to opportunities in applied AI, automation and digital product development.",
+    "Lucas Rabicano | AI Builder, IA Aplicada e Desenvolvimento de Sistemas": "Lucas Rabicano | AI Builder, Applied AI and Systems Development",
+    "Conheça a atuação de Lucas Rabicano em IA aplicada, desenvolvimento de sistemas, automações e integrações, com o case técnico MVPLLK.": "Explore Lucas Rabicano's work in applied AI, systems development, automation and integrations, including the MVPLLK technical case.",
+    "Projetos comerciais": "Commercial projects",
+    "MVPLLK | Plataforma de Inteligência de Performance com IA": "MVPLLK | AI-Powered Performance Intelligence Platform",
+    "Case técnico de Lucas Rabicano sobre coleta de dados da Meta, processamento no Supabase e recomendações com Gemini dentro do dashboard MVPLLK.": "Lucas Rabicano's technical case study on Meta data collection, Supabase processing and Gemini recommendations inside the MVPLLK dashboard.",
+    "Coleta indicadores diários por intervalo e por nível: campanha, conjunto e anúncio. A conexão é configurada para cada workspace.": "Collects daily metrics for the selected date range and level: campaign, ad set and ad. Each workspace has its own connection.",
+    "A função de sincronização verifica o usuário e sua associação ao workspace antes de consultar a conta conectada. A consulta segue a paginação da Meta e faz novas tentativas com espera em erros transitórios e limites de requisição.": "The synchronization function verifies the user and their workspace membership before querying the connected account. It follows Meta pagination and retries transient failures and rate limits with backoff.",
+    "Normalização dos registros": "Record normalization",
+    "O retorno da API é transformado em registros por nível, com identificadores, intervalo e indicadores numéricos em uma estrutura comum.": "API responses are transformed into records by level, with identifiers, date ranges and numerical metrics in a common structure.",
+    "Os dados são gravados em lotes com atualização por chave composta de workspace, conta, entidade e período. Os registros de sincronização distinguem sucesso, erro e limite de requisição.": "Data is written in batches using a composite key for workspace, account, entity and period. Synchronization logs distinguish success, errors and rate limits.",
+    "Camada de análise com Gemini": "Gemini analysis layer",
+    "Ao solicitar uma análise, a função consulta o período do workspace, agrega os dados por entidade e monta um resumo com totais e indicadores como CPL e CTR. Esse resumo estruturado é enviado ao Gemini pela integração de IA.": "When analysis is requested, the function queries the workspace date range, aggregates data by entity and prepares a summary with totals and metrics such as CPL and CTR. The AI integration sends that structured summary to Gemini.",
+    "Recomendações e insights": "Recommendations and insights",
+    "O prompt pede uma saída JSON com insights, conclusão executiva e recomendações de escalar, pausar, ajustar ou testar. São sugestões para revisão humana.": "The prompt requests JSON with insights, an executive conclusion and recommendations to scale, pause, adjust or test. These are suggestions for human review.",
+    "A interface organiza indicadores em visão geral, campanhas, conjuntos e anúncios, com abas para insights e relatórios. A geração de análise é acionada pela pessoa usuária.": "The interface organizes metrics into overview, campaign, ad set and ad views, with tabs for insights and reports. The user initiates analysis.",
+    "Case técnico · Produto próprio": "Technical case · Independent product",
+    "Uma plataforma que centraliza indicadores de campanhas, automatiza etapas de coleta e usa Gemini para gerar análises e recomendações dentro do produto.": "A platform that centralizes campaign metrics, automates collection steps and uses Gemini to generate analysis and recommendations inside the product.",
+    "Ver demonstração": "Watch demonstration",
+    "Do dado bruto à decisão": "From raw data to decisions",
+    "Coletar": "Collect",
+    "Consultar a Meta por período e nível de campanha.": "Query Meta by date range and campaign level.",
+    "Organizar": "Organize",
+    "Normalizar e armazenar registros no contexto do workspace.": "Normalize and store records in the workspace context.",
+    "Analisar": "Analyze",
+    "Apresentar indicadores e recomendações para apoiar a revisão.": "Present metrics and recommendations to support review.",
+    "Um problema de operação, não só de interface.": "An operational problem, beyond the interface.",
+    "Acompanhar campanhas em diferentes telas dificulta consolidar indicadores, comparar níveis e manter uma leitura comum entre as pessoas da operação.": "Tracking campaigns across different screens makes it harder to consolidate metrics, compare levels and maintain a shared understanding across the team.",
+    "Desenvolvi o módulo de inteligência de performance dentro do CRM MVPLLK para reunir os dados por workspace, facilitar a leitura dos indicadores e trazer sugestões de otimização para o mesmo fluxo de trabalho.": "I developed the performance intelligence module within the MVPLLK CRM to bring data together by workspace, make metrics easier to read and bring optimization suggestions into the same workflow.",
+    "Arquitetura do módulo de performance": "Performance module architecture",
+    "Expanda cada etapa para acompanhar o caminho dos dados, da coleta à análise que aparece no dashboard.": "Expand each step to follow the data from collection to the analysis displayed in the dashboard.",
+    "Integrações e decisões técnicas": "Integrations and technical decisions",
+    "Meta Ads por workspace": "Meta Ads by workspace",
+    "Administradores configuram e verificam a conta. A sincronização consulta a conexão no servidor e percorre as páginas de resultados. O dashboard lê os indicadores gravados por período e nível.": "Administrators configure and verify the account. Synchronization reads the connection on the server and follows result pages. The dashboard reads stored metrics by date range and level.",
+    "Falhas e sincronização parcial": "Failures and partial synchronization",
+    "A coleta tem retentativas com espera para falhas transitórias da API e limites de requisição. Quando a Meta limita a consulta, o fluxo pode preservar os registros já coletados, indicar o estado parcial e oferecer nova tentativa dos níveis afetados.": "Collection retries transient API failures and rate limits with backoff. When Meta limits a request, the workflow can preserve records already collected, show the partial status and offer a retry for affected levels.",
+    "IA integrada ao produto": "AI integrated into the product",
+    "Gemini recebe indicadores agregados e devolve uma análise para exibição no dashboard. Codex e Lovable apoiaram o desenvolvimento; a geração de insights é uma função distinta que a aplicação oferece ao usuário.": "Gemini receives aggregated metrics and returns analysis for the dashboard. Codex and Lovable supported development; insight generation is a separate feature the application provides to users.",
+    "O que a solução entrega": "What the solution delivers",
+    "O produto reúne indicadores de mídia em um lugar, automatiza a coleta acionada pela equipe e apresenta recomendações com apoio de IA. As sugestões não executam alterações nas campanhas.": "The product brings media metrics together, automates collection when initiated by the team and presents AI-assisted recommendations. Suggestions do not change campaigns.",
+    "O case descreve capacidades observáveis no código e na interface. Não atribuo a este módulo métricas de produtividade, retorno financeiro ou adoção sem medições específicas.": "This case describes capabilities observable in the code and interface. I do not attribute productivity, financial returns or adoption metrics to this module without specific measurements.",
+    "Veja a interface em operação": "See the interface in action",
+    "O vídeo mostra o CRM e seu fluxo comercial com dados demonstrativos. Para explorar o produto publicado, use o link da aplicação; os módulos internos exigem acesso autorizado.": "The video shows the CRM and its sales workflow with demo data. Use the application link to explore the published product; internal modules require authorized access.",
+    "Voltar aos projetos técnicos": "Back to technical projects",
+    "Demonstração do CRM MVPLLK": "MVPLLK CRM demonstration",
+    "Demonstração do CRM com dados fictícios. O vídeo não mostra a execução da análise com Gemini.": "CRM demonstration with fictional data. The video does not show a Gemini analysis run.",
+    "Lucas Rabicano | Tecnologia, Inteligência Artificial e Performance": "Lucas Rabicano | Technology, Artificial Intelligence and Performance",
+    "Lucas Rabicano, AI Builder e desenvolvedor de sistemas. Projetos de IA aplicada, automação, CRM, sites e performance comercial.": "Lucas Rabicano, AI Builder and systems developer. Applied AI, automation, CRM, websites and performance projects.",
+    "AI Builder · Tecnologia · Performance": "AI Builder · Technology · Performance",
+    "Tecnologia, IA e performance para transformar problemas em soluções.": "Technology, AI and performance to turn problems into solutions.",
+    "Desenvolvo sistemas, automações e experiências digitais que conectam dados e estratégia de negócios.": "I build systems, automations and digital experiences that connect data and business strategy.",
+    "Explorar projetos de IA": "Explore AI projects",
+    "Conhecer projetos comerciais": "Explore commercial projects",
+    "Marketing e Performance": "Marketing and Performance",
+    "Inteligência Artificial": "Artificial Intelligence",
+    "Sistemas e CRM": "Systems and CRM",
+    "Sites e Experiências Digitais": "Websites and Digital Experiences",
+    "Filtrar projetos por categoria": "Filter projects by category",
+    "Todos": "All",
+    "Nenhum projeto nesta categoria.": "No projects in this category.",
+    "Análise de mídia": "Media analysis",
+    "Coleta de indicadores da Meta, processamento por workspace e recomendações com Gemini no dashboard.": "Meta metrics collection, processing by workspace and Gemini recommendations in the dashboard."
+});
     const isEnglish = new URLSearchParams(window.location.search).get('lang') === 'en';
     const language = isEnglish ? 'en' : 'pt';
     document.querySelectorAll('[data-language]').forEach(link => {
@@ -358,7 +480,7 @@
             link.href = '?lang=' + link.dataset.language + window.location.hash;
         });
     });
-    const base = 'https://lucasluk.vercel.app/';
+    const base = document.querySelector('link[rel="canonical"]').href;
     [['pt-BR', base], ['en', base + '?lang=en'], ['x-default', base]].forEach(([lang, href]) => {
         const alternate = document.createElement('link');
         alternate.rel = 'alternate';
@@ -392,7 +514,9 @@
     document.querySelector('link[rel="canonical"]').href = base + '?lang=en';
     document.querySelectorAll('a[href*="wa.me/"]').forEach(link => {
         const url = new URL(link.href);
-        url.searchParams.set('text', 'Hi Lucas! I saw your portfolio and would like to discuss a digital performance, CRM or automation project.');
+        url.searchParams.set('text', document.body.classList.contains('technical')
+            ? 'Hi Lucas! I saw your portfolio and would like to discuss applied AI, automation or systems development.'
+            : 'Hi Lucas! I saw your portfolio and would like to discuss a digital performance, CRM or automation project.');
         link.href = url.href;
     });
     const style = document.createElement('style');

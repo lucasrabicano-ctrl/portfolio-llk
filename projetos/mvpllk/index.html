@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MVPLLK | Plataforma de Inteligência de Performance com IA</title>
+    <meta name="description" content="Case técnico de Lucas Rabicano sobre coleta de dados da Meta, processamento no Supabase e recomendações com Gemini dentro do dashboard MVPLLK.">
+    <meta name="theme-color" content="#09090b">
+    <link rel="canonical" href="https://lucasluk.vercel.app/projetos/mvpllk">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/technical.css">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="MVPLLK | Plataforma de Inteligência de Performance com IA">
+    <meta property="og:description" content="Case técnico de Lucas Rabicano sobre coleta de dados da Meta, processamento no Supabase e recomendações com Gemini dentro do dashboard MVPLLK.">
+    <meta property="og:url" content="https://lucasluk.vercel.app/projetos/mvpllk">
+    <meta property="og:image" content="https://lucasluk.vercel.app/og-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MVPLLK | Plataforma de Inteligência de Performance com IA">
+    <meta name="twitter:description" content="Case técnico de Lucas Rabicano sobre coleta de dados da Meta, processamento no Supabase e recomendações com Gemini dentro do dashboard MVPLLK.">
+    <meta name="twitter:image" content="https://lucasluk.vercel.app/og-preview.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://lucasluk.vercel.app/projetos/mvpllk","name":"MVPLLK | Plataforma de Inteligência de Performance com IA","description":"Case técnico de Lucas Rabicano sobre coleta de dados da Meta, processamento no Supabase e recomendações com Gemini dentro do dashboard MVPLLK.","inLanguage":"pt-BR","author":{"@type":"Person","name":"Lucas Rabicano","url":"https://lucasluk.vercel.app/"}}</script>
+    <script src="/languages.js" defer></script>
+    <script src="/site.js" defer></script>
+</head>
+<body class="technical">
+    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+    <header>
+        <div class="wrap topbar">
+            <a class="brand" href="/" data-localized>Lucas Rabicano</a>
+            <nav aria-label="Navegação principal">
+                <a href="/" data-localized>Início</a>
+                <a href="/ia" data-localized>IA e tecnologia</a>
+                <a href="/projetos/mvpllk" data-localized aria-current="page">MVPLLK</a>
+            </nav>
+            <nav aria-label="Idioma">
+                <a href="?lang=pt" lang="pt-BR" data-language="pt">PT</a>
+                <a href="?lang=en" lang="en" data-language="en">EN</a>
+            </nav>
+        </div>
+    </header>
+    <main id="conteudo" tabindex="-1">
+        <section class="wrap hero-tech split" aria-labelledby="case-title">
+            <div>
+                <div class="role">Case técnico · Produto próprio</div>
+                <h1 id="case-title">MVPLLK: inteligência de performance com IA</h1>
+                <p class="lead">Uma plataforma que centraliza indicadores de campanhas, automatiza etapas de coleta e usa Gemini para gerar análises e recomendações dentro do produto.</p>
+                <div class="actions"><a class="button primary" href="#arquitetura">Explorar arquitetura</a><a class="button" href="https://mvpllk.vercel.app/">Abrir aplicação</a><a class="text-link" href="#demonstracao">Ver demonstração</a></div>
+            </div>
+            <div class="panel">
+                <h2>Do dado bruto à decisão</h2>
+                <ol class="flow">
+                    <li><strong>Coletar</strong><p>Consultar a Meta por período e nível de campanha.</p></li>
+                    <li><strong>Organizar</strong><p>Normalizar e armazenar registros no contexto do workspace.</p></li>
+                    <li><strong>Analisar</strong><p>Apresentar indicadores e recomendações para apoiar a revisão.</p></li>
+                </ol>
+                <ul class="tags"><li>React</li><li>TypeScript</li><li>Supabase</li><li>PostgreSQL</li><li>Edge Functions</li><li>Meta Marketing API</li><li>Gemini</li></ul>
+            </div>
+        </section>
+        <section class="wrap band split" aria-labelledby="problem-title">
+            <h2 id="problem-title">Um problema de operação, não só de interface.</h2>
+            <div>
+                <p>Acompanhar campanhas em diferentes telas dificulta consolidar indicadores, comparar níveis e manter uma leitura comum entre as pessoas da operação.</p>
+                <p>Desenvolvi o módulo de inteligência de performance dentro do CRM MVPLLK para reunir os dados por workspace, facilitar a leitura dos indicadores e trazer sugestões de otimização para o mesmo fluxo de trabalho.</p>
+            </div>
+        </section>
+        <section id="arquitetura" class="wrap band split" aria-labelledby="architecture-title">
+            <div>
+                <h2 id="architecture-title">Arquitetura do módulo de performance</h2>
+                <p>Expanda cada etapa para acompanhar o caminho dos dados, da coleta à análise que aparece no dashboard.</p>
+            </div>
+            <ol class="flow">
+                <li><details open><summary>Meta Marketing API</summary><p>Coleta indicadores diários por intervalo e por nível: campanha, conjunto e anúncio. A conexão é configurada para cada workspace.</p></details></li>
+                <li><details><summary>Supabase Edge Functions</summary><p>A função de sincronização verifica o usuário e sua associação ao workspace antes de consultar a conta conectada. A consulta segue a paginação da Meta e faz novas tentativas com espera em erros transitórios e limites de requisição.</p></details></li>
+                <li><details><summary>Normalização dos registros</summary><p>O retorno da API é transformado em registros por nível, com identificadores, intervalo e indicadores numéricos em uma estrutura comum.</p></details></li>
+                <li><details><summary>PostgreSQL / Supabase</summary><p>Os dados são gravados em lotes com atualização por chave composta de workspace, conta, entidade e período. Os registros de sincronização distinguem sucesso, erro e limite de requisição.</p></details></li>
+                <li><details><summary>Camada de análise com Gemini</summary><p>Ao solicitar uma análise, a função consulta o período do workspace, agrega os dados por entidade e monta um resumo com totais e indicadores como CPL e CTR. Esse resumo estruturado é enviado ao Gemini pela integração de IA.</p></details></li>
+                <li><details><summary>Recomendações e insights</summary><p>O prompt pede uma saída JSON com insights, conclusão executiva e recomendações de escalar, pausar, ajustar ou testar. São sugestões para revisão humana.</p></details></li>
+                <li><details><summary>Dashboard React</summary><p>A interface organiza indicadores em visão geral, campanhas, conjuntos e anúncios, com abas para insights e relatórios. A geração de análise é acionada pela pessoa usuária.</p></details></li>
+            </ol>
+        </section>
+        <section id="integracoes" class="wrap band" aria-labelledby="integrations-title">
+            <h2 id="integrations-title">Integrações e decisões técnicas</h2>
+            <div class="stack cols">
+                <article class="panel">
+                    <h3>Meta Ads por workspace</h3>
+                    <p>Administradores configuram e verificam a conta. A sincronização consulta a conexão no servidor e percorre as páginas de resultados. O dashboard lê os indicadores gravados por período e nível.</p>
+                </article>
+                <article class="panel">
+                    <h3>Falhas e sincronização parcial</h3>
+                    <p>A coleta tem retentativas com espera para falhas transitórias da API e limites de requisição. Quando a Meta limita a consulta, o fluxo pode preservar os registros já coletados, indicar o estado parcial e oferecer nova tentativa dos níveis afetados.</p>
+                </article>
+                <article class="panel">
+                    <h3>IA integrada ao produto</h3>
+                    <p>Gemini recebe indicadores agregados e devolve uma análise para exibição no dashboard. Codex e Lovable apoiaram o desenvolvimento; a geração de insights é uma função distinta que a aplicação oferece ao usuário.</p>
+                </article>
+            </div>
+        </section>
+        <section id="resultados" class="wrap band split" aria-labelledby="case-results-title">
+            <h2 id="case-results-title">O que a solução entrega</h2>
+            <div>
+                <p>O produto reúne indicadores de mídia em um lugar, automatiza a coleta acionada pela equipe e apresenta recomendações com apoio de IA. As sugestões não executam alterações nas campanhas.</p>
+                <p>O case descreve capacidades observáveis no código e na interface. Não atribuo a este módulo métricas de produtividade, retorno financeiro ou adoção sem medições específicas.</p>
+            </div>
+        </section>
+        <section id="demonstracao" class="wrap band split" aria-labelledby="demo-title">
+            <div><h2 id="demo-title">Veja a interface em operação</h2>
+                <p>O vídeo mostra o CRM e seu fluxo comercial com dados demonstrativos. Para explorar o produto publicado, use o link da aplicação; os módulos internos exigem acesso autorizado.</p>
+                <div class="actions"><a class="button primary" href="https://mvpllk.vercel.app/">Abrir aplicação</a><a class="text-link" href="/ia#projetos-tecnicos" data-localized>Voltar aos projetos técnicos</a></div>
+            </div>
+            <figure>
+                <video class="media" controls playsinline preload="none" poster="/portfolio-assets/mvpllk-demo-poster.jpg" width="1280" height="720" aria-label="Demonstração do CRM MVPLLK">
+                    <source src="/portfolio-assets/videos/crm-llk-demo.mp4" type="video/mp4">
+                </video>
+                <figcaption>Demonstração do CRM com dados fictícios. O vídeo não mostra a execução da análise com Gemini.</figcaption>
+            </figure>
+        </section>
+    </main>
+    <footer>
+        <div class="wrap footbar">
+            <span>© <span data-year>2026</span> Lucas Rabicano.</span>
+            <a href="/#projetos" data-localized>Projetos comerciais</a>
+        </div>
+    </footer>
+</body>
+</html>

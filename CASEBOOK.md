@@ -16,6 +16,17 @@ Este registro distingue experiência informada pelo autor, artefatos públicos e
 
 ## Cases disponíveis
 
+### MVPLLK
+- Problema: reunir indicadores de mídia dispersos e apoiar a análise na operação.
+- Atuação: desenvolvimento de produto próprio, com módulo de Meta Ads e análise no CRM.
+- Evidência pública: `/projetos/mvpllk`, aplicação em `https://mvpllk.vercel.app/` e vídeo demonstrativo do CRM com dados fictícios.
+- Base da revisão técnica: código de sincronização, conexão de conta, agregação e análise com Gemini, e interface de indicadores e recomendações. O repositório é privado e não é linkado no site.
+- Limite: o vídeo não é evidência de uma execução do módulo de análise. Nenhuma medição de adoção, economia de tempo ou impacto financeiro é atribuída ao módulo.
+
+### Golden Brasil, operação interna
+- Atuação informada pelo autor: desenvolvimento e aprimoramento de CRM, painéis e ferramentas comerciais internas.
+- Evidência pública: site institucional. O material interno não é exibido.
+
 ### CRM próprio
 - Problema apresentado: organizar oportunidades, etapas e próximos contatos.
 - Atuação: desenvolvimento do produto pelo autor.

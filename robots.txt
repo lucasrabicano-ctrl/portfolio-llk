@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lucasluk.vercel.app/sitemap.xml

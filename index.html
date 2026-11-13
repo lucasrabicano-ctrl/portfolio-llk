@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucas | Performance Digital, Tráfego e CRM</title>
-    <meta name="description" content="Portfólio de Lucas em performance digital, tráfego pago, Meta Conversions API, CRM próprio, automações, sites e estratégia comercial conectada.">
+    <title>Lucas Rabicano | Tecnologia, Inteligência Artificial e Performance</title>
+    <meta name="description" content="Lucas Rabicano, AI Builder e desenvolvedor de sistemas. Projetos de IA aplicada, automação, CRM, sites e performance comercial.">
 
     <!-- Identidade, indexação e preview social -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="canonical" href="https://lucasluk.vercel.app/">
     <link rel="stylesheet" href="evidence.css">
+    <link rel="stylesheet" href="technical.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Lucas Rabicano","url":"https://lucasluk.vercel.app/","jobTitle":"AI Builder"}</script>
     <meta name="theme-color" content="#09090b">
     <meta name="color-scheme" content="dark">
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
-    <meta property="og:site_name" content="Lucas | Performance Digital">
+    <meta property="og:site_name" content="Lucas Rabicano">
     <meta property="og:url" content="https://lucasluk.vercel.app/">
-    <meta property="og:title" content="Lucas | Performance Digital, Tráfego e CRM">
-    <meta property="og:description" content="Tráfego, Meta Conversions API, CRM próprio e automações conectados para transformar investimento em crescimento comercial.">
+    <meta property="og:title" content="Lucas Rabicano | Tecnologia, Inteligência Artificial e Performance">
+    <meta property="og:description" content="Lucas Rabicano, AI Builder e desenvolvedor de sistemas. Projetos de IA aplicada, automação, CRM, sites e performance comercial.">
     <meta property="og:image" content="https://lucasluk.vercel.app/og-preview.png">
     <meta property="og:image:secure_url" content="https://lucasluk.vercel.app/og-preview.png">
     <meta property="og:image:type" content="image/png">
@@ -27,8 +29,8 @@
     <meta property="og:image:alt" content="Lucas Performance Digital, com estrela branca sobre fundo preto.">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Lucas | Performance Digital, Tráfego e CRM">
-    <meta name="twitter:description" content="Tráfego, Meta Conversions API, CRM próprio e automações conectados para transformar investimento em crescimento comercial.">
+    <meta name="twitter:title" content="Lucas Rabicano | Tecnologia, Inteligência Artificial e Performance">
+    <meta name="twitter:description" content="Lucas Rabicano, AI Builder e desenvolvedor de sistemas. Projetos de IA aplicada, automação, CRM, sites e performance comercial.">
     <meta name="twitter:image" content="https://lucasluk.vercel.app/og-preview.png">
     <meta name="twitter:image:alt" content="Lucas Performance Digital, com estrela branca sobre fundo preto.">
 
@@ -321,13 +323,14 @@
         .hero-supporting-copy {
             margin-top: 0.75rem;
             max-width: 37rem;
-            color: #71717a;
+            color: #a1a1aa;
             font-size: 0.9rem;
             line-height: 1.65;
         }
 
         .hero-actions {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             gap: 0.75rem;
             margin-top: 1.75rem;
@@ -976,6 +979,16 @@
             }
         }
 
+        @media (max-width: 767px), (max-height: 680px) {
+            .hero-track { height: auto; }
+            .hero-stage { position: relative; padding: 7rem 1.25rem 1.75rem; }
+            .hero-copy { position: relative; top: auto; left: auto; width: 100%; transform: none; }
+            .hero-proof { position: relative; inset: auto; margin-top: 2rem; }
+            .hero-scroll-cue, .hero-index { display: none; }
+            .hero-supporting-copy { max-width: 38rem; }
+            .hero-preview-layer { display: none; }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             html {
                 scroll-behavior: auto !important;
@@ -987,8 +1000,6 @@
                 transition-duration: 0.01ms !important;
             }
 
-            .hero-layer,
-            .hero-copy,
             .hero-proof,
             .hero-scroll-cue,
             .gsap-fade-up,
@@ -1019,8 +1030,9 @@
 
     <!-- Assinatura da hero -->
     <header class="absolute top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 mix-blend-difference pointer-events-none">
-        <div class="font-medium tracking-tighter text-xl">LUCAS.</div>
-        <nav class="pointer-events-auto flex items-center gap-4 text-xs font-semibold" aria-label="Idioma">
+        <a href="/" data-localized class="pointer-events-auto font-medium tracking-tight text-sm sm:text-lg">Lucas Rabicano</a>
+        <nav class="pointer-events-auto flex items-center gap-3 text-xs font-semibold" aria-label="Navegação principal">
+            <a href="/ia" data-localized class="py-2 hover:underline">IA aplicada</a>
             <a href="?lang=pt" lang="pt-BR" data-language="pt" class="py-2">PT</a>
             <span aria-hidden="true" class="text-zinc-600">/</span>
             <a href="?lang=en" lang="en" data-language="en" class="py-2">EN</a>
@@ -1055,19 +1067,20 @@
 
                 <div class="hero-copy">
                     <div class="hero-kicker" data-hero-intro>Estratégia · Mídia · Tecnologia</div>
-                    <h1 id="hero-title" class="hero-title" data-hero-intro>LUCAS<span class="hero-title-dot">.</span></h1>
+                    <h1 id="hero-title" class="hero-title" aria-label="Lucas Rabicano" data-hero-intro>LUCAS<span class="hero-title-dot">.</span></h1>
 
                     <div class="hero-positioning" data-hero-intro>
-                        <p class="hero-positioning-label">Performance digital</p>
-                        <p class="hero-description">Tráfego, CRM e tecnologia para vender mais.</p>
-                        <p class="hero-supporting-copy">Campanhas, Meta Conversions API, CRM próprio e automações conectados em uma operação feita para gerar retorno, não apenas alcance.</p>
+                        <p class="hero-positioning-label">AI Builder · Tecnologia · Performance</p>
+                        <p class="hero-description">Tecnologia, IA e performance para transformar problemas em soluções.</p>
+                        <p class="hero-supporting-copy">Desenvolvo sistemas, automações e experiências digitais que conectam dados e estratégia de negócios.</p>
 
                         <div class="hero-actions">
-                            <a href="#performance" class="hero-action hero-action--primary">
-                                <span><span class="hidden sm:inline">Ver </span>performance</span>
+                            <a href="/ia" data-localized class="hero-action hero-action--primary">
+                                <span>Explorar projetos de IA</span>
                                 <i data-lucide="arrow-up-right" class="w-4 h-4" aria-hidden="true"></i>
                             </a>
-                            <a href="#evidencias" class="hero-action">Explorar IA e projetos</a>
+                            <a href="#projetos" class="hero-action">Conhecer projetos comerciais</a>
+                            <a href="#contato" class="hero-action hero-contact">Entrar em contato</a>
                         </div>
                     </div>
                 </div>
@@ -1533,8 +1546,25 @@
                     <p class="text-sm text-zinc-500 md:text-right max-w-xs">Clique em qualquer projeto para conhecer a experiência no ar.</p>
                 </div>
 
+                <div class="project-filters" role="group" aria-label="Filtrar projetos por categoria" hidden>
+                    <button type="button" data-filter="all" aria-pressed="true">Todos</button>
+                    <button type="button" data-filter="ai" aria-pressed="false">Inteligência Artificial</button>
+                    <button type="button" data-filter="systems" aria-pressed="false">Sistemas e CRM</button>
+                    <button type="button" data-filter="automation" aria-pressed="false">Automações</button>
+                    <button type="button" data-filter="marketing" aria-pressed="false">Marketing e Performance</button>
+                    <button type="button" data-filter="sites" aria-pressed="false">Sites e Experiências Digitais</button>
+                </div>
+                <p id="project-filter-status" class="sr-only" role="status"></p>
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
-                    <a href="https://viniciusmozzer.com.br/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-7 group" aria-label="Abrir o site Essence Residence, de Vinícius Mozzer, em uma nova aba">
+                    <a id="mvpllk" href="/projetos/mvpllk" data-localized data-project-category="ai systems automation marketing" class="project-card lg:col-span-12 group">
+                        <article class="p-6 md:p-8">
+                            <p class="text-xs font-semibold tracking-[0.14em] uppercase text-emerald-200 mb-3">Case técnico · Produto próprio</p>
+                            <h3 class="text-2xl md:text-3xl font-medium tracking-tight">MVPLLK: inteligência de performance com IA</h3>
+                            <p class="text-zinc-400 font-light mt-4 max-w-2xl">Coleta de indicadores da Meta, processamento por workspace e recomendações com Gemini no dashboard.</p>
+                            <span class="inline-block mt-5 text-sm underline underline-offset-4">Ler o case técnico</span>
+                        </article>
+                    </a>
+                    <a data-project-category="sites marketing" href="https://viniciusmozzer.com.br/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-7 group" aria-label="Abrir o site Essence Residence, de Vinícius Mozzer, em uma nova aba">
                         <article class="h-full flex flex-col">
                             <div class="project-preview">
                                 <span class="project-domain">viniciusmozzer.com.br</span>
@@ -1556,7 +1586,7 @@
                         </article>
                     </a>
 
-                    <a href="https://crm.viniciusmozzer.com.br/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-5 group" aria-label="Abrir o CRM imobiliário de Vinícius Mozzer em uma nova aba">
+                    <a data-project-category="systems" href="https://crm.viniciusmozzer.com.br/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-5 group" aria-label="Abrir o CRM imobiliário de Vinícius Mozzer em uma nova aba">
                         <article class="h-full flex flex-col">
                             <div class="project-preview">
                                 <span class="project-domain">crm.viniciusmozzer.com.br</span>
@@ -1578,7 +1608,7 @@
                         </article>
                     </a>
 
-                    <a href="https://imobmartins.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-5 group" aria-label="Abrir o site da Imobiliária San Martins em uma nova aba">
+                    <a data-project-category="sites" href="https://imobmartins.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-5 group" aria-label="Abrir o site da Imobiliária San Martins em uma nova aba">
                         <article class="h-full flex flex-col">
                             <div class="project-preview">
                                 <span class="project-domain">imobmartins.vercel.app</span>
@@ -1600,7 +1630,7 @@
                         </article>
                     </a>
 
-                    <a href="https://rudydaniel.com.br/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-7 group" aria-label="Abrir o site FIT Global, de Rudy Daniel, em uma nova aba">
+                    <a data-project-category="sites marketing" href="https://rudydaniel.com.br/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-7 group" aria-label="Abrir o site FIT Global, de Rudy Daniel, em uma nova aba">
                         <article class="h-full flex flex-col">
                             <div class="project-preview">
                                 <span class="project-domain">rudydaniel.com.br</span>
@@ -1621,7 +1651,7 @@
                             </div>
                         </article>
                     </a>
-                    <a id="golden-brasil" href="https://goldenbrasil.com.br/novo/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-7 group" aria-label="Abrir o site institucional da Golden Brasil em uma nova aba">
+                    <a id="golden-brasil" data-project-category="sites" href="https://goldenbrasil.com.br/novo/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-7 group" aria-label="Abrir o site institucional da Golden Brasil em uma nova aba">
                         <article class="h-full flex flex-col">
                             <div class="project-preview">
                                 <span class="project-domain">goldenbrasil.com.br/novo</span>
@@ -1643,7 +1673,7 @@
                         </article>
                     </a>
 
-                    <a id="guimel-roeher" href="https://guimelroeher.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-5 group" aria-label="Abrir o portfólio audiovisual de Guímel Roeher em uma nova aba">
+                    <a id="guimel-roeher" data-project-category="sites" href="https://guimelroeher.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card gsap-fade-up lg:col-span-5 group" aria-label="Abrir o portfólio audiovisual de Guímel Roeher em uma nova aba">
                         <article class="h-full flex flex-col">
                             <div class="project-preview">
                                 <span class="project-domain">guimelroeher.vercel.app</span>
@@ -1666,6 +1696,7 @@
                     </a>
                 </div>
 
+                <p id="project-filter-empty" class="project-filter-empty" hidden>Nenhum projeto nesta categoria.</p>
                 <div id="crm-em-operacao" class="crm-video-showcase" aria-labelledby="crm-video-title">
                     <div class="crm-video-intro gsap-fade-up">
                         <h3 id="crm-video-title" class="text-4xl md:text-6xl font-medium tracking-tight leading-[1.02]">
@@ -1677,7 +1708,7 @@
                     </div>
 
                     <div class="crm-video-frame gsap-fade-up">
-                        <video controls playsinline preload="metadata" aria-labelledby="crm-video-title" aria-describedby="crm-video-description">
+                        <video controls playsinline preload="none" poster="/portfolio-assets/mvpllk-demo-poster.jpg" aria-labelledby="crm-video-title" aria-describedby="crm-video-description">
                             <source src="portfolio-assets/videos/crm-llk-demo.mp4" type="video/mp4">
                             Seu navegador não reproduz este vídeo. <a href="portfolio-assets/videos/crm-llk-demo.mp4">Abra a demonstração do CRM</a>.
                         </video>
@@ -1959,8 +1990,8 @@
                         <div class="text-xs md:text-sm text-zinc-500 font-medium uppercase tracking-wider">Investimento em mídia</div>
                     </div>
                     <div class="gsap-fade-up text-center px-4" style="transition-delay: 200ms;">
-                        <div class="text-4xl md:text-6xl font-light tracking-tighter text-white mb-2">+<span class="metric-counter" data-target="50">0</span></div>
-                        <div class="text-xs md:text-sm text-zinc-500 font-medium uppercase tracking-wider">Campanhas Analisadas</div>
+                        <div class="text-3xl sm:text-4xl md:text-5xl font-light tracking-tighter text-white mb-2">Meta Ads</div>
+                        <div class="text-xs md:text-sm text-zinc-500 font-medium uppercase tracking-wider">Análise de mídia</div>
                     </div>
                     <div class="gsap-fade-up text-center px-4" style="transition-delay: 300ms;">
                         <div class="text-3xl sm:text-4xl md:text-5xl font-light tracking-tighter text-white mb-2">CAPI + CRM</div>
@@ -2090,17 +2121,18 @@
             <div class="flex flex-wrap justify-center gap-6 text-sm text-zinc-400 font-medium">
                 <a href="#projetos" class="hover:text-white transition-colors">Projetos</a>
                 <a href="#automacoes" class="hover:text-white transition-colors">Automações</a>
-                <a href="#evidencias" class="hover:text-white transition-colors">IA aplicada</a>
+                <a href="/ia" data-localized class="hover:text-white transition-colors">IA aplicada</a>
                 <a href="#contato" class="hover:text-white transition-colors">Contato</a>
             </div>
             <div class="text-sm text-zinc-600 font-light">
-                &copy; 2024 Lucas.
+                &copy; <span data-year>2026</span> Lucas Rabicano.
             </div>
         </div>
     </footer>
 
     <script src="languages.js"></script>
     <script src="evidence.js"></script>
+    <script src="site.js"></script>
     <script>
         // Inicializar Ícones
         lucide.createIcons();
@@ -2149,6 +2181,7 @@
                 clearProps: "transform,opacity,visibility"
             }, 0.48);
 
+            if (window.matchMedia('(min-width: 768px) and (min-height: 681px)').matches) {
             const heroTl = gsap.timeline({
                 scrollTrigger: {
                     trigger: ".hero-track",
@@ -2188,6 +2221,7 @@
                 autoAlpha: 0,
                 ease: "none"
             }, 0.24);
+            }
 
             // Movimento de ponteiro sutil e separado do parallax de rolagem.
             const heroStage = document.querySelector('[data-hero-stage]');
@@ -2275,35 +2309,11 @@
                 }, 0.42);
             }
         } else {
-            gsap.set(".hero-layer, .hero-copy, .hero-proof, .hero-scroll-cue, .hero-index", {
+            gsap.set(".hero-copy, .hero-proof, .hero-scroll-cue, .hero-index", {
                 opacity: 1,
                 clearProps: "transform,visibility"
             });
         }
-
-        // --- NOVA LÓGICA: CONTADORES DE MÉTRICAS ---
-        gsap.utils.toArray('.metric-counter').forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-target'));
-            if (reduceMotion) {
-                counter.textContent = target;
-                return;
-            }
-
-            let obj = { val: 0 };
-            gsap.to(obj, {
-                val: target,
-                duration: 2.5,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: counter,
-                    start: "top 85%",
-                    once: true
-                },
-                onUpdate: function() {
-                    counter.textContent = Math.floor(obj.val);
-                }
-            });
-        });
 
         // Navegação interna previsível, inclusive ao abrir a página com uma âncora.
         document.querySelectorAll('a[href^="#"]').forEach(link => {
