@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/ia", "destination": "/ia/index.html" },
-    { "source": "/projetos/mvpllk", "destination": "/projetos/mvpllk/index.html" }
+    { "source": "/projetos/mvpllk", "destination": "/projetos/mvpllk/index.html" },
+    { "source": "/projetos/fit-global", "destination": "/projetos/fit-global/index.html" }
   ]
 }

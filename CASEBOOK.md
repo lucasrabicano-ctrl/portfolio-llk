@@ -40,10 +40,10 @@ Este registro distingue experiência informada pelo autor, artefatos públicos e
 - Limite: acesso interno pode exigir login; não há validação independente de uso diário nem métricas de adoção.
 
 ### FIT Global
-- Problema apresentado: posicionar o método e encaminhar ao acesso do aluno.
-- Atuação: projeto de educação para cliente.
-- Evidência: `https://rudydaniel.com.br/` e imagem já publicada no portfólio.
-- Limite: sem número informado de alunos ou resultado financeiro por projeto.
+- Problema: aproveitar os objetivos, interesses e dificuldades do aluno para preparar aulas personalizadas de inglês sem tirar do mentor a decisão editorial.
+- Atuação: vitrine pública, áreas de aluno e mentor, onboarding, geração e revisão de rascunhos, publicação de aulas e backend para contas, permissões, respostas e progresso.
+- Evidência: case em `/projetos/fit-global`, captura da vitrine pública e `https://rudydaniel.com.br/`. A descrição técnica foi conferida na cópia local da plataforma.
+- Limite: a captura mostra a vitrine, não as áreas autenticadas. Nenhum acesso interno, link de repositório, dado de aluno ou métrica de adoção é publicado no case.
 
 ### Golden Brasil
 - Problema apresentado: reunir a apresentação institucional, os produtos e os canais de atendimento em um site.

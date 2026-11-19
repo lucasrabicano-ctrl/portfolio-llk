@@ -11,37 +11,43 @@
     pointer-events: none;
     content: "";
     background:
-        linear-gradient(90deg, #f4f4f50b 1px, transparent 1px),
-        linear-gradient(#f4f4f50b 1px, transparent 1px);
-    background-size: 4.5rem 4.5rem;
-    mask-image: radial-gradient(ellipse at 85% 45%, #000 15%, transparent 70%);
+        linear-gradient(90deg, #bce7d710 1px, transparent 1px),
+        linear-gradient(#bce7d710 1px, transparent 1px);
+    background-size: 3.5rem 3.5rem;
+    mask-image: radial-gradient(ellipse 48% 70% at 79% 46%, #000, transparent 82%);
 }
-.home-mark { position: relative; border-color: transparent; }
-.home-orbit {
+.home-mark { position: relative; pointer-events: none; }
+.home-mark::before {
     position: absolute;
     inset: 0;
-    border: 1px solid #f4f4f526;
+    content: "";
+    background: radial-gradient(ellipse, #253d3575, #15221e42 38%, transparent 69%);
+}
+.home-orbit {
+    position: absolute;
+    inset: 21% 7%;
+    rotate: -32deg;
+    border: 1px solid #bce7d757;
     border-radius: 50%;
-    pointer-events: none;
 }
 .home-orbit::after {
     position: absolute;
-    top: 11%;
-    right: 16%;
-    width: .42rem;
+    top: 23%;
+    right: 5.5%;
+    width: .48rem;
     aspect-ratio: 1;
     border-radius: 50%;
     background: var(--signal);
     content: "";
 }
-.home-orbit-inner { inset: 15%; border-color: #f4f4f514; }
+.home-orbit-inner { inset: 14% 18%; rotate: 36deg; border-color: #bce7d730; }
 .home-orbit-inner::after { display: none; }
 .home-star-position {
     display: grid;
     place-items: center;
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 0 1rem #f4f4f524);
+    filter: drop-shadow(0 0 1.65rem #bce7d741);
 }
 .home-star { display: block; }
 @media (max-width: 849px) {
@@ -49,27 +55,26 @@
         display: grid;
         place-items: center;
         position: absolute;
-        top: clamp(3rem, 7.5vw, 7rem);
+        top: calc(var(--hero-top) - .9rem);
         right: 0;
-        width: 2rem;
+        width: 3.25rem;
         aspect-ratio: 1;
         color: var(--ink);
     }
-    .home-star { width: 65%; height: auto; }
-    .home-orbit::after { width: .18rem; }
-    .home-hero > div:first-child > .home-label { padding-right: 2.75rem; }
+    .home-star { width: 60%; height: auto; }
+    .home-orbit::after { width: .2rem; }
+    .home-hero .home-label { padding-right: 3.75rem; }
+    .home-hero::before { mask-image: radial-gradient(ellipse 50% 55% at 98% 20%, #000, transparent 82%); }
 }
-@media (max-width: 400px) { .home-mark { top: 2.1rem; } }
 
 @media (prefers-reduced-motion: no-preference) {
     html:has(body.home) { scroll-behavior: smooth; }
-    .home-hero:not(:focus-within) > div:first-child > :is(.home-label, h1, .home-subtitle, .home-lead, .home-actions) {
+    .home-hero:not(:focus-within) .home-hero-copy > :is(.home-label, h1, .home-lead, .home-actions) {
         animation: home-arrive var(--motion-enter) var(--motion-settle) both;
     }
     .home-hero h1 { animation-delay: 60ms !important; }
-    .home-hero .home-subtitle { animation-delay: 120ms !important; }
-    .home-hero .home-lead { animation-delay: 180ms !important; }
-    .home-hero .home-actions { animation-delay: 240ms !important; }
+    .home-hero .home-lead { animation-delay: 120ms !important; }
+    .home-hero .home-actions { animation-delay: 180ms !important; }
     .home-star { animation: star-arrive 900ms var(--motion-settle) both; }
     .home-orbit { animation: orbit-arrive 1050ms var(--motion-settle) both; }
     .home-orbit-inner { animation-delay: 80ms; }

@@ -20,13 +20,13 @@ A economia de tempo é uma simulação editável, e o protocolo de LLM é demons
 - [Vinícius Mozzer — Essence Residence](https://viniciusmozzer.com.br/)
 - [Vini Imóveis CRM](https://crm.viniciusmozzer.com.br/)
 - [Imobiliária San Martins](https://imobmartins.vercel.app/)
-- [FIT Global — Rudy Daniel](https://rudydaniel.com.br/)
+- [FIT Global, case da plataforma de ensino de Rudy Daniel](https://lucasluk.vercel.app/projetos/fit-global)
 - [Golden Brasil](https://goldenbrasil.com.br/novo/)
 - [Guímel Roeher](https://guimelroeher.vercel.app/)
 
 ## Executar localmente
 
-O portfólio mantém HTML, CSS e JavaScript estáticos. As páginas novas ficam em `ia/index.html` e `projetos/mvpllk/index.html`; `vercel.json` serve as URLs sem extensão na Vercel. O servidor local simples pode acrescentar uma barra ao final dessas URLs.
+O portfólio mantém HTML, CSS e JavaScript estáticos. As páginas internas ficam em `ia/`, `projetos/mvpllk/` e `projetos/fit-global/`; `vercel.json` serve as URLs sem extensão na Vercel. O servidor local simples pode acrescentar uma barra ao final dessas URLs.
 
 A página inicial apresenta os projetos após a abertura, com objetivo, construção e links individuais. `home.css` organiza a grade e as seções complementares; o vídeo do CRM, os exemplos de IA, o repertório e o FAQ usam painéis expansíveis. A rota `/ia` reúne trajetória, competências, projetos técnicos e metodologia. O laboratório de RAG está identificado como proposta na seção `/ia#laboratorio`. Os dois idiomas usam `languages.js`; `site.js` mantém idioma entre rotas, filtros, links diretos e ano do rodapé.
 

@@ -529,12 +529,48 @@
     "Navegação do rodapé": "Footer navigation"
 });
     Object.assign(english, {
-        "Desenvolvimento de sistemas, IA e automação.": "Systems development, AI and automation.",
+        "Desenvolvimento full-stack": "Full-stack development",
+        "Sistemas por inteiro.": "End-to-end systems.",
+        "Desenvolvo plataformas de ensino, CRMs e ferramentas de IA. Construo a interface, o backend e as integrações que fazem o produto funcionar.": "I build learning platforms, CRMs, and AI tools. My work spans the interface, backend, and integrations that make them work together.",
         "Ver projetos": "View projects",
         "Ver o projeto Vini Imóveis CRM": "View the Vini Imóveis CRM project",
         "Combinei retrato e texto em destaque para dar clareza à mensagem sobre a compra de imóveis.": "I combined a portrait with prominent type to clarify the message about buying property.",
         "Usei a imagem do diamante como ponto focal e organizei as informações em blocos curtos.": "I used the diamond as the focal point and organized the information into short sections.",
         "Os números abaixo resumem operações comerciais acompanhadas.": "These figures summarize sales operations I supported."
+    });
+    Object.assign(english, {
+        "Plataforma de ensino de inglês": "English learning platform",
+        "Página pública da FIT Global, com Rudy Daniel em destaque": "FIT Global’s public homepage featuring Rudy Daniel",
+        "Desenvolvi a plataforma do site público à área autenticada. No primeiro acesso, o aluno cria um perfil de aprendizado. O mentor usa esse perfil para gerar, revisar e publicar aulas personalizadas.": "I built the platform from its public website to its signed-in areas. Learners create a profile on their first visit. Mentors use it to generate, review, and publish tailored lessons.",
+        "Além da vitrine": "Behind the public site",
+        "O backend gerencia contas, permissões, perfis de aprendizado e aulas, da geração de um rascunho até a publicação para o aluno.": "The backend manages accounts, permissions, learner profiles, and lessons, from draft generation to publishing for learners.",
+        "Ler o case da FIT Global": "Read the FIT Global case study",
+        "Plataforma de inglês com áreas de aluno e mentor e geração de aulas a partir do perfil de aprendizado.": "An English learning platform with learner and mentor areas and lesson generation based on learner profiles.",
+        "FIT Global: plataforma de ensino de inglês": "FIT Global: English learning platform",
+        "O perfil de aprendizado preenchido pelo aluno orienta a geração de aulas. O mentor revisa o material antes de publicar, e o backend registra respostas e progresso.": "Lesson generation uses the learner’s profile. Mentors review the material before publishing, and the backend records answers and progress.",
+        "FIT Global | Case de plataforma de ensino de inglês": "FIT Global | English learning platform case study",
+        "Case de Lucas Rabicano sobre a FIT Global: onboarding de alunos, geração de aulas personalizadas, painel do mentor e backend da plataforma.": "Lucas Rabicano’s FIT Global case study covers learner onboarding, tailored lesson generation, the mentor dashboard, and the platform backend.",
+        "Desenvolvi para Rudy Daniel uma plataforma em que o perfil do aluno orienta as aulas que o mentor prepara. A página pública apresenta o método; a rotina de ensino acontece nas áreas autenticadas.": "I built a platform for Rudy Daniel where learner profiles guide the lessons mentors prepare. The public site introduces the method; teaching and practice take place in signed-in areas.",
+        "Ver a jornada do aluno": "Explore the learner journey",
+        "Visitar o site público": "Visit the public site",
+        "Vitrine pública da FIT Global. As áreas do aluno e do mentor exigem acesso.": "FIT Global’s public website. The learner and mentor areas require sign-in.",
+        "Do primeiro acesso à aula personalizada": "From first sign-in to a tailored lesson",
+        "O desafio era transformar as respostas do aluno em material de prática sem tirar do mentor a decisão sobre o que publicar.": "The challenge was turning learners’ answers into practice material while keeping mentors in control of what gets published.",
+        "Perfil de aprendizado": "Learner profile",
+        "No primeiro acesso, o aluno registra objetivos com o inglês, interesses, dificuldades e tempo disponível para praticar.": "On their first visit, learners share their English goals, interests, challenges, and time available for practice.",
+        "Geração da aula": "Lesson generation",
+        "Ao solicitar uma aula no painel, o mentor gera um rascunho a partir do perfil. A lógica combina modelos de atividades e usa o histórico recente para reduzir a repetição de temas e exercícios.": "Mentors request a lesson in their dashboard and get a draft based on the learner’s profile. The generator combines activity templates and checks recent history to avoid repeating topics and exercises.",
+        "Revisão e publicação": "Review and publishing",
+        "O mentor pode ajustar o rascunho antes de disponibilizar a aula para um aluno ou grupo.": "Mentors can edit a draft before publishing it for a learner or group.",
+        "Prática e continuidade": "Practice and progress",
+        "O aluno recebe a atividade na própria área, registra respostas e pode retomar a aula a partir do progresso salvo.": "Learners find the activity in their own area, submit their answers, and can resume where they left off.",
+        "O que sustenta a plataforma": "How the platform is built",
+        "Experiências por perfil": "Interfaces by role",
+        "Usei React e TypeScript para construir o onboarding, a área de prática do aluno e o painel em que o mentor organiza, edita e publica aulas.": "I used React and TypeScript to build onboarding, the learner’s practice area, and the dashboard where mentors organize, edit, and publish lessons.",
+        "Dados, contas e permissões": "Data, accounts, and permissions",
+        "O backend em Supabase e PostgreSQL guarda perfis, aulas e respostas. A autenticação identifica o usuário e as regras de acesso no banco limitam quem pode ler ou alterar cada registro.": "The Supabase and PostgreSQL backend stores profiles, lessons, and answers. Authentication identifies users, and database access rules govern who can read or change each record.",
+        "Respostas e progresso": "Answers and progress",
+        "O servidor registra as respostas e corrige questões com gabarito. A plataforma separa a nota objetiva do progresso, que indica quais etapas da aula já foram feitas.": "The server records answers and grades questions with an answer key. The platform tracks scores separately from progress, which shows the lesson steps already completed."
     });
     const isEnglish = new URLSearchParams(window.location.search).get('lang') === 'en';
     const language = isEnglish ? 'en' : 'pt';

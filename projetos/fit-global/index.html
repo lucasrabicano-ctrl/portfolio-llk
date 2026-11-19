@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FIT Global | Case de plataforma de ensino de inglês</title>
+    <meta name="description" content="Case de Lucas Rabicano sobre a FIT Global: onboarding de alunos, geração de aulas personalizadas, painel do mentor e backend da plataforma.">
+    <meta name="theme-color" content="#09090b">
+    <link rel="canonical" href="https://lucasluk.vercel.app/projetos/fit-global">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/technical.css">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="FIT Global | Case de plataforma de ensino de inglês">
+    <meta property="og:description" content="Case de Lucas Rabicano sobre a FIT Global: onboarding de alunos, geração de aulas personalizadas, painel do mentor e backend da plataforma.">
+    <meta property="og:url" content="https://lucasluk.vercel.app/projetos/fit-global">
+    <meta property="og:image" content="https://lucasluk.vercel.app/og-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <script src="/languages.js" defer></script>
+    <script src="/site.js" defer></script>
+</head>
+<body class="technical">
+    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+    <header>
+        <div class="wrap topbar">
+            <a class="brand" href="/" data-localized>Lucas Rabicano</a>
+            <nav aria-label="Navegação principal">
+                <a href="/#projetos" data-localized>Projetos</a>
+                <a href="/ia" data-localized>IA e tecnologia</a>
+                <a href="/projetos/fit-global" aria-current="page" data-localized>FIT Global</a>
+            </nav>
+            <nav aria-label="Idioma">
+                <a href="?lang=pt" lang="pt-BR" data-language="pt">PT</a>
+                <a href="?lang=en" lang="en" data-language="en">EN</a>
+            </nav>
+        </div>
+    </header>
+    <main id="conteudo" tabindex="-1">
+        <section class="wrap hero-tech split" aria-labelledby="fit-title">
+            <div>
+                <p class="role">Plataforma de ensino de inglês</p>
+                <h1 id="fit-title">FIT Global</h1>
+                <p class="lead">Desenvolvi para Rudy Daniel uma plataforma em que o perfil do aluno orienta as aulas que o mentor prepara. A página pública apresenta o método; a rotina de ensino acontece nas áreas autenticadas.</p>
+                <div class="actions">
+                    <a class="button primary" href="#jornada">Ver a jornada do aluno</a>
+                    <a class="button" href="https://rudydaniel.com.br/">Visitar o site público</a>
+                </div>
+            </div>
+            <figure>
+                <img class="media" src="/portfolio-assets/rudy-daniel-site.png" width="1440" height="900" alt="Página pública da FIT Global, com Rudy Daniel em destaque" decoding="async">
+                <figcaption>Vitrine pública da FIT Global. As áreas do aluno e do mentor exigem acesso.</figcaption>
+            </figure>
+        </section>
+
+        <section id="jornada" class="wrap band split" aria-labelledby="fit-journey-title">
+            <div>
+                <h2 id="fit-journey-title">Do primeiro acesso à aula personalizada</h2>
+                <p>O desafio era transformar as respostas do aluno em material de prática sem tirar do mentor a decisão sobre o que publicar.</p>
+            </div>
+            <ol class="flow">
+                <li><strong>Perfil de aprendizado</strong><p>No primeiro acesso, o aluno registra objetivos com o inglês, interesses, dificuldades e tempo disponível para praticar.</p></li>
+                <li><strong>Geração da aula</strong><p>Ao solicitar uma aula no painel, o mentor gera um rascunho a partir do perfil. A lógica combina modelos de atividades e usa o histórico recente para reduzir a repetição de temas e exercícios.</p></li>
+                <li><strong>Revisão e publicação</strong><p>O mentor pode ajustar o rascunho antes de disponibilizar a aula para um aluno ou grupo.</p></li>
+                <li><strong>Prática e continuidade</strong><p>O aluno recebe a atividade na própria área, registra respostas e pode retomar a aula a partir do progresso salvo.</p></li>
+            </ol>
+        </section>
+
+        <section id="arquitetura" class="wrap band" aria-labelledby="fit-architecture-title">
+            <h2 id="fit-architecture-title">O que sustenta a plataforma</h2>
+            <div class="stack cols">
+                <article class="panel">
+                    <h3>Experiências por perfil</h3>
+                    <p>Usei React e TypeScript para construir o onboarding, a área de prática do aluno e o painel em que o mentor organiza, edita e publica aulas.</p>
+                </article>
+                <article class="panel">
+                    <h3>Dados, contas e permissões</h3>
+                    <p>O backend em Supabase e PostgreSQL guarda perfis, aulas e respostas. A autenticação identifica o usuário e as regras de acesso no banco limitam quem pode ler ou alterar cada registro.</p>
+                </article>
+                <article class="panel">
+                    <h3>Respostas e progresso</h3>
+                    <p>O servidor registra as respostas e corrige questões com gabarito. A plataforma separa a nota objetiva do progresso, que indica quais etapas da aula já foram feitas.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="wrap footbar">
+            <span>© <span data-year>2026</span> Lucas Rabicano.</span>
+            <a class="text-link" href="/#projetos" data-localized>Ver todos os projetos</a>
+        </div>
+    </footer>
+</body>
+</html>
